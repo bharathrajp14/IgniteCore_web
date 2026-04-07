@@ -80,3 +80,17 @@ textarea:focus-visible {
   outline: 2px solid var(--color-orange);
   outline-offset: 2px;
 }
+
+.chat-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border) transparent;
+}
+
+.chat-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+
+.chat-scroll::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 999px;
+}

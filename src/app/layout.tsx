@@ -6,6 +6,7 @@ import "./globals.css";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { WhatsAppFloat } from "@/components/WhatsAppFloat";
+import { ChatbotWidget } from "@/components/ChatbotWidget";
 import { BRAND } from "@/lib/siteContent";
 
 const dmSans = DM_Sans({
@@ -102,6 +103,7 @@ export default function RootLayout({
         <SiteHeader />
         <main>{children}</main>
         <SiteFooter />
+        <ChatbotWidget />
         <WhatsAppFloat />
         <Analytics />
       </body>

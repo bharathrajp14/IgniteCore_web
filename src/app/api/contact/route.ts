@@ -21,33 +21,37 @@ export async function POST(req: NextRequest) {
     }
 
     const supabase = getSupabaseServerClient();
+    if (!supabase) {
+      return NextResponse.json(
+        { error: "Supabase is not configured. Set SUPABASE_URL and SUPABASE_SECRET_KEY." },
+        { status: 500 }
+      );
+    }
 
-    if (supabase) {
-      const payload = {
-        name: parsed.data.name,
-        business_name: parsed.data.businessName,
-        email: parsed.data.email,
-        whatsapp: parsed.data.whatsapp,
-        help_type: parsed.data.projectType,
-        message: parsed.data.message,
-      };
+    const payload = {
+      name: parsed.data.name,
+      business_name: parsed.data.businessName,
+      email: parsed.data.email,
+      whatsapp: parsed.data.whatsapp,
+      help_type: parsed.data.projectType,
+      message: parsed.data.message,
+    };
 
-      const { error } = await supabase.from("contact_submissions").insert(payload);
+    const { error } = await supabase.from("contact_submissions").insert(payload);
 
-      if (error) {
-        // Fallback for older table shape that may not yet have business_name/email columns.
-        const { error: fallbackError } = await supabase.from("contact_submissions").insert({
-          name: parsed.data.name,
-          business_type: parsed.data.businessName,
-          whatsapp: parsed.data.whatsapp,
-          help_type: parsed.data.projectType,
-          message: parsed.data.message,
-        });
+    if (error) {
+      console.error("Supabase insert error (contact_submissions):", {
+        message: error.message,
+        details: error.details,
+        hint: error.hint,
+        code: error.code,
+      });
 
-        if (fallbackError) {
-          return NextResponse.json({ error: "Unable to store contact request" }, { status: 500 });
-        }
-      }
+      const debugError = process.env.NODE_ENV === "production"
+        ? "Unable to store contact request"
+        : `Unable to store contact request: ${error.message}`;
+
+      return NextResponse.json({ error: debugError }, { status: 500 });
     }
 
     const n8nWebhookUrl = process.env.N8N_CONTACT_WEBHOOK_URL;
