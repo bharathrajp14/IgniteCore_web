@@ -14,7 +14,7 @@ export const BRAND = {
   email: "ignitecores@gmail.com",
   github: "https://github.com/bharthraj1412",
   linkedin: "https://www.linkedin.com/in/bharath-ignitecore",
-  bookingUrl: "https://cal.com/ignitecore/free-ai-audit",
+  bookingUrl: "https://cal.com/ignitecore-solutions-jfsze7",
 };
 
 export const TRUST_STRIP = [
