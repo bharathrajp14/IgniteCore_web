@@ -2,283 +2,302 @@ export const BRAND = {
   company: "IgniteCore Solutions",
   founder: "Bharath",
   tagline: "Igniting intelligence. Powering growth.",
-  mission: "Make AI practical and affordable for Indian SMBs.",
+  mission:
+    "Help Indian businesses move from manual chaos to reliable digital systems that save time, improve follow-up, and increase revenue.",
+  vision:
+    "Make practical AI automation and modern web experiences accessible to every serious small business in India.",
+  domain: "ignitecoreai.tech",
   location: "Coimbatore, Tamil Nadu, India",
-  serving: "Coimbatore, Chennai, Bangalore, Hyderabad",
-  phone: "+91 98765 43210",
-  whatsapp: "919876543210",
-  email: "hello@ignitecore.in",
+  serving: "India-first remote delivery with on-ground support in Tamil Nadu",
+  phone: "9344518573",
+  whatsapp: "919344518573",
+  email: "ignitecores@gmail.com",
   github: "https://github.com/bharthraj1412",
   linkedin: "https://www.linkedin.com/in/bharath-ignitecore",
   calendly: "https://calendly.com/ignitecore/free-ai-audit",
 };
 
-export const SERVICE_TIERS = [
+export const TRUST_STRIP = [
+  "Fast turnaround for SMB-ready delivery",
+  "Clear scopes and practical implementation",
+  "WhatsApp-first process automation expertise",
+  "Web + automation under one execution partner",
+];
+
+export const HOME_PROBLEMS = [
   {
-    name: "Starter",
-    price: "INR 5K-8K",
-    bestFor: "Single workflow fixes for local businesses",
-    features: [
-      "One automation workflow",
-      "Basic WhatsApp response templates",
-      "Lead sheet setup",
-      "7-day support",
-    ],
+    title: "Leads come in, follow-up breaks",
+    description: "Businesses get enquiries through calls, forms, and WhatsApp, but no system tracks what happens next.",
   },
   {
-    name: "Growth",
-    price: "INR 12K-25K",
-    bestFor: "Businesses ready to automate sales and follow-up",
-    features: [
-      "Multi-step lead qualification",
-      "CRM sync + dashboard",
-      "Follow-up reminders",
-      "30-day optimization support",
-    ],
+    title: "Owners do repetitive operations",
+    description: "Manual reminders, status updates, and lead sorting consume time that should go to growth and decisions.",
   },
   {
-    name: "Scale",
-    price: "INR 30K-80K",
-    bestFor: "Teams needing advanced automation and reporting",
-    features: [
-      "Advanced workflow architecture",
-      "Role-based dashboards",
-      "Team onboarding and SOPs",
-      "90-day success roadmap",
-    ],
+    title: "Web presence does not convert",
+    description: "Many websites look outdated or unclear, so visitors leave before taking any action.",
+  },
+  {
+    title: "No clear reporting",
+    description: "Without simple dashboards, teams cannot see conversion bottlenecks or campaign quality in time.",
   },
 ];
 
-export const RETAINER = {
-  name: "Monthly Retainer",
-  price: "INR 3K-8K/month",
-  features: [
-    "Automation health checks",
-    "Monthly performance reports",
-    "Feature iteration support",
-    "Priority WhatsApp support",
-  ],
-};
+export const HOW_IT_WORKS = [
+  {
+    step: "01",
+    title: "Free AI and workflow audit",
+    description: "We map your current process, identify friction points, and define high-impact automation opportunities.",
+  },
+  {
+    step: "02",
+    title: "Build and launch",
+    description: "We design, build, and deploy your website, lead system, or automation flow with clear deliverables.",
+  },
+  {
+    step: "03",
+    title: "Measure and improve",
+    description: "You get performance visibility and iterative improvements so the system keeps creating business value.",
+  },
+];
 
-export const HOME_PAIN_POINTS = [
+export const SERVICES = [
   {
-    title: "Manual WhatsApp replies",
+    name: "AI Automation Systems",
+    audience: "Clinics, coaching centers, service teams, and growing local businesses",
+    outcome: "Faster response time, fewer missed leads, and consistent follow-up",
+    startingPrice: "Starts at INR 12,000",
     description:
-      "Owners spend hours replying manually, delaying responses and losing leads.",
+      "Automate repetitive tasks such as lead qualification, reminders, and routine replies while keeping human handoff where trust matters.",
   },
   {
-    title: "No business data visibility",
+    name: "Business Websites",
+    audience: "Businesses needing a credible online presence that converts",
+    outcome: "Higher trust, better enquiry quality, and stronger brand positioning",
+    startingPrice: "Starts at INR 18,000",
     description:
-      "No one knows where leads come from, who converts, or what follows up.",
+      "Conversion-focused websites with clear messaging, service architecture, and contact flows built for Indian SMB buyers.",
   },
   {
-    title: "Leads get lost",
+    name: "Web App Development",
+    audience: "Teams that need custom workflows beyond static websites",
+    outcome: "Operational clarity and reduced manual process load",
+    startingPrice: "Starts at INR 35,000",
     description:
-      "Prospects ask once and disappear because there is no follow-up system.",
+      "Tailored web applications for operations, dashboards, internal workflows, and role-based task management.",
   },
   {
-    title: "AI feels inaccessible",
+    name: "Lead Capture Systems",
+    audience: "Businesses spending on ads or content but losing lead intent",
+    outcome: "Structured lead data and better conversion visibility",
+    startingPrice: "Starts at INR 10,000",
     description:
-      "Most owners know AI matters, but jargon makes decisions hard and slow.",
+      "Landing pages, forms, tagging, and routing logic that move enquiries into an actionable pipeline instantly.",
+  },
+  {
+    name: "WhatsApp Automation",
+    audience: "Sales and support teams running high-volume WhatsApp conversations",
+    outcome: "Quicker first response and cleaner escalation flow",
+    startingPrice: "Starts at INR 8,000",
+    description:
+      "Set up smart WhatsApp workflows for FAQs, lead capture, reminders, and escalation to human agents.",
+  },
+  {
+    name: "Dashboards and Internal Tools",
+    audience: "Owners and managers who need daily operational visibility",
+    outcome: "Faster decisions with fewer reporting delays",
+    startingPrice: "Starts at INR 22,000",
+    description:
+      "Custom dashboards that track key metrics such as enquiries, conversion rates, response times, and team performance.",
+  },
+  {
+    name: "Landing Pages",
+    audience: "Campaign-led businesses running launches or paid promotions",
+    outcome: "More qualified enquiries from focused campaigns",
+    startingPrice: "Starts at INR 7,500",
+    description:
+      "High-clarity landing pages with strong copy and intentional CTA structure for campaign-specific lead generation.",
+  },
+  {
+    name: "Maintenance and Support",
+    audience: "Businesses that need continuity after launch",
+    outcome: "Lower downtime and consistent optimization",
+    startingPrice: "Starts at INR 4,000 / month",
+    description:
+      "Monthly support for updates, minor enhancements, bug fixes, and workflow tuning.",
+  },
+];
+
+export const SERVICE_FAQS = [
+  {
+    q: "How quickly can IgniteCore deliver a first version?",
+    a: "Most projects start with a working first release in 7 to 14 business days, depending on scope.",
+  },
+  {
+    q: "Do you work only with large companies?",
+    a: "No. IgniteCore is intentionally designed for Indian SMBs and founder-led teams.",
+  },
+  {
+    q: "Will I understand the technical setup?",
+    a: "Yes. We explain each system in plain business language and document what is implemented.",
+  },
+  {
+    q: "Can you improve our current website instead of rebuilding everything?",
+    a: "Yes. We can optimize existing assets and add conversion modules where needed.",
+  },
+  {
+    q: "Do you provide post-launch support?",
+    a: "Yes. Maintenance plans are available for updates, monitoring, and monthly optimization.",
+  },
+];
+
+export const PROJECTS = [
+  {
+    name: "JobBoard Pro",
+    description:
+      "A job platform with role filtering, recruiter workflows, and streamlined candidate flow for hiring teams.",
+    techStack: ["Next.js", "TypeScript", "Supabase", "Tailwind CSS"],
+    demo: "https://ignite-core-web.vercel.app/portfolio",
+    github: "https://github.com/bharthraj1412",
+  },
+  {
+    name: "LifeOS",
+    description:
+      "A productivity system for personal planning and habit tracking with a clean dashboard-first user experience.",
+    techStack: ["React", "Supabase", "Node.js", "Automation"],
+    demo: "https://ignite-core-web.vercel.app/portfolio",
+    github: "https://github.com/bharthraj1412",
+  },
+  {
+    name: "HexStrike AI",
+    description:
+      "An AI-assisted workflow toolkit for lead routing, quick response support, and lightweight internal automation.",
+    techStack: ["Node.js", "OpenAI APIs", "n8n", "PostgreSQL"],
+    demo: "https://ignite-core-web.vercel.app/portfolio",
+    github: "https://github.com/bharthraj1412",
+  },
+  {
+    name: "IgniteCore Demo Tools",
+    description:
+      "Internal showcase tools demonstrating form automation, contact pipelines, and no-code workflow orchestration.",
+    techStack: ["Next.js", "Supabase", "Webhooks", "Vercel"],
+    demo: "https://ignite-core-web.vercel.app",
+    github: "https://github.com/bharthraj1412/IgniteCore_web",
   },
 ];
 
 export const CASE_STUDIES = [
   {
-    title: "Clinic follow-up automation",
-    industry: "Healthcare Clinic, Coimbatore",
-    problem: "Front desk missed patient follow-ups and appointment reminders.",
-    solution:
-      "Built WhatsApp reminder bot with lead tags and daily missed-call summary.",
-    result: "Response time down 62%, repeat visits up 31% in 8 weeks.",
-    quote:
-      "We stopped missing patient callbacks. The team now works calmer and faster.",
-    client: "Dr. Keerthana, Clinic Owner",
+    title: "Clinic Enquiry Response Overhaul",
+    industry: "Healthcare",
+    problem: "Patient enquiries were delayed due to manual call-backs and untracked WhatsApp chats.",
+    solution: "Introduced lead tagging, reminder automation, and response templates with escalation rules.",
+    outcome: "Average first-response time reduced from 3 hours to 35 minutes.",
+    impact: "Appointment conversion increased by 28% in 6 weeks.",
+    beforeAfter: "Before: 38% response within one hour | After: 84% response within one hour",
   },
   {
-    title: "Coaching admissions workflow",
-    industry: "Coaching Institute, Chennai",
-    problem: "Admission leads were scattered across calls, forms, and WhatsApp chats.",
-    solution:
-      "Unified lead capture, automated reminders, and counselor dashboard in one flow.",
-    result: "Lead-to-enrollment conversion improved from 11% to 19% in one term.",
-    quote:
-      "For the first time, we can see each lead stage clearly and act on time.",
-    client: "Ramesh V, Operations Lead",
+    title: "Coaching Admissions Follow-up Engine",
+    industry: "Education",
+    problem: "Admission leads dropped because counsellors had no unified follow-up system.",
+    solution: "Built a lead capture dashboard with stage tracking and automated WhatsApp nudges.",
+    outcome: "Follow-up completion improved from 46% to 89%.",
+    impact: "Lead-to-enrollment ratio improved from 1 in 9 to 1 in 5.",
+    beforeAfter: "Before: fragmented enquiry list | After: unified pipeline with weekly reports",
   },
   {
-    title: "Real estate lead routing",
-    industry: "Real Estate Team, Bangalore",
-    problem: "Hot leads waited too long before agent assignment.",
-    solution:
-      "Implemented instant lead scoring and auto-routing to available agent by location.",
-    result: "First response under 5 minutes for 82% of leads, bookings up 24%.",
-    quote:
-      "Lead response speed changed our monthly numbers more than ad spend did.",
-    client: "Sowmya R, Sales Manager",
+    title: "Real Estate Lead Routing Automation",
+    industry: "Real Estate",
+    problem: "Hot leads waited too long before being assigned to agents.",
+    solution: "Implemented instant lead scoring and location-based auto assignment.",
+    outcome: "82% of fresh leads assigned in under 5 minutes.",
+    impact: "Site-visit booking rates increased by 24% in two months.",
+    beforeAfter: "Before: manual allocation delays | After: auto-route + SLA alerts",
   },
 ];
 
-export const FAQS = [
+export const LEARNING_POSTS = [
   {
-    q: "How does the free AI audit work?",
-    a: "We review your current workflow, identify bottlenecks, and share a practical automation plan during a 30-minute call.",
-  },
-  {
-    q: "Do I need technical knowledge to work with IgniteCore?",
-    a: "No. We explain everything in plain business language and handle implementation end-to-end.",
-  },
-  {
-    q: "How quickly can we launch the first automation?",
-    a: "Starter projects are usually delivered within 5-7 business days after requirements are finalized.",
-  },
-  {
-    q: "Can you integrate with WhatsApp and Google Sheets?",
-    a: "Yes. This is one of our most common setups for Indian SMB operations and follow-up workflows.",
-  },
-  {
-    q: "Is there a lock-in period?",
-    a: "Project plans have no lock-in. Retainers are monthly and can be paused with notice.",
-  },
-  {
-    q: "Do you provide support after delivery?",
-    a: "Yes. Every tier includes support, and retainers include monthly optimization and priority fixes.",
-  },
-  {
-    q: "What businesses do you usually work with?",
-    a: "Clinics, coaching centers, CA firms, real estate teams, and social-first sellers.",
-  },
-  {
-    q: "What tools do you use to build automations?",
-    a: "Typically WhatsApp API, n8n, Supabase, lightweight dashboards, and your existing tools.",
-  },
-  {
-    q: "Do you do vague strategy consulting only?",
-    a: "No. We focus on implementation with measurable outcomes, timelines, and clear deliverables.",
-  },
-  {
-    q: "Are there hidden setup costs?",
-    a: "No hidden charges. You get a clear scope and pricing before we start.",
-  },
-];
-
-export const TUTORIALS = [
-  {
-    slug: "how-to-automate-whatsapp-replies-india",
-    title: "How to automate WhatsApp replies for Indian businesses",
-    summary:
-      "Set up instant replies, lead tagging, and human handoff for faster sales conversations.",
-    keyword: "how to automate WhatsApp for business",
+    slug: "ai-automation-basics-for-small-businesses",
+    title: "AI Automation Basics for Small Businesses",
+    summary: "A practical starter guide to identify repetitive tasks worth automating first.",
+    category: "AI Basics",
+    keyword: "AI automation for small businesses",
+    updatedAt: "2026-04-08",
     loomEmbed: "https://www.loom.com/embed/0ecdbf4145c84cc0a55c916f4d35feba",
-    updatedAt: "2026-04-01",
   },
   {
-    slug: "chatgpt-for-gst-summaries-small-business-india",
-    title: "Use ChatGPT for GST summaries in a small business",
-    summary:
-      "Turn invoice exports into quick weekly summaries your accountant can act on.",
-    keyword: "ChatGPT for small business India",
+    slug: "whatsapp-automation-playbook-india",
+    title: "WhatsApp Automation Playbook for Indian SMBs",
+    summary: "How to build response flows, lead capture, and escalation without sounding robotic.",
+    category: "WhatsApp",
+    keyword: "WhatsApp automation India",
+    updatedAt: "2026-04-08",
     loomEmbed: "https://www.loom.com/embed/bd2906cb4d7a48a481f164f77ad20978",
-    updatedAt: "2026-04-01",
   },
   {
-    slug: "n8n-lead-followup-workflow-india-tutorial",
-    title: "Build an n8n lead follow-up workflow for Indian SMB sales",
-    summary:
-      "Capture leads, auto-assign owner, and send WhatsApp reminders without manual work.",
-    keyword: "n8n automation India tutorial",
-    loomEmbed: "https://www.loom.com/embed/2b95192fa2774870a8b4256ad5e8fbe7",
-    updatedAt: "2026-04-01",
-  },
-  {
-    slug: "ai-tools-for-coaching-institutes-india",
-    title: "Best AI tools for coaching institutes in India",
-    summary:
-      "A practical stack for admissions follow-ups, parent communication, and reporting.",
-    keyword: "AI tools for coaching institutes India",
+    slug: "business-websites-that-convert-in-india",
+    title: "How to Build Business Websites That Convert in India",
+    summary: "Messaging, proof, and CTA architecture that helps websites generate real enquiries.",
+    category: "Web Strategy",
+    keyword: "business websites in India",
+    updatedAt: "2026-04-08",
     loomEmbed: "https://www.loom.com/embed/46577a6aa2ef446c874e8de732f1f8cf",
-    updatedAt: "2026-04-01",
   },
   {
-    slug: "free-ai-tools-indian-business-owners-2026",
-    title: "Free AI tools Indian business owners can use in 2026",
-    summary:
-      "A no-fluff list of free tools to automate replies, summaries, and routine admin work.",
-    keyword: "free AI tools Indian business owners",
+    slug: "lead-pipeline-setup-for-service-businesses",
+    title: "Lead Pipeline Setup for Service Businesses",
+    summary: "Set up a simple lead pipeline with clear stages and zero data confusion.",
+    category: "Operations",
+    keyword: "automation services lead pipeline",
+    updatedAt: "2026-04-08",
+    loomEmbed: "https://www.loom.com/embed/2b95192fa2774870a8b4256ad5e8fbe7",
+  },
+  {
+    slug: "starter-ai-tools-for-smb-teams",
+    title: "Starter AI Tools for SMB Teams",
+    summary: "A curated list of practical tools for drafting, follow-up, and workflow support.",
+    category: "Tools",
+    keyword: "AI tools for SMBs",
+    updatedAt: "2026-04-08",
     loomEmbed: "https://www.loom.com/embed/0ecdbf4145c84cc0a55c916f4d35feba",
-    updatedAt: "2026-04-01",
   },
   {
-    slug: "build-whatsapp-chatbot-setup-for-clinics-india",
-    title: "WhatsApp chatbot setup for clinics in India",
-    summary:
-      "A clinic-focused build guide covering FAQs, appointment intents, and escalation.",
-    keyword: "WhatsApp chatbot setup for clinics India",
+    slug: "web-development-for-startups-checklist",
+    title: "Web Development for Startups: Launch Checklist",
+    summary: "A no-fluff checklist for launching a reliable website and contact system quickly.",
+    category: "Web Development",
+    keyword: "web development for startups",
+    updatedAt: "2026-04-08",
     loomEmbed: "https://www.loom.com/embed/bd2906cb4d7a48a481f164f77ad20978",
-    updatedAt: "2026-04-01",
   },
 ];
 
-export const PORTFOLIO_PROJECTS = [
-  {
-    name: "JobBoard Pro",
-    description:
-      "A smart hiring board with AI-assisted candidate matching and recruiter workflows.",
-    tags: ["React", "Supabase", "Node.js", "Automation"],
-    github: "https://github.com/bharthraj1412",
-    demo: "https://example.com/jobboard-pro",
-  },
-  {
-    name: "LifeOS",
-    description:
-      "Personal productivity system with AI daily planning, reminders, and habit insights.",
-    tags: ["React", "AI APIs", "TypeScript", "Supabase"],
-    github: "https://github.com/bharthraj1412",
-    demo: "https://example.com/lifeos",
-  },
-  {
-    name: "HexStrike AI",
-    description:
-      "Automation toolkit for lead qualification, intent scoring, and response triggers.",
-    tags: ["Node.js", "AI APIs", "n8n", "Automation"],
-    github: "https://github.com/bharthraj1412",
-    demo: "https://example.com/hexstrike-ai",
-  },
-];
-
-export const SKILLS = [
-  { name: "React", value: 88 },
-  { name: "Supabase", value: 84 },
-  { name: "AI APIs", value: 86 },
-  { name: "Node.js", value: 82 },
-  { name: "Automation Tools", value: 90 },
-];
-
-export const TUTORIAL_BODY = {
+export const LEARNING_BODY = {
   intro:
-    "Indian business owners are already using WhatsApp as their first sales channel, but most teams still run it manually. This creates delayed replies, poor follow-up consistency, and lost opportunities. In this guide, we break down a practical automation model you can use without building heavy software. The goal is simple: reduce manual effort while keeping human trust in the conversation.",
+    "Most small businesses do not need complex AI architecture to start improving outcomes. They need clear priorities, a simple workflow map, and practical tools that teams will actually use. This guide focuses on implementation over jargon.",
   sections: [
     {
-      heading: "1) Start with one high-volume use case",
-      text: "Most teams try to automate everything in week one and then abandon the effort. Start with one repeatable flow, such as first-response qualification for inbound WhatsApp messages. Define three things clearly: who sends the first message, what question patterns are common, and what outcome should happen in the first five minutes. This focus keeps implementation practical and measurable.",
+      heading: "1) Choose one workflow with direct revenue impact",
+      text: "Start with a use case tied to enquiries, follow-up, appointments, or conversions. Avoid broad automation projects in the first phase.",
     },
     {
-      heading: "2) Define intent buckets in plain language",
-      text: "Create intent buckets that match real business outcomes: new enquiry, support query, pricing request, follow-up pending, and spam. Keep the logic business-first, not model-first. Use short prompts and predictable templates. When your team understands the intent map, handoffs become easier and fewer leads are dropped between sales and operations.",
+      heading: "2) Standardize incoming lead details",
+      text: "Define a small set of mandatory fields and ensure every enquiry source captures the same structure.",
     },
     {
-      heading: "3) Build human handoff rules early",
-      text: "Automation should speed up trust, not remove humans from important conversations. Add handoff rules for payment discussions, complaints, and high-value leads. A simple rule can be: if message includes discount request or urgent keywords, escalate to owner immediately. This hybrid model protects brand tone and prevents automation from sounding robotic.",
+      heading: "3) Build response rules with human fallback",
+      text: "Automate predictable responses, but keep a human escalation path for high-value or sensitive conversations.",
     },
     {
-      heading: "4) Track outcomes weekly",
-      text: "Measure response time, qualified leads created, follow-up completion, and booking rate. Use a lightweight dashboard with a daily summary. If a workflow does not improve one of these numbers in two weeks, simplify it. Teams that review weekly improve quickly; teams that automate and forget usually lose confidence in AI projects.",
+      heading: "4) Track weekly metrics",
+      text: "Measure response speed, follow-up completion, conversion movement, and source quality every week.",
     },
     {
-      heading: "5) Expand only after stable results",
-      text: "Once your first workflow is stable, expand to reminders, reactivation campaigns, and post-service feedback. Scale in small layers so your team keeps control. Document templates and exceptions in a short SOP. This makes onboarding easier and reduces dependency on one person. The result is predictable operations, faster response cycles, and better lead conversion.",
+      heading: "5) Improve in short cycles",
+      text: "Review what worked, remove complexity, and release small iterations instead of large risky changes.",
     },
   ],
   conclusion:
-    "AI automation for Indian SMBs works best when it is practical, transparent, and tied to business outcomes. Start small, measure weekly, and keep human handoff where trust matters. If you want a done-for-you setup, book a free audit and we will map your workflow with clear timelines and pricing.",
+    "Practical automation wins when teams can understand and use it daily. Start lean, keep visibility high, and iterate with measurable goals.",
 };

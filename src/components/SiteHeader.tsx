@@ -19,7 +19,17 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-[var(--color-border)] bg-[var(--color-cream)]/95 backdrop-blur">
+    <header className="sticky top-0 z-50 border-b border-[var(--color-border)] bg-[var(--color-cream)]/96 backdrop-blur">
+      <div className="border-b border-[var(--color-border)] bg-[var(--color-dark)] text-[11px] text-white">
+        <div className="mx-auto flex w-full max-w-[1100px] flex-wrap items-center justify-between gap-2 px-4 py-2 md:px-6">
+          <p className="font-mono tracking-[0.16em] text-slate-300">IGNITECORE SOLUTIONS</p>
+          <div className="flex items-center gap-4 text-slate-200">
+            <a href={`tel:${BRAND.phone}`} className="hover:text-white">+91 {BRAND.phone}</a>
+            <a href={`mailto:${BRAND.email}`} className="hover:text-white">{BRAND.email}</a>
+          </div>
+        </div>
+      </div>
+
       <div className="mx-auto flex h-16 w-full max-w-[1100px] items-center justify-between px-4 md:px-6">
         <Link href="/" className="flex items-center gap-2 text-[var(--color-deep-navy)]" aria-label={BRAND.company}>
           <img src="/brand/mark.svg" alt="IgniteCore mark" className="h-10 w-10 sm:h-11 sm:w-11" />
@@ -36,7 +46,7 @@ export function SiteHeader() {
 
         <nav className="hidden items-center gap-5 md:flex" aria-label="Main navigation">
           {NAV_LINKS.map((item) => (
-            <Link key={item.href} href={item.href} className="text-sm font-medium text-[var(--color-slate)] hover:text-[var(--color-deep-navy)]">
+            <Link key={item.href} href={item.href} className="text-sm font-medium text-[var(--color-slate)] transition hover:text-[var(--color-deep-navy)]">
               {item.label}
             </Link>
           ))}

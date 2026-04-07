@@ -21,13 +21,16 @@ export function SiteFooter() {
             </span>
           </div>
           <p className="mt-3 text-sm text-slate-300">{BRAND.tagline}</p>
-          <p className="mt-4 text-sm text-slate-400">Serving: {BRAND.serving}</p>
+          <p className="mt-4 text-sm text-slate-400">{BRAND.mission}</p>
         </div>
 
         <div>
           <h3 className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-300">Explore</h3>
           <ul className="mt-4 space-y-2 text-sm">
+            <li><Link href="/" className="hover:text-[var(--color-ember)]">Home</Link></li>
+            <li><Link href="/about" className="hover:text-[var(--color-ember)]">About</Link></li>
             <li><Link href="/services" className="hover:text-[var(--color-ember)]">Services</Link></li>
+            <li><Link href="/portfolio" className="hover:text-[var(--color-ember)]">Portfolio</Link></li>
             <li><Link href="/learn" className="hover:text-[var(--color-ember)]">Learning Hub</Link></li>
             <li><Link href="/results" className="hover:text-[var(--color-ember)]">Case Studies</Link></li>
             <li><Link href="/contact" className="hover:text-[var(--color-ember)]">Contact</Link></li>
@@ -38,8 +41,9 @@ export function SiteFooter() {
           <h3 className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-300">NAP</h3>
           <img src="/brand/mark.svg" alt="IgniteCore mark" className="mt-3 h-9 w-9" />
           <p className="mt-4 text-sm text-slate-300">Name: {BRAND.company}</p>
+          <p className="text-sm text-slate-300">Domain: {BRAND.domain}</p>
           <p className="text-sm text-slate-300">Address: {BRAND.location}</p>
-          <p className="text-sm text-slate-300">Phone: {BRAND.phone}</p>
+          <p className="text-sm text-slate-300">Phone / WhatsApp: +91 {BRAND.phone}</p>
           <p className="text-sm text-slate-300">Email: {BRAND.email}</p>
         </div>
       </div>

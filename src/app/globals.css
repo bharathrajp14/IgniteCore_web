@@ -11,6 +11,7 @@
   --color-slate: #6e7491;
   --color-deep-navy: #2a2d40;
   --color-border: #d9d3c9;
+  --shadow-soft: 0 14px 40px rgba(42, 45, 64, 0.08);
 }
 
 @theme inline {
@@ -22,7 +23,10 @@
 }
 
 body {
-  background: var(--background);
+  background:
+    radial-gradient(circle at 6% 8%, rgba(255, 92, 26, 0.1), transparent 34%),
+    radial-gradient(circle at 94% 0%, rgba(0, 201, 167, 0.1), transparent 28%),
+    var(--background);
   color: var(--foreground);
   font-family: var(--font-dm-sans), sans-serif;
   line-height: 1.65;
@@ -41,6 +45,21 @@ h3 {
 .hex-bg {
   background-image: radial-gradient(circle at 1px 1px, rgba(42, 45, 64, 0.14) 1px, transparent 0);
   background-size: 26px 26px;
+}
+
+.surface-card {
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: var(--shadow-soft);
+}
+
+.kicker {
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-slate);
 }
 
 .section-shell {

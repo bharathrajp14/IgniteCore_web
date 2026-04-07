@@ -28,10 +28,10 @@ const dmSerif = DM_Serif_Display({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://ignitecore.in"),
-  title: "AI Automation for Indian Businesses | IgniteCore Solutions - Coimbatore",
+  metadataBase: new URL("https://ignitecoreai.tech"),
+  title: "IgniteCore Solutions | AI Automation and Web Solutions for Indian SMBs",
   description:
-    "IgniteCore Solutions helps Indian SMBs automate WhatsApp, leads, and reporting with practical AI systems. Book a free AI audit in Coimbatore.",
+    "IgniteCore Solutions builds AI automation systems, modern websites, and practical digital tools for Indian businesses.",
   icons: {
     icon: [
       { url: "/favicon.svg", type: "image/svg+xml" },
@@ -40,17 +40,19 @@ export const metadata: Metadata = {
     shortcut: "/favicon.svg",
   },
   openGraph: {
-    title: "AI Automation for Indian Businesses | IgniteCore Solutions",
+    title: "IgniteCore Solutions | AI Automation and Web Solutions",
     description:
-      "Save 15 hours/week with practical AI automation for clinics, coaching institutes, and service businesses.",
-    url: "https://ignitecore.in",
+      "Practical automation, conversion-focused websites, and digital systems built for Indian SMB growth.",
+    url: "https://ignitecoreai.tech",
     siteName: "IgniteCore Solutions",
     type: "website",
   },
   keywords: [
     "AI automation for small businesses India",
+    "business websites in India",
+    "web development for startups",
     "WhatsApp bot for businesses India",
-    "AI tools for Indian SMBs",
+    "AI tools for SMBs",
     "business automation Coimbatore",
   ],
 };
@@ -72,7 +74,9 @@ export default function RootLayout({
       addressCountry: "IN",
     },
     telephone: BRAND.phone,
-    areaServed: ["Coimbatore", "Chennai", "Bangalore", "Hyderabad"],
+    email: BRAND.email,
+    url: `https://${BRAND.domain}`,
+    areaServed: ["India"],
     sameAs: [BRAND.github, BRAND.linkedin],
   };
 

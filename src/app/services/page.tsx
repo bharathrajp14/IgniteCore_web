@@ -1,89 +1,56 @@
 import type { Metadata } from "next";
-import Script from "next/script";
-import { CalendlyInline } from "@/components/CalendlyInline";
+import Link from "next/link";
+import { SERVICE_FAQS, SERVICES } from "@/lib/siteContent";
 import { FaqAccordion } from "@/components/FaqAccordion";
-import { BRAND, FAQS, RETAINER, SERVICE_TIERS } from "@/lib/siteContent";
 
 export const metadata: Metadata = {
-  title: "AI Services Pricing for Indian SMBs | IgniteCore Coimbatore",
+  title: "Services | IgniteCore AI Automation and Web Solutions",
   description:
-    "See IgniteCore service tiers, pricing, FAQ, and monthly retainer options for AI automation in Coimbatore and across India.",
+    "Explore IgniteCore services including AI automation, business websites, web apps, WhatsApp automation, dashboards, and ongoing support.",
 };
 
 export default function ServicesPage() {
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: FAQS.map((item) => ({
-      "@type": "Question",
-      name: item.q,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: item.a,
-      },
-    })),
-  };
-
   return (
     <section className="section-shell">
-      <Script id="faq-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-      <div className="mx-auto w-full max-w-[1100px] space-y-10 px-4 md:px-6">
-        <div>
-          <h1 className="font-display text-4xl italic md:text-5xl">Services and pricing</h1>
-          <p className="mt-4 max-w-3xl text-[var(--color-slate)]">
-            Choose the package that matches your current stage. Every plan includes implementation, not vague consulting.
-          </p>
+      <div className="mx-auto w-full max-w-[1100px] px-4 md:px-6">
+        <p className="kicker">Services</p>
+        <h1 className="mt-3 font-display text-4xl md:text-5xl">Solutions designed for execution, not confusion</h1>
+        <p className="mt-4 max-w-3xl text-[var(--color-slate)]">
+          Each service is built to remove operational bottlenecks and improve your conversion flow with practical implementation.
+        </p>
+
+        <div className="mt-8 grid gap-4 md:grid-cols-2">
+          {SERVICES.map((service) => (
+            <article key={service.name} className="surface-card p-6">
+              <h2 className="text-2xl">{service.name}</h2>
+              <p className="mt-2 text-sm text-[var(--color-slate)]">{service.description}</p>
+              <p className="mt-3 text-sm text-[var(--color-deep-navy)]"><strong>Who it is for:</strong> {service.audience}</p>
+              <p className="mt-1 text-sm text-[var(--color-deep-navy)]"><strong>Outcome:</strong> {service.outcome}</p>
+              <p className="mt-1 text-sm font-semibold text-[var(--color-orange)]">{service.startingPrice}</p>
+            </article>
+          ))}
         </div>
 
-        <div className="overflow-x-auto rounded-xl border border-[var(--color-border)] bg-white">
-          <table className="min-w-full text-left text-sm">
-            <thead className="bg-[var(--color-cream)] text-[var(--color-deep-navy)]">
-              <tr>
-                <th className="px-4 py-3">Tier</th>
-                <th className="px-4 py-3">Pricing</th>
-                <th className="px-4 py-3">Best for</th>
-                <th className="px-4 py-3">Feature highlights</th>
-              </tr>
-            </thead>
-            <tbody>
-              {SERVICE_TIERS.map((tier) => (
-                <tr key={tier.name} className="border-t border-[var(--color-border)]">
-                  <td className="px-4 py-4 font-semibold">{tier.name}</td>
-                  <td className="px-4 py-4 text-[var(--color-orange)]">{tier.price}</td>
-                  <td className="px-4 py-4 text-[var(--color-slate)]">{tier.bestFor}</td>
-                  <td className="px-4 py-4 text-[var(--color-slate)]">{tier.features.join(", ")}</td>
-                </tr>
-              ))}
-              <tr className="border-t border-[var(--color-border)]">
-                <td className="px-4 py-4 font-semibold">{RETAINER.name}</td>
-                <td className="px-4 py-4 text-[var(--color-orange)]">{RETAINER.price}</td>
-                <td className="px-4 py-4 text-[var(--color-slate)]">Businesses needing ongoing optimization</td>
-                <td className="px-4 py-4 text-[var(--color-slate)]">{RETAINER.features.join(", ")}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <article className="rounded-xl border border-[var(--color-border)] bg-white p-6">
-          <h2 className="text-2xl">What we do not do</h2>
-          <ul className="mt-4 list-disc space-y-2 pl-5 text-sm text-[var(--color-slate)]">
-            <li>No vague consulting decks without implementation ownership.</li>
-            <li>No hidden platform fees after onboarding.</li>
-            <li>No over-engineering for small teams with simple needs.</li>
-          </ul>
-        </article>
-
-        <div>
-          <h2 className="mb-4 text-2xl">Frequently asked questions</h2>
-          <FaqAccordion items={FAQS} />
-        </div>
-
-        <div className="rounded-xl border border-[var(--color-border)] bg-white p-6">
-          <h2 className="text-2xl">Book your free audit</h2>
-          <p className="mt-2 text-sm text-[var(--color-slate)]">See where AI can save time in your current business workflow.</p>
-          <div className="mt-4">
-            <CalendlyInline url={BRAND.calendly} title="Book free AI audit on services page" />
-          </div>
+        <div className="mt-10 grid gap-4 md:grid-cols-[1.2fr_1fr]">
+          <article className="surface-card p-6">
+            <h2 className="text-2xl">How engagement starts</h2>
+            <ol className="mt-4 space-y-2 text-sm text-[var(--color-slate)]">
+              <li>1. Discovery call and workflow audit</li>
+              <li>2. Scope, timeline, and transparent pricing</li>
+              <li>3. Build, launch, and optimization loop</li>
+            </ol>
+            <div className="mt-6">
+              <Link href="/contact" className="rounded-md bg-[var(--color-orange)] px-5 py-3 text-sm font-semibold text-white hover:bg-[var(--color-ember)]">
+                Get a Free AI Audit
+              </Link>
+            </div>
+          </article>
+          <article className="surface-card p-6">
+            <h2 className="text-2xl">FAQs</h2>
+            <div className="mt-4">
+              <FaqAccordion items={SERVICE_FAQS} />
+            </div>
+          </article>
         </div>
       </div>
     </section>
