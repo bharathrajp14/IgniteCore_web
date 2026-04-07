@@ -1,0 +1,17 @@
+IgniteCore Course Notes
+
+Lesson: WhatsApp Automation Playbook for Indian SMBs
+
+What to do first:
+- Write the most common incoming questions.
+- Prepare short, human sounding reply templates.
+- Build a clear escalation path for human support.
+
+Checklist:
+- Quick replies for FAQs.
+- Lead capture fields.
+- Handoff rules for hot leads.
+- Follow-up reminders.
+
+Next step:
+Book a free AI audit if you want help turning this into a live workflow.

@@ -1,0 +1,17 @@
+IgniteCore Course Notes
+
+Lesson: AI Automation Basics for Small Businesses
+
+What to do first:
+- List repetitive tasks your team does every day.
+- Mark the tasks that affect leads, follow-up, or revenue.
+- Choose one workflow for a first automation pilot.
+
+Checklist:
+- Define the trigger.
+- Define the required input fields.
+- Define the output or handoff step.
+- Test with one real team member before rollout.
+
+Next step:
+Book a free AI audit if you want help mapping this lesson to your business.

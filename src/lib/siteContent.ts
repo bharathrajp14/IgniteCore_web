@@ -233,6 +233,37 @@ export const COURSE_HIGHLIGHTS = [
   "Focused on practical systems, not theory",
 ];
 
+export const PUBLIC_COURSES = [
+  {
+    title: "Responsive Web Design Certification",
+    provider: "freeCodeCamp",
+    focus: "HTML, CSS, responsive layouts, and accessibility basics",
+    url: "https://www.freecodecamp.org/learn/2022/responsive-web-design/",
+    format: "Free self-paced course",
+  },
+  {
+    title: "JavaScript Certification",
+    provider: "freeCodeCamp",
+    focus: "Programming fundamentals for interactive websites and automation",
+    url: "https://www.freecodecamp.org/learn/javascript-v9/",
+    format: "Free self-paced course",
+  },
+  {
+    title: "Back-End Development and APIs Certification",
+    provider: "freeCodeCamp",
+    focus: "APIs, servers, and application workflows",
+    url: "https://www.freecodecamp.org/learn/back-end-development-and-apis-v9/",
+    format: "Free self-paced course",
+  },
+  {
+    title: "Full-Stack Developer Curriculum",
+    provider: "freeCodeCamp",
+    focus: "End-to-end software foundations for product teams",
+    url: "https://www.freecodecamp.org/learn/full-stack-developer-v9/",
+    format: "Free curriculum",
+  },
+];
+
 export const COURSE_MODULES = [
   {
     slug: "ai-automation-basics-for-small-businesses",
@@ -245,6 +276,8 @@ export const COURSE_MODULES = [
     takeaways: ["Map manual work", "Pick one high-value workflow", "Define the first automation scope"],
     updatedAt: "2026-04-08",
     videoEmbed: "https://www.loom.com/embed/0ecdbf4145c84cc0a55c916f4d35feba",
+    downloadPath: "/downloads/courses/ai-automation-basics.txt",
+    publicResource: "https://www.freecodecamp.org/learn/full-stack-developer-v9/",
   },
   {
     slug: "whatsapp-automation-playbook-india",
@@ -257,6 +290,8 @@ export const COURSE_MODULES = [
     takeaways: ["Design quick replies", "Route high-value leads", "Keep a human fallback"],
     updatedAt: "2026-04-08",
     videoEmbed: "https://www.loom.com/embed/bd2906cb4d7a48a481f164f77ad20978",
+    downloadPath: "/downloads/courses/whatsapp-automation-playbook.txt",
+    publicResource: "https://www.freecodecamp.org/learn/back-end-development-and-apis-v9/",
   },
   {
     slug: "business-websites-that-convert-in-india",
@@ -269,6 +304,8 @@ export const COURSE_MODULES = [
     takeaways: ["Clarify the offer", "Place proof in the right places", "Use one primary CTA"],
     updatedAt: "2026-04-08",
     videoEmbed: "https://www.loom.com/embed/46577a6aa2ef446c874e8de732f1f8cf",
+    downloadPath: "/downloads/courses/business-websites-that-convert.txt",
+    publicResource: "https://www.freecodecamp.org/learn/2022/responsive-web-design/",
   },
   {
     slug: "lead-pipeline-setup-for-service-businesses",
@@ -281,6 +318,8 @@ export const COURSE_MODULES = [
     takeaways: ["Define pipeline stages", "Store consistent lead data", "Track follow-up completion"],
     updatedAt: "2026-04-08",
     videoEmbed: "https://www.loom.com/embed/2b95192fa2774870a8b4256ad5e8fbe7",
+    downloadPath: "/downloads/courses/lead-pipeline-setup.txt",
+    publicResource: "https://www.freecodecamp.org/learn/javascript-v9/",
   },
   {
     slug: "starter-ai-tools-for-smb-teams",
@@ -293,6 +332,8 @@ export const COURSE_MODULES = [
     takeaways: ["Choose practical tools", "Avoid tool sprawl", "Match tools to one workflow"],
     updatedAt: "2026-04-08",
     videoEmbed: "https://www.loom.com/embed/0ecdbf4145c84cc0a55c916f4d35feba",
+    downloadPath: "/downloads/courses/starter-ai-tools-for-smb-teams.txt",
+    publicResource: "https://www.freecodecamp.org/learn/back-end-development-and-apis-v9/",
   },
   {
     slug: "web-development-for-startups-checklist",
@@ -305,6 +346,8 @@ export const COURSE_MODULES = [
     takeaways: ["Launch fast", "Test contact flow", "Check mobile conversion details"],
     updatedAt: "2026-04-08",
     videoEmbed: "https://www.loom.com/embed/bd2906cb4d7a48a481f164f77ad20978",
+    downloadPath: "/downloads/courses/web-development-launch-checklist.txt",
+    publicResource: "https://www.freecodecamp.org/learn/2022/responsive-web-design/",
   },
 ];
 

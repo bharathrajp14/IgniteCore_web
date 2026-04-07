@@ -1,0 +1,17 @@
+IgniteCore Course Notes
+
+Lesson: Web Development for Startups: Launch Checklist
+
+What to do first:
+- Test the site on mobile.
+- Test forms and contact actions.
+- Check that the message is clear above the fold.
+
+Checklist:
+- Performance.
+- SEO basics.
+- Contact flow.
+- Analytics.
+
+Next step:
+Book a free AI audit if you want help improving your launch checklist.

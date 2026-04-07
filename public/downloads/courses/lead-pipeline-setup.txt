@@ -1,0 +1,17 @@
+IgniteCore Course Notes
+
+Lesson: Lead Pipeline Setup for Service Businesses
+
+What to do first:
+- Define stages from enquiry to close.
+- Standardize the fields every lead must have.
+- Decide where the team updates status.
+
+Checklist:
+- Stage names.
+- Assigned owner.
+- Follow-up schedule.
+- Reporting cadence.
+
+Next step:
+Book a free AI audit if you want a pipeline built into your system.

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Script from "next/script";
 import { notFound } from "next/navigation";
-import { COURSE_BODY, COURSE_MODULES } from "@/lib/siteContent";
+import { COURSE_BODY, COURSE_MODULES, PUBLIC_COURSES } from "@/lib/siteContent";
 
 type CoursePageProps = {
   params: Promise<{ slug: string }>;
@@ -79,6 +79,12 @@ export default async function CourseDetailPage({ params }: CoursePageProps) {
               Use the course with the implementation notes below, then book a free AI audit if you want help mapping it to your business.
             </p>
             <div className="mt-4 flex flex-col gap-3">
+              <a href={module.downloadPath} download className="rounded-md border border-[var(--color-border)] px-4 py-3 text-center text-sm font-semibold hover:bg-[var(--color-cream)]">
+                Download lesson notes
+              </a>
+              <a href={module.publicResource} target="_blank" rel="noreferrer" className="rounded-md border border-[var(--color-border)] px-4 py-3 text-center text-sm font-semibold hover:bg-[var(--color-cream)]">
+                Open related public course
+              </a>
               <Link href="/courses" className="rounded-md border border-[var(--color-border)] px-4 py-3 text-center text-sm font-semibold hover:bg-[var(--color-cream)]">
                 Back to Courses
               </Link>
@@ -99,6 +105,19 @@ export default async function CourseDetailPage({ params }: CoursePageProps) {
         </div>
 
         <p className="mt-8 text-base leading-8 text-[var(--color-slate)]">{COURSE_BODY.conclusion}</p>
+
+        <div className="mt-10">
+          <p className="kicker">Related public courses</p>
+          <div className="mt-4 grid gap-4 md:grid-cols-2">
+            {PUBLIC_COURSES.slice(0, 2).map((course) => (
+              <a key={course.title} href={course.url} target="_blank" rel="noreferrer" className="surface-card p-5 transition hover:bg-[var(--color-cream)]">
+                <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-[var(--color-teal)]">{course.provider}</p>
+                <h3 className="mt-2 text-xl">{course.title}</h3>
+                <p className="mt-2 text-sm text-[var(--color-slate)]">{course.focus}</p>
+              </a>
+            ))}
+          </div>
+        </div>
       </article>
     </section>
   );

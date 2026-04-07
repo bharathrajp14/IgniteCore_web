@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { LeadMagnetForm } from "@/components/LeadMagnetForm";
 import { NewsletterForm } from "@/components/NewsletterForm";
-import { COURSE_BODY, COURSE_HIGHLIGHTS, COURSE_MODULES, COURSE_OVERVIEW } from "@/lib/siteContent";
+import { COURSE_BODY, COURSE_HIGHLIGHTS, COURSE_MODULES, COURSE_OVERVIEW, PUBLIC_COURSES } from "@/lib/siteContent";
 
 export const metadata: Metadata = {
   title: "Courses | IgniteCore Video Course for AI Automation and Web Systems",
@@ -67,6 +67,22 @@ export default function CoursesPage() {
                 </Link>
               </div>
             </article>
+          </div>
+        </div>
+
+        <div className="mt-10">
+          <p className="kicker">Public courses from the web</p>
+          <h2 className="mt-3 font-display text-3xl md:text-4xl">Free learning resources we recommend alongside IgniteCore lessons</h2>
+          <div className="mt-6 grid gap-4 md:grid-cols-2">
+            {PUBLIC_COURSES.map((course) => (
+              <a key={course.title} href={course.url} target="_blank" rel="noreferrer" className="surface-card p-5 transition hover:-translate-y-0.5 hover:shadow-lg">
+                <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-[var(--color-teal)]">
+                  {course.provider} · {course.format}
+                </p>
+                <h3 className="mt-2 text-2xl">{course.title}</h3>
+                <p className="mt-2 text-sm text-[var(--color-slate)]">{course.focus}</p>
+              </a>
+            ))}
           </div>
         </div>
 
