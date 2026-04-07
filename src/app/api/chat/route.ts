@@ -9,7 +9,7 @@ const messageSchema = z.object({
 
 const schema = z.object({
   messages: z.array(messageSchema).min(1).max(20),
-  sessionId: z.string().min(3).max(128).optional(),
+  sessionId: z.string().min(3).max(128).nullable().optional(),
 });
 
 const SYSTEM_PROMPT = [
@@ -51,7 +51,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Invalid chat payload" }, { status: 400 });
     }
 
-    const sessionId = parsed.data.sessionId ?? crypto.randomUUID();
+    const sessionId = (parsed.data.sessionId && parsed.data.sessionId.trim()) || crypto.randomUUID();
     const lastUserMessage = [...parsed.data.messages].reverse().find((item) => item.role === "user");
 
     if (!lastUserMessage) {

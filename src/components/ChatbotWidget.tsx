@@ -42,17 +42,18 @@ export function ChatbotWidget() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          sessionId,
+          ...(sessionId ? { sessionId } : {}),
           messages: nextMessages.slice(-12),
         }),
       });
 
       if (!response.ok) {
+        const errorData = (await response.json().catch(() => ({}))) as { error?: string };
         setMessages((prev) => [
           ...prev,
           {
             role: "assistant",
-            content: "I could not process that right now. Please try again or use the Contact page.",
+            content: errorData.error || "I could not process that right now. Please try again or use the Contact page.",
           },
         ]);
         return;
