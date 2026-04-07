@@ -1,0 +1,45 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0D0F1A" />
+      <stop offset="1" stop-color="#1C213A" />
+    </linearGradient>
+    <radialGradient id="glowA" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(210 110) rotate(35) scale(420 280)">
+      <stop stop-color="#FF5C1A" stop-opacity="0.35" />
+      <stop offset="1" stop-color="#FF5C1A" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="glowB" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(980 550) rotate(-20) scale(420 280)">
+      <stop stop-color="#00C9A7" stop-opacity="0.3" />
+      <stop offset="1" stop-color="#00C9A7" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)" />
+  <rect width="1200" height="630" fill="url(#glowA)" />
+  <rect width="1200" height="630" fill="url(#glowB)" />
+
+  <g opacity="0.16" stroke="#FFFFFF" stroke-width="1">
+    <path d="M0 70H1200" />
+    <path d="M0 140H1200" />
+    <path d="M0 210H1200" />
+    <path d="M0 280H1200" />
+    <path d="M0 350H1200" />
+    <path d="M0 420H1200" />
+    <path d="M0 490H1200" />
+    <path d="M0 560H1200" />
+  </g>
+
+  <g transform="translate(88 86)">
+    <rect x="0" y="0" width="96" height="96" rx="24" fill="#FFFFFF" fill-opacity="0.08" stroke="#FFFFFF" stroke-opacity="0.22" />
+    <path d="M27 69V27H48.5C60.6 27 69 34.7 69 45.6C69 56.4 60.8 64.1 48.6 64.1H39.5V69H27ZM39.5 53.5H47.5C52.8 53.5 56 50.7 56 45.6C56 40.4 52.7 37.6 47.5 37.6H39.5V53.5Z" fill="#FF5C1A" />
+  </g>
+
+  <text x="88" y="260" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="72" font-weight="700">IgniteCore Solutions</text>
+  <text x="88" y="332" fill="#C7D0EE" font-family="Arial, Helvetica, sans-serif" font-size="36" font-weight="500">AI Automation and Web Systems for Growth Teams</text>
+  <text x="88" y="396" fill="#98A4CF" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="400">Build faster workflows, better conversion paths, and measurable outcomes.</text>
+
+  <g transform="translate(88 468)">
+    <rect x="0" y="0" width="320" height="64" rx="16" fill="#FF5C1A" />
+    <text x="34" y="41" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700">Get a Free AI Audit</text>
+  </g>
+</svg>

@@ -39,6 +39,7 @@ export const metadata: Metadata = {
       { url: "/brand/mark.svg", type: "image/svg+xml" },
     ],
     shortcut: "/favicon.svg",
+    apple: [{ url: "/brand/mark.svg", type: "image/svg+xml" }],
   },
   openGraph: {
     title: "IgniteCore Solutions | AI Automation and Web Solutions",
@@ -47,6 +48,21 @@ export const metadata: Metadata = {
     url: "https://ignitecoreai.tech",
     siteName: "IgniteCore Solutions",
     type: "website",
+    images: [
+      {
+        url: "/brand/og-image.svg",
+        width: 1200,
+        height: 630,
+        alt: "IgniteCore Solutions",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "IgniteCore Solutions | AI Automation and Web Solutions",
+    description:
+      "Practical automation, conversion-focused websites, and digital systems built for scalable growth.",
+    images: ["/brand/og-image.svg"],
   },
   keywords: [
     "AI automation for growth teams",
