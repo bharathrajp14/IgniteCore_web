@@ -81,7 +81,7 @@ export default function RootLayout({
       lang="en"
       className={`${dmSans.variable} ${dmSerif.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full bg-[var(--color-cream)] text-[var(--color-deep-navy)]">
+      <body suppressHydrationWarning className="min-h-full bg-[var(--color-cream)] text-[var(--color-deep-navy)]">
         <Script
           id="ga-script"
           strategy="afterInteractive"

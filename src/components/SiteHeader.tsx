@@ -22,7 +22,16 @@ export function SiteHeader() {
     <header className="sticky top-0 z-50 border-b border-[var(--color-border)] bg-[var(--color-cream)]/95 backdrop-blur">
       <div className="mx-auto flex h-16 w-full max-w-[1100px] items-center justify-between px-4 md:px-6">
         <Link href="/" className="flex items-center gap-2 text-[var(--color-deep-navy)]" aria-label={BRAND.company}>
-          <img src="/brand/logo-dark-text.svg" alt="IgniteCore Solutions logo" className="h-9 w-auto" />
+          <img src="/brand/mark.svg" alt="IgniteCore mark" className="h-10 w-10 sm:h-11 sm:w-11" />
+          <span className="leading-none">
+            <span className="block font-display text-3xl italic sm:text-[34px]">
+              <span className="text-[var(--color-orange)]">Ignite</span>
+              <span className="text-[var(--color-deep-navy)]">Core</span>
+            </span>
+            <span className="block font-mono text-[10px] uppercase tracking-[0.28em] text-[var(--color-teal)] sm:text-[11px]">
+              Solutions
+            </span>
+          </span>
         </Link>
 
         <nav className="hidden items-center gap-5 md:flex" aria-label="Main navigation">

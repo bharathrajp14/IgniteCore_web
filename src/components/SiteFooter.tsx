@@ -8,7 +8,18 @@ export function SiteFooter() {
     <footer className="mt-16 bg-[var(--color-dark)] text-white">
       <div className="mx-auto grid w-full max-w-[1100px] gap-10 px-4 py-12 md:grid-cols-3 md:px-6">
         <div>
-          <img src="/brand/logo-light-text.svg" alt="IgniteCore Solutions logo" className="h-10 w-auto" />
+          <div className="flex items-center gap-3">
+            <img src="/brand/mark.svg" alt="IgniteCore mark" className="h-10 w-10" />
+            <span className="leading-none">
+              <span className="block font-display text-3xl italic sm:text-[34px]">
+                <span className="text-[var(--color-orange)]">Ignite</span>
+                <span className="text-white">Core</span>
+              </span>
+              <span className="block font-mono text-[10px] uppercase tracking-[0.28em] text-[var(--color-teal)] sm:text-[11px]">
+                Solutions
+              </span>
+            </span>
+          </div>
           <p className="mt-3 text-sm text-slate-300">{BRAND.tagline}</p>
           <p className="mt-4 text-sm text-slate-400">Serving: {BRAND.serving}</p>
         </div>
@@ -25,7 +36,7 @@ export function SiteFooter() {
 
         <div>
           <h3 className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-300">NAP</h3>
-          <img src="/brand/mark.svg" alt="IgniteCore mark" className="mt-3 h-8 w-8" />
+          <img src="/brand/mark.svg" alt="IgniteCore mark" className="mt-3 h-9 w-9" />
           <p className="mt-4 text-sm text-slate-300">Name: {BRAND.company}</p>
           <p className="text-sm text-slate-300">Address: {BRAND.location}</p>
           <p className="text-sm text-slate-300">Phone: {BRAND.phone}</p>
