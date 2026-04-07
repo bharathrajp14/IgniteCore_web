@@ -1,17 +1,17 @@
 export const BUSINESS_DATA = {
   name: 'AI Business Enablement Studio',
-  tagline: 'AI-powered automation for Indian MSMEs',
+  tagline: 'AI-powered automation for growth-focused businesses',
   elevator: 'We help small businesses stop manual work, start selling smarter.',
   
   hero: {
     headline: 'From Manual WhatsApp to AI-Powered Automation',
-    subheadline: 'Help Indian MSMEs stop the chaos. Sell them clarity, automation, and growth.',
+    subheadline: 'Help growth-focused teams stop the chaos. Deliver clarity, automation, and measurable growth.',
     cta: 'Let\'s Talk',
   },
 
   problem: {
-    title: 'The MSME Crisis No One Talks About',
-    description: 'Indian MSMEs are buried in manual work. No CRM. No follow-ups. No data. No insights. Revenue is left on the table.',
+    title: 'The Growth Operations Gap No One Talks About',
+    description: 'Many growing businesses are buried in manual work. No CRM discipline. No reliable follow-ups. No visibility. Revenue is left on the table.',
     painPoints: [
       { title: 'Manual WhatsApp Replies', description: 'Owner replies to queries at 2 AM. No system. Deals slip through.' },
       { title: 'No CRM or Follow-Up', description: 'Prospects text once, owner forgets. 60% of deals die here.' },
@@ -23,7 +23,7 @@ export const BUSINESS_DATA = {
   opportunity: {
     title: 'Why Now? Why This Market?',
     stats: [
-      { label: 'MSMEs in India', value: '63M+', description: 'Millions of small businesses desperate for help' },
+      { label: 'Growing SMBs worldwide', value: 'Large and expanding', description: 'Millions of teams still running manual operations' },
       { label: 'AI Adoption', value: '<5%', description: 'Nearly zero. Massive white space.' },
       { label: 'Avg Revenue', value: '₹5L-₹2Cr', description: 'Sweet spot: can afford ₹5K-80K projects' },
       { label: 'Monthly Spend', value: '₹0-3K on tech', description: 'But willing to pay for solutions that work' },
@@ -36,7 +36,7 @@ export const BUSINESS_DATA = {
       {
         title: 'Education (Free)',
         description: 'Content, website, YouTube videos. Build trust. Establish authority.',
-        details: 'MSMEs learn AI isn\'t scary. You become the trusted advisor.',
+        details: 'Business teams learn AI is practical when implemented with clarity and structure.',
       },
       {
         title: 'Done-for-You (Paid)',
@@ -137,7 +137,7 @@ export const BUSINESS_DATA = {
       {
         name: 'Founder',
         role: 'CEO & Strategy',
-        background: 'Built 2 startups. Shipped 8 automation projects. Knows MSMEs.',
+        background: 'Built 2 startups. Shipped 8 automation projects. Experienced with growth-stage operations.',
       },
       {
         name: 'Co-founder (Advisor)',

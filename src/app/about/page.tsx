@@ -5,7 +5,7 @@ import { BRAND } from "@/lib/siteContent";
 export const metadata: Metadata = {
   title: "About IgniteCore Solutions | Practical AI and Web Systems",
   description:
-    "Learn the vision behind IgniteCore Solutions and how we help Indian businesses adopt practical AI automation and modern digital systems.",
+    "Learn the vision behind IgniteCore Solutions and how we help growth-focused businesses adopt practical AI automation and modern digital systems.",
 };
 
 export default function AboutPage() {
@@ -32,7 +32,7 @@ export default function AboutPage() {
           <article className="surface-card p-6">
             <h2 className="text-2xl">Founder vision</h2>
             <p className="mt-3 text-sm text-[var(--color-slate)]">
-              Bharath started IgniteCore to help Indian SMB owners spend less time on repetitive coordination and more time on strategic growth. The focus is practical delivery, transparent communication, and measurable outcomes.
+              Bharath started IgniteCore to help business owners spend less time on repetitive coordination and more time on strategic growth. The focus is practical delivery, transparent communication, and measurable outcomes.
             </p>
           </article>
           <article className="surface-card p-6">

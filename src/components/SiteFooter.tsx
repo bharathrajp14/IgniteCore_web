@@ -51,7 +51,7 @@ export function SiteFooter() {
       <div className="border-t border-white/15">
         <div className="mx-auto flex w-full max-w-[1100px] flex-col gap-3 px-4 py-5 text-xs text-slate-400 md:flex-row md:items-center md:justify-between md:px-6">
           <p>Copyright {year} {BRAND.company}. All rights reserved.</p>
-          <p>Built for Indian SMB growth and practical automation outcomes.</p>
+          <p>Built for practical automation outcomes and measurable growth.</p>
         </div>
       </div>
     </footer>

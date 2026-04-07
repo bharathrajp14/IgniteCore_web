@@ -51,7 +51,7 @@ export function NewsletterForm() {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="rounded-xl border border-[var(--color-border)] bg-white p-5 md:p-6">
       <label className="text-sm">
-        <span className="mb-2 block font-medium text-[var(--color-deep-navy)]">Get weekly AI tips for Indian businesses</span>
+        <span className="mb-2 block font-medium text-[var(--color-deep-navy)]">Get weekly AI implementation tips for growth teams</span>
         <div className="flex flex-col gap-3 sm:flex-row">
           <input
             type="email"

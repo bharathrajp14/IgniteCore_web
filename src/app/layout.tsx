@@ -29,9 +29,9 @@ const dmSerif = DM_Serif_Display({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://ignitecoreai.tech"),
-  title: "IgniteCore Solutions | AI Automation and Web Solutions for Indian SMBs",
+  title: "IgniteCore Solutions | AI Automation and Web Solutions for Growth Teams",
   description:
-    "IgniteCore Solutions builds AI automation systems, modern websites, and practical digital tools for Indian businesses.",
+    "IgniteCore Solutions builds AI automation systems, modern websites, and practical digital tools for growth-focused businesses.",
   icons: {
     icon: [
       { url: "/favicon.svg", type: "image/svg+xml" },
@@ -42,18 +42,18 @@ export const metadata: Metadata = {
   openGraph: {
     title: "IgniteCore Solutions | AI Automation and Web Solutions",
     description:
-      "Practical automation, conversion-focused websites, and digital systems built for Indian SMB growth.",
+      "Practical automation, conversion-focused websites, and digital systems built for scalable growth.",
     url: "https://ignitecoreai.tech",
     siteName: "IgniteCore Solutions",
     type: "website",
   },
   keywords: [
-    "AI automation for small businesses India",
-    "business websites in India",
+    "AI automation for growth teams",
+    "business websites that convert",
     "web development for startups",
-    "WhatsApp bot for businesses India",
-    "AI tools for SMBs",
-    "business automation Coimbatore",
+    "WhatsApp automation for businesses",
+    "AI tools for teams",
+    "business automation services",
   ],
 };
 
@@ -69,14 +69,14 @@ export default function RootLayout({
     founder: BRAND.founder,
     address: {
       "@type": "PostalAddress",
-      addressLocality: "Coimbatore",
+      addressLocality: "Dindigul",
       addressRegion: "Tamil Nadu",
       addressCountry: "IN",
     },
     telephone: BRAND.phone,
     email: BRAND.email,
     url: `https://${BRAND.domain}`,
-    areaServed: ["India"],
+    areaServed: ["Global"],
     sameAs: [BRAND.github, BRAND.linkedin],
   };
 

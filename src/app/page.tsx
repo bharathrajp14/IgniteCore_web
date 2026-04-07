@@ -11,7 +11,7 @@ import {
 } from "@/lib/siteContent";
 
 export const metadata: Metadata = {
-  title: "IgniteCore Solutions | AI Automation and Business Websites in India",
+  title: "IgniteCore Solutions | AI Automation and Conversion-Focused Websites",
   description:
     "We build AI automation systems, modern websites, and digital tools that help businesses save time and grow faster.",
 };
@@ -26,7 +26,7 @@ export default function HomePage() {
             We build AI automation systems, modern websites, and digital tools that help businesses save time and grow faster.
           </h1>
           <p className="mt-5 max-w-2xl text-base text-slate-200 md:text-lg">
-            Built for Indian SMBs that need clear systems, reliable execution, and better conversion outcomes.
+            Built for teams that need clear systems, reliable execution, and better conversion outcomes.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Link

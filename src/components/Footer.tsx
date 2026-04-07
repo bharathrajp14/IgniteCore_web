@@ -16,7 +16,7 @@ export function Footer() {
         <div className="grid md:grid-cols-4 gap-8 mb-12">
           <div>
             <h3 className="text-lg font-bold mb-4">AI Business Enablement Studio</h3>
-            <p className="text-gray-400 text-sm">Empowering Indian MSMEs with AI automation.</p>
+            <p className="text-gray-400 text-sm">Empowering growth-focused businesses with practical AI automation.</p>
           </div>
 
           <div>

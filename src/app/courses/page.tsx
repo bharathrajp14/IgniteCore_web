@@ -7,7 +7,7 @@ import { COURSE_BODY, COURSE_HIGHLIGHTS, COURSE_MODULES, COURSE_OVERVIEW, PUBLIC
 export const metadata: Metadata = {
   title: "Courses | IgniteCore Video Course for AI Automation and Web Systems",
   description:
-    "Watch IgniteCore video lessons on AI automation, WhatsApp workflows, conversion websites, and lead pipelines for Indian SMBs.",
+    "Watch IgniteCore video lessons on AI automation, WhatsApp workflows, conversion websites, and lead pipelines for growth-focused teams.",
 };
 
 export default function CoursesPage() {

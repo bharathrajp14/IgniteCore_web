@@ -3,12 +3,12 @@ export const BRAND = {
   founder: "Bharath",
   tagline: "Igniting intelligence. Powering growth.",
   mission:
-    "Help Indian businesses move from manual chaos to reliable digital systems that save time, improve follow-up, and increase revenue.",
+    "Help growth-focused businesses move from manual chaos to reliable digital systems that save time, improve follow-up, and increase revenue.",
   vision:
-    "Make practical AI automation and modern web experiences accessible to every serious small business in India.",
+    "Make practical AI automation and modern web experiences accessible to teams that value speed, clarity, and measurable outcomes.",
   domain: "ignitecoreai.tech",
-  location: "Coimbatore, Tamil Nadu, India",
-  serving: "India-first remote delivery with on-ground support in Tamil Nadu",
+  location: "Dindigul, Tamil Nadu",
+  serving: "Global remote delivery with focused execution support",
   phone: "9344518573",
   whatsapp: "919344518573",
   email: "ignitecores@gmail.com",
@@ -18,7 +18,7 @@ export const BRAND = {
 };
 
 export const TRUST_STRIP = [
-  "Fast turnaround for SMB-ready delivery",
+  "Fast turnaround for execution-ready delivery",
   "Clear scopes and practical implementation",
   "WhatsApp-first process automation expertise",
   "Web + automation under one execution partner",
@@ -76,7 +76,7 @@ export const SERVICES = [
     outcome: "Higher trust, better enquiry quality, and stronger brand positioning",
     startingPrice: "Starts at INR 18,000",
     description:
-      "Conversion-focused websites with clear messaging, service architecture, and contact flows built for Indian SMB buyers.",
+      "Conversion-focused websites with clear messaging, service architecture, and contact flows built for serious buyers.",
   },
   {
     name: "Web App Development",
@@ -135,7 +135,7 @@ export const SERVICE_FAQS = [
   },
   {
     q: "Do you work only with large companies?",
-    a: "No. IgniteCore is intentionally designed for Indian SMBs and founder-led teams.",
+    a: "No. IgniteCore supports founder-led teams, small businesses, and scaling companies across industries.",
   },
   {
     q: "Will I understand the technical setup?",
@@ -218,7 +218,7 @@ export const CASE_STUDIES = [
 
 export const COURSE_OVERVIEW = {
   title: "IgniteCore Video Course",
-  subtitle: "Practical AI automation and web systems for Indian SMB teams",
+  subtitle: "Practical AI automation and web systems for growth-focused teams",
   description:
     "A six-part video course built around the exact business problems IgniteCore solves: lead handling, WhatsApp automation, conversion-focused websites, and repeatable operations.",
   duration: "6 lessons • 90+ minutes",
@@ -280,11 +280,11 @@ export const COURSE_MODULES = [
     publicResource: "https://www.freecodecamp.org/learn/full-stack-developer-v9/",
   },
   {
-    slug: "whatsapp-automation-playbook-india",
-    title: "WhatsApp Automation Playbook for Indian SMBs",
+    slug: "whatsapp-automation-playbook",
+    title: "WhatsApp Automation Playbook for Service Teams",
     summary: "How to build response flows, lead capture, and escalation without sounding robotic.",
     category: "WhatsApp",
-    keyword: "WhatsApp automation India",
+    keyword: "WhatsApp automation for service teams",
     duration: "16 min",
     lessons: 5,
     takeaways: ["Design quick replies", "Route high-value leads", "Keep a human fallback"],
@@ -294,11 +294,11 @@ export const COURSE_MODULES = [
     publicResource: "https://www.freecodecamp.org/learn/back-end-development-and-apis-v9/",
   },
   {
-    slug: "business-websites-that-convert-in-india",
-    title: "How to Build Business Websites That Convert in India",
+    slug: "business-websites-that-convert",
+    title: "How to Build Business Websites That Convert",
     summary: "Messaging, proof, and CTA architecture that helps websites generate real enquiries.",
     category: "Web Strategy",
-    keyword: "business websites in India",
+    keyword: "business websites that convert",
     duration: "15 min",
     lessons: 6,
     takeaways: ["Clarify the offer", "Place proof in the right places", "Use one primary CTA"],

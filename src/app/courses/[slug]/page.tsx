@@ -1,8 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Script from "next/script";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { COURSE_BODY, COURSE_MODULES, PUBLIC_COURSES } from "@/lib/siteContent";
+
+const LEGACY_COURSE_SLUGS: Record<string, string> = {
+  "whatsapp-automation-playbook-india": "whatsapp-automation-playbook",
+  "business-websites-that-convert-in-india": "business-websites-that-convert",
+};
 
 type CoursePageProps = {
   params: Promise<{ slug: string }>;
@@ -10,7 +15,8 @@ type CoursePageProps = {
 
 export async function generateMetadata({ params }: CoursePageProps): Promise<Metadata> {
   const { slug } = await params;
-  const module = COURSE_MODULES.find((item) => item.slug === slug);
+  const resolvedSlug = LEGACY_COURSE_SLUGS[slug] ?? slug;
+  const module = COURSE_MODULES.find((item) => item.slug === resolvedSlug);
 
   if (!module) {
     return {
@@ -31,7 +37,13 @@ export async function generateStaticParams() {
 
 export default async function CourseDetailPage({ params }: CoursePageProps) {
   const { slug } = await params;
-  const module = COURSE_MODULES.find((item) => item.slug === slug);
+  const resolvedSlug = LEGACY_COURSE_SLUGS[slug] ?? slug;
+
+  if (resolvedSlug !== slug) {
+    redirect(`/courses/${resolvedSlug}`);
+  }
+
+  const module = COURSE_MODULES.find((item) => item.slug === resolvedSlug);
 
   if (!module) {
     notFound();
