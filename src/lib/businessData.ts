@@ -168,7 +168,7 @@ export const BUSINESS_DATA = {
   cta: {
     mainCTA: 'Build with Us or Invest in Us',
     options: [
-      { text: 'Book a Call', action: 'openCalendly', subtext: 'Talk about partnership' },
+      { text: 'Book a Call', action: 'openBooking', subtext: 'Talk about partnership' },
       { text: 'Download Deck', action: 'downloadPDF', subtext: 'Full presentation' },
       { text: 'Send a Message', action: 'openForm', subtext: 'For investment inquiry' },
     ],

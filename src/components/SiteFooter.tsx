@@ -31,7 +31,7 @@ export function SiteFooter() {
             <li><Link href="/about" className="hover:text-[var(--color-ember)]">About</Link></li>
             <li><Link href="/services" className="hover:text-[var(--color-ember)]">Services</Link></li>
             <li><Link href="/portfolio" className="hover:text-[var(--color-ember)]">Portfolio</Link></li>
-            <li><Link href="/learn" className="hover:text-[var(--color-ember)]">Learning Hub</Link></li>
+            <li><Link href="/courses" className="hover:text-[var(--color-ember)]">Courses</Link></li>
             <li><Link href="/results" className="hover:text-[var(--color-ember)]">Case Studies</Link></li>
             <li><Link href="/contact" className="hover:text-[var(--color-ember)]">Contact</Link></li>
           </ul>

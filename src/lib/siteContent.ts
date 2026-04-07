@@ -14,7 +14,7 @@ export const BRAND = {
   email: "ignitecores@gmail.com",
   github: "https://github.com/bharthraj1412",
   linkedin: "https://www.linkedin.com/in/bharath-ignitecore",
-  calendly: "https://calendly.com/ignitecore/free-ai-audit",
+  bookingUrl: "https://cal.com/ignitecore/free-ai-audit",
 };
 
 export const TRUST_STRIP = [
@@ -216,15 +216,35 @@ export const CASE_STUDIES = [
   },
 ];
 
-export const LEARNING_POSTS = [
+export const COURSE_OVERVIEW = {
+  title: "IgniteCore Video Course",
+  subtitle: "Practical AI automation and web systems for Indian SMB teams",
+  description:
+    "A six-part video course built around the exact business problems IgniteCore solves: lead handling, WhatsApp automation, conversion-focused websites, and repeatable operations.",
+  duration: "6 lessons • 90+ minutes",
+  format: "Hosted video lessons with implementation notes and checklists",
+  ctaLabel: "Explore the course",
+};
+
+export const COURSE_HIGHLIGHTS = [
+  "Built for founders and small teams",
+  "Short lessons with direct implementation takeaways",
+  "Video-first, with supporting notes and checklists",
+  "Focused on practical systems, not theory",
+];
+
+export const COURSE_MODULES = [
   {
     slug: "ai-automation-basics-for-small-businesses",
     title: "AI Automation Basics for Small Businesses",
-    summary: "A practical starter guide to identify repetitive tasks worth automating first.",
+    summary: "A practical starter lesson to identify repetitive tasks worth automating first.",
     category: "AI Basics",
     keyword: "AI automation for small businesses",
+    duration: "14 min",
+    lessons: 4,
+    takeaways: ["Map manual work", "Pick one high-value workflow", "Define the first automation scope"],
     updatedAt: "2026-04-08",
-    loomEmbed: "https://www.loom.com/embed/0ecdbf4145c84cc0a55c916f4d35feba",
+    videoEmbed: "https://www.loom.com/embed/0ecdbf4145c84cc0a55c916f4d35feba",
   },
   {
     slug: "whatsapp-automation-playbook-india",
@@ -232,8 +252,11 @@ export const LEARNING_POSTS = [
     summary: "How to build response flows, lead capture, and escalation without sounding robotic.",
     category: "WhatsApp",
     keyword: "WhatsApp automation India",
+    duration: "16 min",
+    lessons: 5,
+    takeaways: ["Design quick replies", "Route high-value leads", "Keep a human fallback"],
     updatedAt: "2026-04-08",
-    loomEmbed: "https://www.loom.com/embed/bd2906cb4d7a48a481f164f77ad20978",
+    videoEmbed: "https://www.loom.com/embed/bd2906cb4d7a48a481f164f77ad20978",
   },
   {
     slug: "business-websites-that-convert-in-india",
@@ -241,8 +264,11 @@ export const LEARNING_POSTS = [
     summary: "Messaging, proof, and CTA architecture that helps websites generate real enquiries.",
     category: "Web Strategy",
     keyword: "business websites in India",
+    duration: "15 min",
+    lessons: 6,
+    takeaways: ["Clarify the offer", "Place proof in the right places", "Use one primary CTA"],
     updatedAt: "2026-04-08",
-    loomEmbed: "https://www.loom.com/embed/46577a6aa2ef446c874e8de732f1f8cf",
+    videoEmbed: "https://www.loom.com/embed/46577a6aa2ef446c874e8de732f1f8cf",
   },
   {
     slug: "lead-pipeline-setup-for-service-businesses",
@@ -250,17 +276,23 @@ export const LEARNING_POSTS = [
     summary: "Set up a simple lead pipeline with clear stages and zero data confusion.",
     category: "Operations",
     keyword: "automation services lead pipeline",
+    duration: "13 min",
+    lessons: 4,
+    takeaways: ["Define pipeline stages", "Store consistent lead data", "Track follow-up completion"],
     updatedAt: "2026-04-08",
-    loomEmbed: "https://www.loom.com/embed/2b95192fa2774870a8b4256ad5e8fbe7",
+    videoEmbed: "https://www.loom.com/embed/2b95192fa2774870a8b4256ad5e8fbe7",
   },
   {
     slug: "starter-ai-tools-for-smb-teams",
     title: "Starter AI Tools for SMB Teams",
-    summary: "A curated list of practical tools for drafting, follow-up, and workflow support.",
+    summary: "A curated lesson on practical tools for drafting, follow-up, and workflow support.",
     category: "Tools",
     keyword: "AI tools for SMBs",
+    duration: "12 min",
+    lessons: 5,
+    takeaways: ["Choose practical tools", "Avoid tool sprawl", "Match tools to one workflow"],
     updatedAt: "2026-04-08",
-    loomEmbed: "https://www.loom.com/embed/0ecdbf4145c84cc0a55c916f4d35feba",
+    videoEmbed: "https://www.loom.com/embed/0ecdbf4145c84cc0a55c916f4d35feba",
   },
   {
     slug: "web-development-for-startups-checklist",
@@ -268,14 +300,17 @@ export const LEARNING_POSTS = [
     summary: "A no-fluff checklist for launching a reliable website and contact system quickly.",
     category: "Web Development",
     keyword: "web development for startups",
+    duration: "11 min",
+    lessons: 4,
+    takeaways: ["Launch fast", "Test contact flow", "Check mobile conversion details"],
     updatedAt: "2026-04-08",
-    loomEmbed: "https://www.loom.com/embed/bd2906cb4d7a48a481f164f77ad20978",
+    videoEmbed: "https://www.loom.com/embed/bd2906cb4d7a48a481f164f77ad20978",
   },
 ];
 
-export const LEARNING_BODY = {
+export const COURSE_BODY = {
   intro:
-    "Most small businesses do not need complex AI architecture to start improving outcomes. They need clear priorities, a simple workflow map, and practical tools that teams will actually use. This guide focuses on implementation over jargon.",
+    "Most small businesses do not need complex AI architecture to start improving outcomes. They need clear priorities, a simple workflow map, and practical tools that teams will actually use. This course focuses on implementation over jargon.",
   sections: [
     {
       heading: "1) Choose one workflow with direct revenue impact",
@@ -301,3 +336,6 @@ export const LEARNING_BODY = {
   conclusion:
     "Practical automation wins when teams can understand and use it daily. Start lean, keep visibility high, and iterate with measurable goals.",
 };
+
+export const LEARNING_POSTS = COURSE_MODULES;
+export const LEARNING_BODY = COURSE_BODY;

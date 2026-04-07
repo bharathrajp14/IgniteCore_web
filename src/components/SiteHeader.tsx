@@ -9,7 +9,7 @@ const NAV_LINKS = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
   { href: "/services", label: "Services" },
-  { href: "/learn", label: "Learning Hub" },
+  { href: "/courses", label: "Courses" },
   { href: "/results", label: "Case Studies" },
   { href: "/portfolio", label: "Portfolio" },
   { href: "/contact", label: "Contact" },
@@ -51,7 +51,7 @@ export function SiteHeader() {
             </Link>
           ))}
           <a
-            href={BRAND.calendly}
+            href={BRAND.bookingUrl}
             target="_blank"
             rel="noreferrer"
             onClick={() => trackEvent("cta_click", { location: "header", cta: "free_ai_audit" })}
@@ -91,7 +91,7 @@ export function SiteHeader() {
             </Link>
           ))}
           <a
-            href={BRAND.calendly}
+            href={BRAND.bookingUrl}
             target="_blank"
             rel="noreferrer"
             className="mt-1 rounded-md bg-[var(--color-orange)] px-4 py-3 text-center text-sm font-semibold text-white"

@@ -1,9 +1,9 @@
-type CalendlyInlineProps = {
+type BookingInlineProps = {
   url: string;
   title?: string;
 };
 
-export function CalendlyInline({ url, title = "Book a free AI audit" }: CalendlyInlineProps) {
+export function BookingInline({ url, title = "Book a free AI audit" }: BookingInlineProps) {
   return (
     <div className="rounded-xl border border-[var(--color-border)] bg-white p-2">
       <iframe
