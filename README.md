@@ -50,8 +50,11 @@ A modern, high-conversion pitch deck website built with Next.js, TypeScript, Tai
    # Optional: Email service integration
    RESEND_API_KEY=your_resend_api_key_here
    # Optional: Supabase for form storage
-   NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
-   NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key
+   NEXT_PUBLIC_SUPABASE_URL=https://zliztvrsxstpptrrpqer.supabase.co
+   NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=sb_publishable_your_key_here
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=sb_publishable_your_key_here
+   SUPABASE_SECRET_KEY=sb_secret_your_key_here
+   SUPABASE_DB_URL=postgresql://postgres.<project_ref>:<password>@aws-1-ap-south-1.pooler.supabase.com:5432/postgres
    ```
 
 3. **Run development server**

@@ -90,9 +90,10 @@ await sgMail.send({
 1. Create account at [supabase.com](https://supabase.com)
 2. Create a project, then add `.env.local`:
    ```env
-   NEXT_PUBLIC_SUPABASE_URL=https://xxxxx.supabase.co
-   NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJxxxxxx
-   SUPABASE_SERVICE_KEY=eyJxxxxxx
+  NEXT_PUBLIC_SUPABASE_URL=https://zliztvrsxstpptrrpqer.supabase.co
+  NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=sb_publishable_your_key_here
+  NEXT_PUBLIC_SUPABASE_ANON_KEY=sb_publishable_your_key_here
+  SUPABASE_SECRET_KEY=sb_secret_your_key_here
    ```
 
 ### Implementation
@@ -120,7 +121,7 @@ import { createClient } from '@supabase/supabase-js';
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_KEY!
+  process.env.SUPABASE_SECRET_KEY!
 );
 
 // In the POST handler:
@@ -148,9 +149,10 @@ RESEND_API_KEY=re_xxxxxxxxxxxxx
 ADMIN_EMAIL=admin@yourdomain.com
 
 # Supabase (optional)
-NEXT_PUBLIC_SUPABASE_URL=https://xxxxx.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJxxxxxx
-SUPABASE_SERVICE_KEY=eyJxxxxxx
+NEXT_PUBLIC_SUPABASE_URL=https://zliztvrsxstpptrrpqer.supabase.co
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=sb_publishable_your_key_here
+NEXT_PUBLIC_SUPABASE_ANON_KEY=sb_publishable_your_key_here
+SUPABASE_SECRET_KEY=sb_secret_your_key_here
 
 # Analytics (optional)
 NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX

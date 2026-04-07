@@ -180,6 +180,59 @@ Use Lighthouse in Chrome DevTools to check:
 
 ---
 
+## Google Login (Supabase Auth)
+
+Use this if you want Google sign-in for admin/auth flows.
+
+### 1. Google Cloud Console
+
+1. Open [Google Cloud Credentials](https://console.cloud.google.com/apis/credentials).
+2. Edit your Web OAuth client:
+   - Client ID: `768583209233-3tg14p2qv4h34f8gqcanld2s8dpqi1h5.apps.googleusercontent.com`
+3. Add **Authorized JavaScript origins**:
+   - `http://localhost:3000`
+   - `https://ignitecoreai.tech`
+4. Add **Authorized redirect URIs**:
+   - `https://zliztvrsxstpptrrpqer.supabase.co/auth/v1/callback`
+
+### 2. Supabase Auth Provider
+
+1. Open Supabase Dashboard → Authentication → Providers → Google.
+2. Enable Google provider.
+3. Paste Google client ID and client secret.
+4. Save changes.
+
+### 3. Supabase Auth URL Configuration
+
+Open Supabase Dashboard → Authentication → URL Configuration and set:
+
+- Site URL:
+  - `http://localhost:3000` for local dev
+  - `https://ignitecoreai.tech` for production
+- Additional Redirect URLs:
+  - `http://localhost:3000/**`
+  - `https://ignitecoreai.tech/**`
+
+### 4. App Environment Variables
+
+Add to `.env.local`:
+
+```env
+NEXT_PUBLIC_SUPABASE_URL=https://zliztvrsxstpptrrpqer.supabase.co
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=sb_publishable_your_key_here
+NEXT_PUBLIC_SUPABASE_ANON_KEY=sb_publishable_your_key_here
+SUPABASE_SECRET_KEY=sb_secret_your_key_here
+```
+
+### 5. Validate
+
+1. Start app with `npm run dev`
+2. Trigger Google sign-in flow
+3. Confirm user appears in Supabase Authentication → Users
+4. Confirm callback returns to app URL without error
+
+---
+
 ## Security Checklist
 
 - [ ] SSL certificate enabled (automatic on Vercel)
