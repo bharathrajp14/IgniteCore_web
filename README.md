@@ -1,8 +1,64 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AI Business Enablement Studio - Investor Pitch Website
 
-## Getting Started
+A modern, high-conversion pitch deck website built with Next.js, TypeScript, Tailwind CSS, and Framer Motion. Designed to convert investors, partners, mentors, and clients.
 
-First, run the development server:
+---
+
+## 🎯 Features
+
+### Core Presentation
+- **Hero Section** with compelling headline and CTA
+- **Problem & Opportunity** visualization with stats
+- **Solution Pillars** (Education, Done-for-You, Digital Products)
+- **Business Model** with revenue streams and margins
+- **Traction Highlights** (clients, ARR, retention)
+- **12-Month Roadmap** with quarterly milestones
+- **Financial Projections** with interactive charts
+
+### User Experience
+- ✅ Fully responsive (desktop, tablet, mobile)
+- ✅ Sticky navigation with smooth scroll-to-section
+- ✅ Smooth animations with Framer Motion
+- ✅ Dark mode support
+- ✅ Fast load times & optimized performance
+- ✅ SEO-friendly metadata & Open Graph
+
+### Conversion Tools
+- 📧 Contact form with validation (React Hook Form + Zod)
+- 📊 Interactive financial charts (Recharts)
+- 🎨 Professional gradient design
+- 🔗 Shareable URLs with proper metadata
+
+---
+
+## 🚀 Quick Start
+
+### Prerequisites
+- Node.js 18+
+- npm or yarn
+
+### Installation
+
+1. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+2. **Configure environment variables**
+   Create a `.env.local` file:
+   ```env
+   # Optional: Email service integration
+   RESEND_API_KEY=your_resend_api_key_here
+   # Optional: Supabase for form storage
+   NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key
+   ```
+
+3. **Run development server**
+   ```bash
+   npm run dev
+   ```
+   Open [http://localhost:3000](http://localhost:3000)
 
 ```bash
 npm run dev

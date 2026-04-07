@@ -1,65 +1,102 @@
-import Image from "next/image";
+import type { Metadata } from "next";
+import Link from "next/link";
+import { BRAND, CASE_STUDIES, HOME_PAIN_POINTS, SERVICE_TIERS } from "@/lib/siteContent";
 
-export default function Home() {
+export const metadata: Metadata = {
+  title: "AI Automation for Indian Businesses | IgniteCore Solutions - Coimbatore",
+  description:
+    "Save 15 hours/week using AI. IgniteCore Solutions sets up WhatsApp automation, lead tracking, and business workflows for Indian SMBs.",
+};
+
+const steps = ["Free Audit", "We Build It", "You Save Time"];
+
+export default function HomePage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <>
+      <section className="hex-bg bg-[var(--color-dark)] text-white">
+        <div className="section-shell mx-auto w-full max-w-[1100px] px-4 md:px-6">
+          <p className="text-xs uppercase tracking-[0.2em] text-slate-300">IgniteCore Solutions</p>
+          <h1 className="mt-4 max-w-3xl font-display text-4xl italic leading-tight md:text-6xl">
+            Save 15 hours/week using AI. We set it up for you.
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="mt-5 max-w-2xl text-base text-slate-200 md:text-lg">
+            Practical automation for clinics, coaching institutes, CA firms, real estate teams, and Instagram-first sellers.
           </p>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <a
+              href={BRAND.calendly}
+              target="_blank"
+              rel="noreferrer"
+              className="min-h-11 rounded-md bg-[var(--color-orange)] px-6 py-3 text-center font-semibold text-white hover:bg-[var(--color-ember)] sm:w-auto"
+            >
+              Get a free AI audit
+            </a>
+            <Link href="/learn" className="min-h-11 rounded-md border border-white/30 px-6 py-3 text-center font-medium text-white hover:bg-white/10">
+              Explore free AI tutorials
+            </Link>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      <section className="section-shell">
+        <div className="mx-auto w-full max-w-[1100px] px-4 md:px-6">
+          <h2 className="font-display text-3xl italic md:text-4xl">Why SMB owners call us first</h2>
+          <div className="mt-8 grid gap-4 md:grid-cols-2">
+            {HOME_PAIN_POINTS.map((point) => (
+              <article key={point.title} className="rounded-xl border border-[var(--color-border)] bg-white p-5">
+                <p className="font-mono text-xs text-[var(--color-teal)]">[ pain-point ]</p>
+                <h3 className="mt-2 text-xl">{point.title}</h3>
+                <p className="mt-2 text-sm text-[var(--color-slate)]">{point.description}</p>
+              </article>
+            ))}
+          </div>
         </div>
-      </main>
-    </div>
+      </section>
+
+      <section className="section-shell bg-white">
+        <div className="mx-auto w-full max-w-[1100px] px-4 md:px-6">
+          <h2 className="font-display text-3xl italic md:text-4xl">How it works</h2>
+          <div className="mt-8 grid gap-4 md:grid-cols-3">
+            {steps.map((step, index) => (
+              <div key={step} className="rounded-xl border border-[var(--color-border)] p-5">
+                <p className="text-xs uppercase tracking-[0.18em] text-[var(--color-slate)]">Step {index + 1}</p>
+                <p className="mt-2 text-xl font-semibold text-[var(--color-deep-navy)]">{step}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section-shell">
+        <div className="mx-auto w-full max-w-[1100px] px-4 md:px-6">
+          <h2 className="font-display text-3xl italic md:text-4xl">Services snapshot</h2>
+          <div className="mt-8 grid gap-4 md:grid-cols-3">
+            {SERVICE_TIERS.map((tier) => (
+              <article key={tier.name} className="rounded-xl border border-[var(--color-border)] bg-white p-5">
+                <h3 className="text-2xl">{tier.name}</h3>
+                <p className="mt-2 text-lg font-semibold text-[var(--color-orange)]">{tier.price}</p>
+                <p className="mt-2 text-sm text-[var(--color-slate)]">{tier.bestFor}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section-shell bg-white">
+        <div className="mx-auto w-full max-w-[1100px] px-4 md:px-6">
+          <h2 className="font-display text-3xl italic md:text-4xl">Social proof and case previews</h2>
+          <div className="mt-8 grid gap-4 md:grid-cols-3">
+            {CASE_STUDIES.map((item) => (
+              <article key={item.title} className="rounded-xl border border-[var(--color-border)] p-5">
+                <p className="text-xs uppercase tracking-[0.18em] text-[var(--color-slate)]">{item.industry}</p>
+                <h3 className="mt-2 text-xl">{item.title}</h3>
+                <p className="mt-2 text-sm text-[var(--color-slate)]">{item.result}</p>
+                <p className="mt-3 text-sm text-[var(--color-deep-navy)]">"{item.quote}"</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+    </>
   );
 }
