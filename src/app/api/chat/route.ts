@@ -28,6 +28,11 @@ const SYSTEM_PROMPT = [
 ].join(" ");
 
 const OPENROUTER_DEFAULT_MODEL = "google/gemma-4-31b-it:free";
+const OPENROUTER_FREE_MODEL_FALLBACKS = [
+  "google/gemma-4-31b-it:free",
+  "google/gemma-4-26b-a4b-it:free",
+  "nvidia/nemotron-3-nano-30b-a3b:free",
+];
 
 function getClientIp(req: NextRequest) {
   const forwarded = req.headers.get("x-forwarded-for");
@@ -86,9 +91,14 @@ export async function POST(req: NextRequest) {
     const apiKey = process.env.AI_PROVIDER_API_KEY?.trim();
     const baseUrl = process.env.AI_PROVIDER_BASE_URL?.trim() || "https://api.openai.com/v1";
     const configuredModel = process.env.AI_MODEL?.trim();
-    const model = !configuredModel || configuredModel === "openrouter/free"
+    const requestedModel = !configuredModel || configuredModel === "openrouter/free"
       ? OPENROUTER_DEFAULT_MODEL
       : configuredModel;
+
+    const modelCandidates =
+      requestedModel === OPENROUTER_DEFAULT_MODEL
+        ? OPENROUTER_FREE_MODEL_FALLBACKS
+        : [requestedModel];
 
     if (!apiKey) {
       return NextResponse.json({ error: "Chatbot AI provider is not configured." }, { status: 503 });
@@ -103,53 +113,61 @@ export async function POST(req: NextRequest) {
     const timeoutId = setTimeout(() => controller.abort(), 15_000);
 
     try {
-      const response = await fetch(`${baseUrl.replace(/\/$/, "")}/chat/completions`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${apiKey}`,
-          "HTTP-Referer": refererHeader,
-          "X-Title": "IgniteCore Chatbot",
-        },
-        signal: controller.signal,
-        body: JSON.stringify({
-          model,
-          temperature: 0.5,
-          max_tokens: 350,
-          messages: [
-            { role: "system", content: SYSTEM_PROMPT },
-            ...parsed.data.messages.map((item) => ({ role: item.role, content: item.content })),
-          ],
-        }),
-      });
+      let lastProviderMessage = "Chatbot AI provider request failed.";
 
-      if (!response.ok) {
-        const errorText = await response.text();
-        let providerMessage = "Chatbot AI provider request failed.";
+      for (const modelCandidate of modelCandidates) {
+        const response = await fetch(`${baseUrl.replace(/\/$/, "")}/chat/completions`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${apiKey}`,
+            "HTTP-Referer": refererHeader,
+            "X-Title": "IgniteCore Chatbot",
+          },
+          signal: controller.signal,
+          body: JSON.stringify({
+            model: modelCandidate,
+            temperature: 0.5,
+            max_tokens: 350,
+            messages: [
+              { role: "system", content: SYSTEM_PROMPT },
+              ...parsed.data.messages.map((item) => ({ role: item.role, content: item.content })),
+            ],
+          }),
+        });
 
-        try {
-          const parsedError = JSON.parse(errorText) as { error?: { message?: string } };
-          if (parsedError.error?.message) {
-            providerMessage = parsedError.error.message;
+        if (!response.ok) {
+          const errorText = await response.text();
+          try {
+            const parsedError = JSON.parse(errorText) as { error?: { message?: string } };
+            if (parsedError.error?.message) {
+              lastProviderMessage = parsedError.error.message;
+            }
+          } catch {
+            // Keep lastProviderMessage when provider error body is not JSON.
           }
-        } catch {
-          // Keep default providerMessage if response is not JSON.
+
+          console.error("AI provider error:", response.status, modelCandidate, errorText);
+          continue;
         }
 
-        console.error("AI provider error:", response.status, errorText);
-        return NextResponse.json({ error: providerMessage }, { status: 502 });
+        const data = (await response.json()) as {
+          choices?: Array<{ message?: { content?: string } }>;
+        };
+        const content = data.choices?.[0]?.message?.content?.trim();
+        if (!content) {
+          lastProviderMessage = "Chatbot AI returned an empty response.";
+          continue;
+        }
+
+        reply = content;
+        modelUsed = modelCandidate;
+        break;
       }
 
-      const data = (await response.json()) as {
-        choices?: Array<{ message?: { content?: string } }>;
-      };
-      const content = data.choices?.[0]?.message?.content?.trim();
-      if (!content) {
-        return NextResponse.json({ error: "Chatbot AI returned an empty response." }, { status: 502 });
+      if (!reply) {
+        return NextResponse.json({ error: lastProviderMessage }, { status: 502 });
       }
-
-      reply = content;
-      modelUsed = model;
     } catch (error) {
       console.error("AI provider request failed:", error);
       return NextResponse.json({ error: "Chatbot AI is temporarily unavailable." }, { status: 503 });
