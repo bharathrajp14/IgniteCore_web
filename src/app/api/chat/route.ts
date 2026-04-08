@@ -83,8 +83,8 @@ export async function POST(req: NextRequest) {
     let provider = "custom";
     let modelUsed = "";
 
-    const apiKey = process.env.AI_PROVIDER_API_KEY;
-    const baseUrl = process.env.AI_PROVIDER_BASE_URL ?? "https://api.openai.com/v1";
+    const apiKey = process.env.AI_PROVIDER_API_KEY?.trim();
+    const baseUrl = process.env.AI_PROVIDER_BASE_URL?.trim() || "https://api.openai.com/v1";
     const configuredModel = process.env.AI_MODEL?.trim();
     const model = !configuredModel || configuredModel === "openrouter/free"
       ? OPENROUTER_DEFAULT_MODEL
