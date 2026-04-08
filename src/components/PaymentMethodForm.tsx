@@ -35,6 +35,16 @@ export function PaymentMethodForm() {
   const [clientStartedAt] = useState(() => Date.now());
   const paymentHandles = PAYMENT_DETAILS.upiHandles;
 
+  const getUpiLink = (upiHandle: string) => {
+    const params = new URLSearchParams({
+      pa: upiHandle,
+      pn: PAYMENT_DETAILS.accountName,
+      cu: "INR",
+    });
+
+    return `upi://pay?${params.toString()}`;
+  };
+
   const {
     register,
     handleSubmit,
@@ -122,14 +132,21 @@ export function PaymentMethodForm() {
             <p><strong>UPI:</strong></p>
             <div className="mt-2 flex flex-wrap gap-2">
               {paymentHandles.map((handle) => (
-                <button
-                  key={handle}
-                  type="button"
-                  className="rounded-md border border-[var(--color-border)] px-3 py-1.5 text-xs font-semibold hover:bg-white"
-                  onClick={() => copyText(handle)}
-                >
-                  {handle}
-                </button>
+                <div key={handle} className="flex items-center gap-2">
+                  <a
+                    href={getUpiLink(handle)}
+                    className="rounded-md border border-[var(--color-border)] bg-white px-3 py-1.5 text-xs font-semibold hover:bg-[var(--color-cream)]"
+                  >
+                    Pay via {handle}
+                  </a>
+                  <button
+                    type="button"
+                    className="rounded-md border border-[var(--color-border)] px-2 py-1 text-xs"
+                    onClick={() => copyText(handle)}
+                  >
+                    Copy
+                  </button>
+                </div>
               ))}
             </div>
           </div>

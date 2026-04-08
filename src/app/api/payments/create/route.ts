@@ -3,6 +3,7 @@ import { z } from "zod";
 import Stripe from "stripe";
 import Razorpay from "razorpay";
 import { getSupabaseServerClient } from "@/lib/supabaseServer";
+import { isAllowedRequestOrigin } from "@/lib/requestOrigin";
 
 const schema = z.object({
   provider: z.enum(["stripe", "razorpay"]),
@@ -42,23 +43,10 @@ function isRateLimited(ip: string) {
   return false;
 }
 
-function isAllowedOrigin(req: NextRequest) {
-  const origin = req.headers.get("origin");
-  if (!origin) return true;
-
-  const allowedOrigins = [
-    process.env.NEXT_PUBLIC_SITE_URL,
-    `https://${process.env.NEXT_PUBLIC_SITE_DOMAIN || ""}`,
-    "http://localhost:3000",
-  ].filter(Boolean);
-
-  return allowedOrigins.some((item) => item === origin);
-}
-
 export async function POST(req: NextRequest) {
   try {
-    if (!isAllowedOrigin(req)) {
-      return NextResponse.json({ error: "Origin not allowed" }, { status: 403 });
+    if (!isAllowedRequestOrigin(req)) {
+      return NextResponse.json({ error: "Request blocked by security policy." }, { status: 403 });
     }
 
     const ipKey = getClientIp(req);

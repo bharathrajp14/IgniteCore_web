@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { formatTranslation } from "@/lib/i18n";
+import { useI18n } from "@/components/I18nProvider";
 import { BRAND } from "@/lib/siteContent";
 import { trackEvent } from "@/lib/tracking";
 
@@ -45,6 +47,7 @@ const teamSizeOptions = ["Solo", "2-5", "6-15", "16-30", "30+"];
 type QualifierStep = 1 | 2;
 
 export function QualifierBookingForm() {
+  const { t } = useI18n();
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -124,15 +127,15 @@ export function QualifierBookingForm() {
     });
 
     if (!response.ok) {
-      const data = await response.json().catch(() => ({ error: "Unable to submit right now" }));
+      const data = await response.json().catch(() => ({ error: t("qualifier.error") }));
       setStatus("error");
-      setMessage(data.error || "Unable to submit right now");
+      setMessage(data.error || t("qualifier.error"));
       trackEvent("qualifier_error", { source: "homepage" });
       return;
     }
 
     setStatus("success");
-    setMessage("Great. Opening your audit calendar...");
+    setMessage(t("qualifier.success"));
     setIsSubmitted(true);
     trackEvent("qualifier_submitted", {
       source: "homepage",
@@ -161,37 +164,39 @@ export function QualifierBookingForm() {
       className="surface-card mt-8 space-y-4 p-5 md:p-6"
     >
       <div className="flex items-center justify-between rounded-lg border border-[var(--color-border)] bg-[var(--color-cream)] px-3 py-2 text-xs">
-        <span className="font-mono uppercase tracking-[0.14em] text-[var(--color-slate)]">Step {currentStep} of 2</span>
+        <span className="font-mono uppercase tracking-[0.14em] text-[var(--color-slate)]">
+          {formatTranslation(t("qualifier.step"), { step: String(currentStep) })}
+        </span>
         <span className="text-[var(--color-slate)]">
-          {currentStep === 1 ? "Basic context" : "Project context"}
+          {currentStep === 1 ? t("qualifier.context.basic") : t("qualifier.context.project")}
         </span>
       </div>
 
       <p className="text-sm text-[var(--color-slate)]">
         {currentStep === 1
-          ? "Share your basics first. We keep this quick and practical."
-          : "One more step and we will open your calendar with context already captured."}
+          ? t("qualifier.intro.step1")
+          : t("qualifier.intro.step2")}
       </p>
 
       {currentStep === 1 ? (
         <>
           <div className="grid gap-4 md:grid-cols-2">
             <label className="text-sm">
-              <span className="mb-1 block font-medium text-[var(--color-deep-navy)]">Name</span>
+              <span className="mb-1 block font-medium text-[var(--color-deep-navy)]">{t("qualifier.name")}</span>
               <input
                 className="h-11 w-full rounded-md border border-[var(--color-border)] px-3 outline-none focus:border-[var(--color-orange)]"
-                placeholder="Your name"
+                placeholder={t("qualifier.name")}
                 {...register("name")}
               />
               {errors.name ? <span className="mt-1 block text-xs text-red-600">{errors.name.message}</span> : null}
             </label>
 
             <label className="text-sm">
-              <span className="mb-1 block font-medium text-[var(--color-deep-navy)]">Email</span>
+              <span className="mb-1 block font-medium text-[var(--color-deep-navy)]">{t("qualifier.email")}</span>
               <input
                 type="email"
                 className="h-11 w-full rounded-md border border-[var(--color-border)] px-3 outline-none focus:border-[var(--color-orange)]"
-                placeholder="you@business.com"
+                placeholder={t("qualifier.emailPlaceholder")}
                 {...register("email")}
               />
               {errors.email ? <span className="mt-1 block text-xs text-red-600">{errors.email.message}</span> : null}
@@ -199,12 +204,12 @@ export function QualifierBookingForm() {
           </div>
 
           <label className="text-sm">
-            <span className="mb-1 block font-medium text-[var(--color-deep-navy)]">Business type</span>
+            <span className="mb-1 block font-medium text-[var(--color-deep-navy)]">{t("qualifier.businessType")}</span>
             <select
               className="h-11 w-full rounded-md border border-[var(--color-border)] px-3 outline-none focus:border-[var(--color-orange)]"
               {...register("businessType")}
             >
-              <option value="">Select one</option>
+              <option value="">{t("qualifier.selectOne")}</option>
               {businessTypeOptions.map((item) => (
                 <option key={item} value={item}>
                   {item}
@@ -219,16 +224,16 @@ export function QualifierBookingForm() {
             onClick={() => void handleNextStep()}
             className="min-h-11 w-full rounded-md bg-[var(--color-orange)] px-4 py-3 font-semibold text-white transition hover:bg-[var(--color-ember)]"
           >
-            Continue to Step 2
+            {t("qualifier.next")}
           </button>
         </>
       ) : (
         <>
           <label className="text-sm">
-            <span className="mb-1 block font-medium text-[var(--color-deep-navy)]">WhatsApp number</span>
+            <span className="mb-1 block font-medium text-[var(--color-deep-navy)]">{t("qualifier.whatsapp")}</span>
             <input
               className="h-11 w-full rounded-md border border-[var(--color-border)] px-3 outline-none focus:border-[var(--color-orange)]"
-              placeholder="+91XXXXXXXXXX"
+              placeholder={t("qualifier.whatsappPlaceholder")}
               {...register("whatsapp")}
             />
             {errors.whatsapp ? <span className="mt-1 block text-xs text-red-600">{errors.whatsapp.message}</span> : null}
@@ -236,12 +241,12 @@ export function QualifierBookingForm() {
 
           <div className="grid gap-4 md:grid-cols-2">
             <label className="text-sm">
-              <span className="mb-1 block font-medium text-[var(--color-deep-navy)]">Biggest problem</span>
+              <span className="mb-1 block font-medium text-[var(--color-deep-navy)]">{t("qualifier.biggestProblem")}</span>
               <select
                 className="h-11 w-full rounded-md border border-[var(--color-border)] px-3 outline-none focus:border-[var(--color-orange)]"
                 {...register("biggestProblem")}
               >
-                <option value="">Select one</option>
+                <option value="">{t("qualifier.selectOne")}</option>
                 {biggestProblemOptions.map((item) => (
                   <option key={item} value={item}>
                     {item}
@@ -252,12 +257,12 @@ export function QualifierBookingForm() {
             </label>
 
             <label className="text-sm">
-              <span className="mb-1 block font-medium text-[var(--color-deep-navy)]">Team size</span>
+              <span className="mb-1 block font-medium text-[var(--color-deep-navy)]">{t("qualifier.teamSize")}</span>
               <select
                 className="h-11 w-full rounded-md border border-[var(--color-border)] px-3 outline-none focus:border-[var(--color-orange)]"
                 {...register("teamSize")}
               >
-                <option value="">Select one</option>
+                <option value="">{t("qualifier.selectOne")}</option>
                 {teamSizeOptions.map((item) => (
                   <option key={item} value={item}>
                     {item}
@@ -271,7 +276,7 @@ export function QualifierBookingForm() {
           <label className="flex items-start gap-2 text-sm text-[var(--color-slate)]">
             <input type="checkbox" className="mt-1" {...register("consent")} />
             <span>
-              I consent to IgniteCore storing this information to contact me about audit recommendations and follow-up.
+              {t("qualifier.consent")}
             </span>
           </label>
           {errors.consent ? <p className="text-xs text-red-600">{errors.consent.message}</p> : null}
@@ -282,14 +287,14 @@ export function QualifierBookingForm() {
               onClick={handleBackToStepOne}
               className="min-h-11 w-full rounded-md border border-[var(--color-border)] px-4 py-3 font-semibold text-[var(--color-deep-navy)] hover:bg-[var(--color-cream)] sm:w-1/2"
             >
-              Back
+              {t("qualifier.back")}
             </button>
             <button
               type="submit"
               disabled={isSubmitting}
               className="min-h-11 w-full rounded-md bg-[var(--color-orange)] px-4 py-3 font-semibold text-white transition hover:bg-[var(--color-ember)] disabled:opacity-70 sm:w-1/2"
             >
-              {isSubmitting ? "Submitting..." : "Continue to Calendar"}
+              {isSubmitting ? t("qualifier.submitting") : t("qualifier.submit")}
             </button>
           </div>
         </>

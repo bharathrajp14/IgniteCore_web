@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { getSupabaseServerClient } from "@/lib/supabaseServer";
+import { isAllowedRequestOrigin } from "@/lib/requestOrigin";
 
 const PHONE_REGEX = /^[+]?\d[\d\s-]{8,16}$/;
 const COOLDOWN_MS = 15_000;
@@ -29,23 +30,10 @@ function getClientIp(req: NextRequest) {
   return req.headers.get("x-real-ip") || "unknown";
 }
 
-function isAllowedOrigin(req: NextRequest) {
-  const origin = req.headers.get("origin");
-  if (!origin) return true;
-
-  const allowedOrigins = [
-    process.env.NEXT_PUBLIC_SITE_URL,
-    `https://${process.env.NEXT_PUBLIC_SITE_DOMAIN || ""}`,
-    "http://localhost:3000",
-  ].filter(Boolean);
-
-  return allowedOrigins.some((item) => item === origin);
-}
-
 export async function POST(req: NextRequest) {
   try {
-    if (!isAllowedOrigin(req)) {
-      return NextResponse.json({ error: "Origin not allowed" }, { status: 403 });
+    if (!isAllowedRequestOrigin(req)) {
+      return NextResponse.json({ error: "Request blocked by security policy." }, { status: 403 });
     }
 
     const ipKey = getClientIp(req);

@@ -35,7 +35,7 @@ export const TRUST_STRIP = [
 ];
 
 export const HOME_HERO = {
-  kicker: "IgniteCore Solutions | Dindigul and Coimbatore focused",
+  kicker: "IgniteCore Solutions",
   headline: "Stop losing leads to broken follow-up. We build practical systems that help your team respond faster and convert better.",
   subheadline:
     "Tell us what is slowing your growth right now. We map a simple implementation path for clinics, coaching institutes, and real estate teams.",

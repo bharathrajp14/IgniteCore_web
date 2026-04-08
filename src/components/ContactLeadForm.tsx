@@ -5,6 +5,7 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { trackEvent } from "@/lib/tracking";
+import { useI18n } from "@/components/I18nProvider";
 
 const contactSchema = z.object({
   name: z.string().min(2, "Name is required"),
@@ -35,6 +36,7 @@ const projectOptions = [
 ];
 
 export function ContactLeadForm() {
+  const { t } = useI18n();
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
   const [serverMessage, setServerMessage] = useState("");
 
@@ -69,13 +71,13 @@ export function ContactLeadForm() {
     if (!response.ok) {
       const data = await response.json().catch(() => ({ error: "Something went wrong" }));
       setStatus("error");
-      setServerMessage(data.error || "Unable to submit. Please try again.");
+      setServerMessage(data.error || t("contactForm.error"));
       return;
     }
 
     const data = await response.json();
     setStatus("success");
-    setServerMessage(data.message || "Thank you. We received your request and will get back within 24 working hours.");
+    setServerMessage(data.message || t("contactForm.success"));
     trackEvent("form_submit", { form: "contact", project_type: values.projectType });
     reset();
   };
@@ -84,7 +86,7 @@ export function ContactLeadForm() {
     <form onSubmit={handleSubmit(onSubmit)} className="surface-card space-y-4 p-5 md:p-6">
       <div className="grid gap-4 md:grid-cols-2">
         <label className="text-sm">
-          <span className="mb-1 block font-medium text-[var(--color-deep-navy)]">Name</span>
+          <span className="mb-1 block font-medium text-[var(--color-deep-navy)]">{t("contactForm.name")}</span>
           <input
             className="h-11 w-full rounded-md border border-[var(--color-border)] px-3 outline-none focus:border-[var(--color-orange)]"
             {...register("name")}
@@ -93,10 +95,10 @@ export function ContactLeadForm() {
         </label>
 
         <label className="text-sm">
-          <span className="mb-1 block font-medium text-[var(--color-deep-navy)]">Business name</span>
+          <span className="mb-1 block font-medium text-[var(--color-deep-navy)]">{t("contactForm.business")}</span>
           <input
             className="h-11 w-full rounded-md border border-[var(--color-border)] px-3 outline-none focus:border-[var(--color-orange)]"
-            placeholder="Your company or brand"
+            placeholder={t("contactForm.businessPlaceholder")}
             {...register("businessName")}
           />
           {errors.businessName ? <span className="mt-1 block text-xs text-red-600">{errors.businessName.message}</span> : null}
@@ -105,21 +107,21 @@ export function ContactLeadForm() {
 
       <div className="grid gap-4 md:grid-cols-2">
         <label className="text-sm">
-          <span className="mb-1 block font-medium text-[var(--color-deep-navy)]">Email</span>
+          <span className="mb-1 block font-medium text-[var(--color-deep-navy)]">{t("contactForm.email")}</span>
           <input
             type="email"
             className="h-11 w-full rounded-md border border-[var(--color-border)] px-3 outline-none focus:border-[var(--color-orange)]"
-            placeholder="you@business.com"
+            placeholder={t("contactForm.emailPlaceholder")}
             {...register("email")}
           />
           {errors.email ? <span className="mt-1 block text-xs text-red-600">{errors.email.message}</span> : null}
         </label>
 
         <label className="text-sm">
-          <span className="mb-1 block font-medium text-[var(--color-deep-navy)]">Phone / WhatsApp</span>
+          <span className="mb-1 block font-medium text-[var(--color-deep-navy)]">{t("contactForm.phone")}</span>
           <input
             className="h-11 w-full rounded-md border border-[var(--color-border)] px-3 outline-none focus:border-[var(--color-orange)]"
-            placeholder="+91XXXXXXXXXX"
+            placeholder={t("contactForm.phonePlaceholder")}
             {...register("whatsapp")}
           />
           {errors.whatsapp ? <span className="mt-1 block text-xs text-red-600">{errors.whatsapp.message}</span> : null}
@@ -127,12 +129,12 @@ export function ContactLeadForm() {
       </div>
 
       <label className="text-sm">
-        <span className="mb-1 block font-medium text-[var(--color-deep-navy)]">Project type</span>
+        <span className="mb-1 block font-medium text-[var(--color-deep-navy)]">{t("contactForm.projectType")}</span>
         <select
           className="h-11 w-full rounded-md border border-[var(--color-border)] px-3 outline-none focus:border-[var(--color-orange)]"
           {...register("projectType")}
         >
-          <option value="">Select one</option>
+          <option value="">{t("contactForm.selectOne")}</option>
           {projectOptions.map((item) => (
             <option key={item} value={item}>
               {item}
@@ -143,11 +145,11 @@ export function ContactLeadForm() {
       </label>
 
       <label className="text-sm">
-        <span className="mb-1 block font-medium text-[var(--color-deep-navy)]">Message</span>
+        <span className="mb-1 block font-medium text-[var(--color-deep-navy)]">{t("contactForm.message")}</span>
         <textarea
           rows={4}
           className="w-full rounded-md border border-[var(--color-border)] px-3 py-2 outline-none focus:border-[var(--color-orange)]"
-          placeholder="Share your current challenge, timeline, and the outcome you want."
+          placeholder={t("contactForm.messagePlaceholder")}
           {...register("message")}
         />
         {errors.message ? <span className="mt-1 block text-xs text-red-600">{errors.message.message}</span> : null}
@@ -156,7 +158,7 @@ export function ContactLeadForm() {
       <label className="flex items-start gap-2 text-sm text-[var(--color-slate)]">
         <input type="checkbox" className="mt-1" {...register("consent")} />
         <span>
-          I consent to IgniteCore using these details to contact me about recommendations and project follow-up.
+          {t("contactForm.consent")}
         </span>
       </label>
       {errors.consent ? <p className="text-xs text-red-600">{errors.consent.message}</p> : null}
@@ -166,7 +168,7 @@ export function ContactLeadForm() {
         disabled={isSubmitting}
         className="min-h-11 w-full rounded-md bg-[var(--color-orange)] px-4 py-3 font-semibold text-white transition hover:bg-[var(--color-ember)] disabled:opacity-70"
       >
-        {isSubmitting ? "Submitting..." : "Send Request"}
+        {isSubmitting ? t("contactForm.submitting") : t("contactForm.submit")}
       </button>
 
       {status !== "idle" ? (

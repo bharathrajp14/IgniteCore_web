@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Script from "next/script";
 import { notFound, redirect } from "next/navigation";
+import { translate } from "@/lib/i18n";
+import { getServerLanguage } from "@/lib/i18nServer";
 import { COURSE_BODY, COURSE_MODULES, PUBLIC_COURSES } from "@/lib/siteContent";
 
 const LEGACY_COURSE_SLUGS: Record<string, string> = {
@@ -36,6 +38,9 @@ export async function generateStaticParams() {
 }
 
 export default async function CourseDetailPage({ params }: CoursePageProps) {
+  const language = await getServerLanguage();
+  const t = (key: string) => translate(language, key);
+
   const { slug } = await params;
   const resolvedSlug = LEGACY_COURSE_SLUGS[slug] ?? slug;
 
@@ -64,7 +69,7 @@ export default async function CourseDetailPage({ params }: CoursePageProps) {
       <Script id={`course-schema-${courseModule.slug}`} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
       <article className="mx-auto w-full max-w-[900px] px-4 md:px-6">
         <p className="font-mono text-xs uppercase tracking-[0.16em] text-[var(--color-teal)]">
-          Course lesson · {courseModule.category} · {courseModule.duration}
+          {t("courseDetail.lessonTag")} · {courseModule.category} · {courseModule.duration}
         </p>
         <h1 className="mt-3 font-display text-4xl md:text-5xl">{courseModule.title}</h1>
         <p className="mt-3 text-sm text-[var(--color-slate)]">{courseModule.summary}</p>
@@ -75,10 +80,10 @@ export default async function CourseDetailPage({ params }: CoursePageProps) {
 
         <div className="mt-8 grid gap-4 md:grid-cols-2">
           <article className="surface-card p-6">
-            <h2 className="text-2xl">Lesson outcomes</h2>
+            <h2 className="text-2xl">{t("courseDetail.outcomes")}</h2>
             <ul className="mt-4 space-y-2 text-sm text-[var(--color-deep-navy)]">
-              <li>Duration: {courseModule.duration}</li>
-              <li>Modules: {courseModule.lessons} key points</li>
+              <li>{t("courseDetail.duration")} {courseModule.duration}</li>
+              <li>{t("courseDetail.modules")} {courseModule.lessons} key points</li>
               {courseModule.takeaways.map((takeaway) => (
                 <li key={takeaway}>• {takeaway}</li>
               ))}
@@ -86,22 +91,22 @@ export default async function CourseDetailPage({ params }: CoursePageProps) {
           </article>
 
           <article className="surface-card p-6">
-            <h2 className="text-2xl">Next step</h2>
+            <h2 className="text-2xl">{t("courseDetail.nextStep")}</h2>
             <p className="mt-2 text-sm text-[var(--color-slate)]">
-              Use the course with the implementation notes below, then book a free AI audit if you want help mapping it to your business.
+              {t("courseDetail.nextDesc")}
             </p>
             <div className="mt-4 flex flex-col gap-3">
               <a href={courseModule.downloadPath} download className="rounded-md border border-[var(--color-border)] px-4 py-3 text-center text-sm font-semibold hover:bg-[var(--color-cream)]">
-                Download lesson notes
+                {t("courseDetail.download")}
               </a>
               <a href={courseModule.publicResource} target="_blank" rel="noreferrer" className="rounded-md border border-[var(--color-border)] px-4 py-3 text-center text-sm font-semibold hover:bg-[var(--color-cream)]">
-                Open related public course
+                {t("courseDetail.public")}
               </a>
               <Link href="/courses" className="rounded-md border border-[var(--color-border)] px-4 py-3 text-center text-sm font-semibold hover:bg-[var(--color-cream)]">
-                Back to Courses
+                {t("courseDetail.back")}
               </Link>
               <Link href="/contact" className="rounded-md bg-[var(--color-orange)] px-4 py-3 text-center text-sm font-semibold text-white hover:bg-[var(--color-ember)]">
-                Get a Free AI Audit
+                {t("courseDetail.audit")}
               </Link>
             </div>
           </article>
@@ -119,7 +124,7 @@ export default async function CourseDetailPage({ params }: CoursePageProps) {
         <p className="mt-8 text-base leading-8 text-[var(--color-slate)]">{COURSE_BODY.conclusion}</p>
 
         <div className="mt-10">
-          <p className="kicker">Related public courses</p>
+          <p className="kicker">{t("courseDetail.related")}</p>
           <div className="mt-4 grid gap-4 md:grid-cols-2">
             {PUBLIC_COURSES.slice(0, 2).map((course) => (
               <a key={course.title} href={course.url} target="_blank" rel="noreferrer" className="surface-card p-5 transition hover:bg-[var(--color-cream)]">

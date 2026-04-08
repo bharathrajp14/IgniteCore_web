@@ -1,10 +1,12 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
 import { LANGUAGES } from "@/lib/i18n";
 import { useI18n } from "@/components/I18nProvider";
 
 export function LanguageSwitcher() {
+  const router = useRouter();
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState("");
   const { language, setLanguage, t } = useI18n();
@@ -51,6 +53,7 @@ export function LanguageSwitcher() {
                   setLanguage(item.code);
                   setOpen(false);
                   setSearch("");
+                  router.refresh();
                 }}
                 className={`w-full rounded-md px-3 py-2 text-left text-sm transition ${
                   item.code === language

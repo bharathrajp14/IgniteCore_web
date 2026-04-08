@@ -10,43 +10,9 @@ export type LanguageCode =
   | "de"
   | "es";
 
-export type TranslationKey =
-  | "language.label"
-  | "language.searchPlaceholder"
-  | "language.noResults"
-  | "nav.home"
-  | "nav.about"
-  | "nav.services"
-  | "nav.courses"
-  | "nav.caseStudies"
-  | "nav.portfolio"
-  | "nav.contact"
-  | "cta.freeAudit"
-  | "cta.whatsapp"
-  | "chat.title"
-  | "chat.subtitle"
-  | "chat.open"
-  | "chat.close"
-  | "chat.placeholder"
-  | "chat.send"
-  | "chat.thinking"
-  | "chat.greeting"
-  | "chat.quick.services"
-  | "chat.quick.start"
-  | "chat.quick.bundle"
-  | "chat.limitNotice"
-  | "chat.error.generic"
-  | "chat.error.network"
-  | "payment.title"
-  | "payment.subtitle"
-  | "payment.accountDetails"
-  | "payment.verifyTitle"
-  | "payment.amount"
-  | "payment.paymentMethod"
-  | "payment.reference"
-  | "payment.description"
-  | "payment.start"
-  | "payment.future";
+export type TranslationKey = string;
+
+export const I18N_COOKIE_KEY = "ignitecore-language";
 
 export const LANGUAGES: Array<{ code: LanguageCode; name: string; nativeName: string }> = [
   { code: "en", name: "English", nativeName: "English" },
@@ -61,12 +27,13 @@ export const LANGUAGES: Array<{ code: LanguageCode; name: string; nativeName: st
   { code: "es", name: "Spanish", nativeName: "Español" },
 ];
 
-type Dictionary = Record<TranslationKey, string>;
+type Dictionary = Record<string, string>;
 
 const ENGLISH: Dictionary = {
   "language.label": "Language",
   "language.searchPlaceholder": "Search language...",
   "language.noResults": "No language found",
+
   "nav.home": "Home",
   "nav.about": "About",
   "nav.services": "Services",
@@ -74,8 +41,159 @@ const ENGLISH: Dictionary = {
   "nav.caseStudies": "Case Studies",
   "nav.portfolio": "Portfolio",
   "nav.contact": "Contact",
+
   "cta.freeAudit": "Get a free AI audit",
   "cta.whatsapp": "Chat on WhatsApp",
+
+  "home.hero.kicker": "IgniteCore Solutions",
+  "home.hero.headline": "Stop losing leads to broken follow-up. We build practical systems that help your team respond faster and convert better.",
+  "home.hero.subheadline": "Tell us what is slowing your growth right now. We map a simple implementation path for clinics, coaching institutes, and real estate teams.",
+  "home.hero.nextHint": "What happens next: quick intake, clear recommendations, then a focused call.",
+  "home.qualifier.kicker": "Free Audit Intake",
+  "home.qualifier.title": "Start with 2 quick steps before you book",
+  "home.qualifier.desc": "This helps us prepare a useful first call instead of a generic sales chat.",
+  "home.problems.kicker": "Problems We Solve",
+  "home.problems.title": "Where growth usually gets blocked",
+  "home.services.kicker": "Services Overview",
+  "home.services.title": "What IgniteCore builds for business teams",
+  "home.services.for": "For:",
+  "home.services.outcome": "Outcome:",
+  "home.services.seeAll": "See all services",
+  "home.how.kicker": "How It Works",
+  "home.how.title": "Simple process. Real delivery.",
+  "home.how.step": "STEP",
+  "home.learn.kicker": "Learning Hub",
+  "home.learn.title": "Learn the exact systems before you buy",
+  "home.learn.desc": "Short practical lessons on lead follow-up, WhatsApp automation, and conversion-focused websites.",
+  "home.learn.explore": "Explore learning hub",
+  "home.projects.kicker": "Featured Projects",
+  "home.projects.title": "Execution you can evaluate quickly",
+  "home.results.kicker": "Results",
+  "home.results.title": "Proof from real operating environments",
+  "home.next.kicker": "What Happens Next",
+  "home.next.title": "Here is what happens after you reach out",
+  "home.final.title": "Tell us what is blocking growth. We will help you prioritize the first fix.",
+  "home.final.desc": "Start with one practical system that moves your business forward. Reach out at {email} or WhatsApp +91 {phone}.",
+  "home.final.primary": "Start with 3 quick questions",
+  "home.final.secondary": "WhatsApp Us",
+
+  "about.kicker": "About",
+  "about.title": "Building practical systems for real business growth",
+  "about.intro": "IgniteCore Solutions exists to close the gap between business ambition and daily execution. Many teams know they need automation and a stronger digital presence, but they do not need complexity. They need clear systems that work.",
+  "about.founder.title": "Founder vision",
+  "about.founder.body": "Bharath started IgniteCore to help business owners spend less time on repetitive coordination and more time on strategic growth. The focus is practical delivery, transparent communication, and measurable outcomes.",
+  "about.why.title": "Why we exist",
+  "about.clarity.title": "Clarity first",
+  "about.clarity.body": "No jargon-heavy consulting. Every project is explained in plain business language.",
+  "about.execution.title": "Execution over promises",
+  "about.execution.body": "We prioritize deliverables, timelines, and measurable change over slides and buzzwords.",
+  "about.trust.title": "Trust-driven partnerships",
+  "about.trust.body": "Transparent scope, practical pricing, and long-term support for growing teams.",
+
+  "services.kicker": "Services",
+  "services.title": "Solutions designed for execution, not confusion",
+  "services.intro": "Each service is built to remove operational bottlenecks and improve your conversion flow with practical implementation.",
+  "services.whoFor": "Who it is for:",
+  "services.outcome": "Outcome:",
+  "services.engagement.title": "How engagement starts",
+  "services.engagement.1": "1. Discovery call and workflow audit",
+  "services.engagement.2": "2. Scope, timeline, and transparent pricing",
+  "services.engagement.3": "3. Build, launch, and optimization loop",
+  "services.faq.title": "FAQs",
+  "services.auditCta": "Get a Free AI Audit",
+
+  "results.kicker": "Results",
+  "results.title": "Case studies with real business impact",
+  "results.intro": "Each engagement is tracked against operational and conversion outcomes so decisions can be made on evidence.",
+  "results.problem": "Problem:",
+  "results.solution": "Solution:",
+  "results.outcome": "Outcome:",
+  "results.impact": "Impact:",
+  "results.cta": "Discuss a similar project",
+
+  "courses.kicker": "Courses",
+  "courses.learn.title": "What you will learn",
+  "courses.learn.desc": "Use the course to build practical systems, not just watch theory.",
+  "courses.resources.title": "Course resources",
+  "courses.resources.desc": "Download notes or request a live walkthrough.",
+  "courses.resources.auditCta": "Get a Free AI Audit",
+  "courses.resources.projectsCta": "View Projects",
+  "courses.public.kicker": "Public courses from the web",
+  "courses.public.title": "Free learning resources we recommend alongside IgniteCore lessons",
+  "courses.starter.title": "Course starter kit",
+  "courses.starter.desc": "Use the IgniteCore starter PDF to understand implementation scope, typical pricing ranges, and rollout approach.",
+  "courseDetail.lessonTag": "Course lesson",
+  "courseDetail.outcomes": "Lesson outcomes",
+  "courseDetail.duration": "Duration:",
+  "courseDetail.modules": "Modules:",
+  "courseDetail.nextStep": "Next step",
+  "courseDetail.nextDesc": "Use the course with the implementation notes below, then book a free AI audit if you want help mapping it to your business.",
+  "courseDetail.download": "Download lesson notes",
+  "courseDetail.public": "Open related public course",
+  "courseDetail.back": "Back to Courses",
+  "courseDetail.audit": "Get a Free AI Audit",
+  "courseDetail.related": "Related public courses",
+
+  "portfolio.kicker": "Portfolio",
+  "portfolio.title": "Selected builds that reflect delivery quality",
+  "portfolio.intro": "Project snapshots for clients, collaborators, and recruiters evaluating architecture quality and execution standards.",
+  "portfolio.demo": "Live Demo",
+  "portfolio.github": "GitHub",
+
+  "contact.kicker": "Contact",
+  "contact.title": "Tell us what you are trying to fix. We reply within 24 working hours.",
+  "contact.intro": "Share your business context and goals. We will suggest the most practical first step for your team.",
+  "contact.email": "Email:",
+  "contact.whatsapp": "WhatsApp:",
+  "contact.payment.summary": "Already completed a bank transfer or UPI payment? Verify it here.",
+  "contact.payment.optional": "Optional section: use this only if you were already asked to make a payment.",
+  "contact.direct.title": "Direct contact",
+  "contact.direct.desc": "Use whichever channel is fastest for your team.",
+  "contact.company": "Company:",
+  "contact.domain": "Domain:",
+  "contact.phone": "Phone:",
+  "contact.startWhatsApp": "Start WhatsApp Chat",
+  "contact.sendEmail": "Send Email",
+
+  "contactForm.name": "Name",
+  "contactForm.business": "Business name",
+  "contactForm.businessPlaceholder": "Your company or brand",
+  "contactForm.email": "Email",
+  "contactForm.emailPlaceholder": "you@business.com",
+  "contactForm.phone": "Phone / WhatsApp",
+  "contactForm.phonePlaceholder": "+91XXXXXXXXXX",
+  "contactForm.projectType": "Project type",
+  "contactForm.selectOne": "Select one",
+  "contactForm.message": "Message",
+  "contactForm.messagePlaceholder": "Share your current challenge, timeline, and the outcome you want.",
+  "contactForm.consent": "I consent to IgniteCore using these details to contact me about recommendations and project follow-up.",
+  "contactForm.submit": "Send Request",
+  "contactForm.submitting": "Submitting...",
+  "contactForm.success": "Thank you. We received your request and will get back within 24 working hours.",
+  "contactForm.error": "Unable to submit. Please try again.",
+
+  "qualifier.step": "Step {step} of 2",
+  "qualifier.context.basic": "Basic context",
+  "qualifier.context.project": "Project context",
+  "qualifier.intro.step1": "Share your basics first. We keep this quick and practical.",
+  "qualifier.intro.step2": "One more step and we will open your calendar with context already captured.",
+  "qualifier.name": "Name",
+  "qualifier.email": "Email",
+  "qualifier.emailPlaceholder": "you@business.com",
+  "qualifier.businessType": "Business type",
+  "qualifier.selectOne": "Select one",
+  "qualifier.next": "Continue to Step 2",
+  "qualifier.whatsapp": "WhatsApp number",
+  "qualifier.whatsappPlaceholder": "+91XXXXXXXXXX",
+  "qualifier.biggestProblem": "Biggest problem",
+  "qualifier.teamSize": "Team size",
+  "qualifier.consent": "I consent to IgniteCore storing this information to contact me about audit recommendations and follow-up.",
+  "qualifier.back": "Back",
+  "qualifier.submit": "Continue to Calendar",
+  "qualifier.submitting": "Submitting...",
+  "qualifier.success": "Great. Opening your audit calendar...",
+  "qualifier.error": "Unable to submit right now",
+
   "chat.title": "IgniteCore Q&A Desk",
   "chat.subtitle": "Quick answers before you decide",
   "chat.open": "Open",
@@ -90,6 +208,7 @@ const ENGLISH: Dictionary = {
   "chat.limitNotice": "This assistant handles quick Q&A. For full project planning or implementation, use the Contact form.",
   "chat.error.generic": "I could not process that right now. Please try again, or use the Contact page and we will help directly.",
   "chat.error.network": "Network issue. Please retry in a moment, or use the Contact page.",
+
   "payment.title": "Direct Payment",
   "payment.subtitle": "Pay by bank transfer or UPI now. Razorpay and Stripe can be enabled later when accounts are ready.",
   "payment.accountDetails": "Bank and UPI details",
@@ -115,19 +234,111 @@ const TA: Partial<Dictionary> = {
   "nav.contact": "தொடர்பு",
   "cta.freeAudit": "இலவச AI ஆய்வு பெறுங்கள்",
   "cta.whatsapp": "WhatsApp-ல் பேசுங்கள்",
+
+  "home.hero.kicker": "இக்னைட்கோர் சொல்யூஷன்ஸ்",
+  "home.hero.headline": "லீட்ஸ் வருகிறதா, ஆனால் follow-up உடைந்து போகிறதா? உங்கள் குழு வேகமாக பதிலளித்து நல்ல conversion பெறும் நடைமுறை அமைப்புகளை நாங்கள் உருவாக்குகிறோம்.",
+  "home.hero.subheadline": "இப்போது உங்கள் வளர்ச்சியை மந்தமாக்குவது என்ன என்பதை சொல்லுங்கள். கிளினிக், கோச்சிங், ரியல் எஸ்டேட் அணிகளுக்கு எளிய செயல்பாட்டு திட்டம் தருகிறோம்.",
+  "home.hero.nextHint": "அடுத்து என்ன? விரைவு intake, தெளிவான பரிந்துரை, பிறகு focused call.",
+  "home.qualifier.title": "புக் செய்யும் முன் 2 விரைவு படிகளால் தொடங்குங்கள்",
+  "home.qualifier.desc": "இது sales call போல இல்லாமல் பயனுள்ள முதல் உரையாடலை தயாரிக்க உதவும்.",
+  "home.problems.kicker": "நாங்கள் தீர்க்கும் சிக்கல்கள்",
+  "home.problems.title": "வளர்ச்சி பொதுவாக முடங்கும் இடங்கள்",
+  "home.services.kicker": "சேவை சுருக்கம்",
+  "home.services.title": "IgniteCore உங்கள் அணிக்காக உருவாக்குவது",
+  "home.how.kicker": "எப்படி செயல்படுகிறோம்",
+  "home.how.title": "எளிய செயல்முறை. உண்மையான டெலிவரி.",
+  "home.learn.kicker": "கற்றல் மையம்",
+  "home.learn.title": "சேவை வாங்கும் முன் சரியான அமைப்புகளை கற்றுக்கொள்ளுங்கள்",
+  "home.projects.kicker": "தேர்ந்தெடுக்கப்பட்ட திட்டங்கள்",
+  "home.results.kicker": "முடிவுகள்",
+  "home.next.kicker": "அடுத்து என்ன",
+  "home.next.title": "நீங்கள் தொடர்பு கொண்ட பிறகு இதுதான் நடக்கும்",
+  "home.final.title": "வளர்ச்சியை தடுக்கிறது என்ன என்பதை சொல்லுங்கள். முதலில் எதை சரி செய்ய வேண்டும் என்பதை நாங்கள் உதவுகிறோம்.",
+  "home.final.primary": "3 விரைவு கேள்விகளால் தொடங்குங்கள்",
+  "home.final.secondary": "WhatsApp தொடர்பு",
+
+  "about.kicker": "எங்களை பற்றி",
+  "about.title": "உண்மையான வணிக வளர்ச்சிக்கான நடைமுறை அமைப்புகள்",
+  "about.intro": "வணிக இலக்கும், தினசரி செயல்பாடும் இடையே இருக்கும் இடைவெளியை நிரப்புவதற்காக IgniteCore உள்ளது.",
+  "about.founder.title": "நிறுவனர் பார்வை",
+  "about.founder.body": "பரத், repetitive coordination-இல் நேரம் வீணாகாமல், உரிமையாளர்கள் வளர்ச்சியில் கவனம் செலுத்த உதவ IgniteCore-ஐ தொடங்கினார்.",
+  "about.why.title": "ஏன் நாங்கள் உள்ளோம்",
+  "about.clarity.title": "முதலில் தெளிவு",
+  "about.execution.title": "வாக்குறுதியை விட செயலாக்கம்",
+  "about.trust.title": "நம்பிக்கையை அடிப்படையாக கொண்ட இணைப்பு",
+
+  "services.kicker": "சேவைகள்",
+  "services.title": "குழப்பம் இல்லாமல் செயலில் அமையும் தீர்வுகள்",
+  "services.intro": "ஒவ்வொரு சேவையும் செயல்பாட்டு bottleneck-களை குறைத்து conversion flow-ஐ மேம்படுத்த உருவாக்கப்பட்டது.",
+  "services.whoFor": "யாருக்கு இது பொருந்தும்:",
+  "services.outcome": "முடிவு:",
+  "services.engagement.title": "சேவை தொடங்கும் விதம்",
+  "services.faq.title": "அடிக்கடி கேட்கப்படும் கேள்விகள்",
+  "services.auditCta": "இலவச AI ஆய்வு பெறுங்கள்",
+
+  "results.kicker": "முடிவுகள்",
+  "results.title": "உண்மையான வணிக தாக்கம் கொண்ட கேஸ் ஸ்டடிகள்",
+  "results.intro": "ஒவ்வொரு செயல்பாடும் measurable outcome அடிப்படையில் கண்காணிக்கப்படுகிறது.",
+  "results.problem": "சிக்கல்:",
+  "results.solution": "தீர்வு:",
+  "results.outcome": "விளைவு:",
+  "results.impact": "தாக்கம்:",
+  "results.cta": "இதே போன்ற திட்டம் பற்றி பேசுங்கள்",
+
+  "courses.kicker": "பாடங்கள்",
+  "courses.learn.title": "நீங்கள் என்ன கற்கப்போகிறீர்கள்",
+  "courseDetail.lessonTag": "பாடம்",
+  "courseDetail.outcomes": "பாட முடிவுகள்",
+  "courseDetail.nextStep": "அடுத்த படி",
+  "courseDetail.download": "பாட குறிப்புகளை பதிவிறக்கவும்",
+  "courseDetail.back": "பாடங்களுக்கு திரும்பவும்",
+  "courseDetail.audit": "இலவச AI ஆய்வு பெறுங்கள்",
+
+  "portfolio.kicker": "போர்ட்ஃபோலியோ",
+  "portfolio.title": "எங்கள் பணியின் தரத்தை காட்டும் தேர்ந்தெடுக்கப்பட்ட திட்டங்கள்",
+
+  "contact.kicker": "தொடர்பு",
+  "contact.title": "நீங்கள் சரி செய்ய விரும்பும் விஷயத்தை சொல்லுங்கள். வேலை நாட்களில் 24 மணிநேரத்துக்குள் பதில் தருகிறோம்.",
+  "contact.intro": "உங்கள் வணிக சூழல் மற்றும் இலக்கை பகிருங்கள். உங்கள் அணிக்கான நடைமுறை முதல் படியை நாங்கள் சொல்கிறோம்.",
+  "contact.direct.title": "நேரடி தொடர்பு",
+  "contact.direct.desc": "உங்கள் அணிக்கு வேகமாக இருக்கும் சேனலை பயன்படுத்துங்கள்.",
+  "contact.startWhatsApp": "WhatsApp உரையாடலைத் தொடங்குங்கள்",
+  "contact.sendEmail": "மின்னஞ்சல் அனுப்பு",
+
+  "contactForm.name": "பெயர்",
+  "contactForm.business": "வணிக பெயர்",
+  "contactForm.email": "மின்னஞ்சல்",
+  "contactForm.phone": "தொலைபேசி / WhatsApp",
+  "contactForm.projectType": "திட்ட வகை",
+  "contactForm.message": "செய்தி",
+  "contactForm.submit": "அனுப்பவும்",
+  "contactForm.submitting": "அனுப்பப்படுகிறது...",
+
+  "qualifier.name": "பெயர்",
+  "qualifier.email": "மின்னஞ்சல்",
+  "qualifier.businessType": "வணிக வகை",
+  "qualifier.context.basic": "அடிப்படை தகவல்",
+  "qualifier.context.project": "திட்ட தகவல்",
+  "qualifier.intro.step1": "முதலில் அடிப்படை தகவலை பகிருங்கள். இதை குறுகியதும் பயனுள்ளதுமாக வைத்திருக்கிறோம்.",
+  "qualifier.intro.step2": "இன்னும் ஒரு படி மட்டும். பிறகு கேலண்டர் திறக்கப்படும்.",
+  "qualifier.whatsapp": "WhatsApp எண்",
+  "qualifier.biggestProblem": "முக்கிய சிக்கல்",
+  "qualifier.teamSize": "குழு அளவு",
+  "qualifier.back": "பின்னுக்கு",
+  "qualifier.next": "படி 2 க்கு செல்லவும்",
+  "qualifier.submit": "கேலண்டருக்கு தொடரவும்",
+
+  "chat.open": "திறக்க",
+  "chat.send": "அனுப்பு",
+  "chat.placeholder": "சேவை, காலவரை, பட்ஜெட் பற்றி கேளுங்கள்...",
+
   "payment.title": "நேரடி கட்டணம்",
-  "payment.subtitle": "இப்போது வங்கி மாற்றம் அல்லது UPI மூலம் பணம் செலுத்துங்கள். பின்னர் Razorpay மற்றும் Stripe சேர்க்கலாம்.",
+  "payment.subtitle": "இப்போது வங்கி மாற்றம் அல்லது UPI மூலம் பணம் செலுத்தலாம்.",
   "payment.accountDetails": "வங்கி மற்றும் UPI விவரங்கள்",
-  "payment.verifyTitle": "கட்டண சரிபார்ப்பு",
   "payment.amount": "தொகை",
   "payment.paymentMethod": "கட்டண முறை",
   "payment.reference": "UTR / பரிமாற்ற குறிப்பு",
-  "payment.description": "விளக்கம்",
   "payment.start": "கட்டண ஆதாரத்தை சமர்ப்பிக்கவும்",
-  "payment.future": "Razorpay மற்றும் Stripe பின்னர் விருப்ப checkout providers ஆக சேர்க்கப்படும்.",
-  "chat.open": "திறக்க",
-  "chat.send": "அனுப்பு",
-  "chat.placeholder": "உங்கள் கேள்வியை கேளுங்கள்...",
 };
 
 const HI: Partial<Dictionary> = {
@@ -143,19 +354,111 @@ const HI: Partial<Dictionary> = {
   "nav.contact": "संपर्क",
   "cta.freeAudit": "फ्री AI ऑडिट लें",
   "cta.whatsapp": "WhatsApp पर बात करें",
+
+  "home.hero.kicker": "इग्नाइटकोर सॉल्यूशंस",
+  "home.hero.headline": "लीड्स आ रही हैं, लेकिन फॉलो-अप टूट रहा है? हम ऐसे प्रैक्टिकल सिस्टम बनाते हैं जो आपकी टीम को तेज़ जवाब और बेहतर कन्वर्ज़न में मदद करें।",
+  "home.hero.subheadline": "अभी आपकी ग्रोथ को क्या रोक रहा है, यह बताइए। क्लिनिक, कोचिंग और रियल एस्टेट टीमों के लिए हम साफ़ इम्प्लीमेंटेशन प्लान देते हैं।",
+  "home.hero.nextHint": "अगला कदम: छोटा intake, साफ़ सुझाव, फिर focused कॉल।",
+  "home.qualifier.title": "बुकिंग से पहले 2 छोटे स्टेप से शुरू करें",
+  "home.qualifier.desc": "इससे पहली कॉल generic sales बात नहीं, बल्कि useful discussion बनती है।",
+  "home.problems.kicker": "हम किन समस्याओं को हल करते हैं",
+  "home.problems.title": "जहाँ ग्रोथ अक्सर रुक जाती है",
+  "home.services.kicker": "सेवा ओवरव्यू",
+  "home.services.title": "IgniteCore आपकी टीम के लिए क्या बनाता है",
+  "home.how.kicker": "कैसे काम करता है",
+  "home.how.title": "सीधी प्रक्रिया, वास्तविक डिलीवरी",
+  "home.learn.kicker": "लर्निंग हब",
+  "home.learn.title": "खरीदने से पहले सही सिस्टम सीखें",
+  "home.projects.kicker": "फीचर्ड प्रोजेक्ट्स",
+  "home.results.kicker": "परिणाम",
+  "home.next.kicker": "आगे क्या होगा",
+  "home.next.title": "आपके संपर्क के बाद यह प्रक्रिया रहेगी",
+  "home.final.title": "बताइए ग्रोथ कहाँ अटक रही है। पहले क्या सुधारना है, हम साथ में तय करेंगे।",
+  "home.final.primary": "3 छोटे सवालों से शुरू करें",
+  "home.final.secondary": "WhatsApp पर बात करें",
+
+  "about.kicker": "हमारे बारे में",
+  "about.title": "वास्तविक बिज़नेस ग्रोथ के लिए प्रैक्टिकल सिस्टम",
+  "about.intro": "IgniteCore का लक्ष्य बिज़नेस ambition और रोज़ के execution के बीच की दूरी को कम करना है।",
+  "about.founder.title": "संस्थापक दृष्टि",
+  "about.founder.body": "Bharath ने IgniteCore इसलिए शुरू किया ताकि बिज़नेस ओनर्स repetitive coordination में समय न गंवाएँ और ग्रोथ पर ध्यान दें।",
+  "about.why.title": "हम क्यों हैं",
+  "about.clarity.title": "पहले स्पष्टता",
+  "about.execution.title": "वादा नहीं, execution",
+  "about.trust.title": "विश्वास-आधारित साझेदारी",
+
+  "services.kicker": "सेवाएँ",
+  "services.title": "कन्फ्यूज़न नहीं, एक्जीक्यूशन पर फोकस्ड सॉल्यूशंस",
+  "services.intro": "हर सेवा का लक्ष्य bottleneck हटाना और आपके conversion flow को बेहतर बनाना है।",
+  "services.whoFor": "यह किसके लिए है:",
+  "services.outcome": "परिणाम:",
+  "services.engagement.title": "एंगेजमेंट कैसे शुरू होता है",
+  "services.faq.title": "सामान्य प्रश्न",
+  "services.auditCta": "फ्री AI ऑडिट लें",
+
+  "results.kicker": "परिणाम",
+  "results.title": "वास्तविक बिज़नेस असर वाली केस स्टडी",
+  "results.intro": "हर प्रोजेक्ट में measurable outcome ट्रैक किया जाता है ताकि फैसले डेटा पर हों।",
+  "results.problem": "समस्या:",
+  "results.solution": "समाधान:",
+  "results.outcome": "परिणाम:",
+  "results.impact": "इम्पैक्ट:",
+  "results.cta": "ऐसे ही प्रोजेक्ट पर बात करें",
+
+  "courses.kicker": "कोर्स",
+  "courses.learn.title": "आप क्या सीखेंगे",
+  "courseDetail.lessonTag": "कोर्स लेसन",
+  "courseDetail.outcomes": "लेसन आउटकम",
+  "courseDetail.nextStep": "अगला कदम",
+  "courseDetail.download": "लेसन नोट्स डाउनलोड करें",
+  "courseDetail.back": "कोर्स पर वापस जाएँ",
+  "courseDetail.audit": "फ्री AI ऑडिट लें",
+
+  "portfolio.kicker": "पोर्टफोलियो",
+  "portfolio.title": "हमारी डिलीवरी क्वालिटी दिखाने वाले चुनिंदा प्रोजेक्ट",
+
+  "contact.kicker": "संपर्क",
+  "contact.title": "आप क्या ठीक करना चाहते हैं, बताइए। हम कार्य दिवसों में 24 घंटे के भीतर जवाब देते हैं।",
+  "contact.intro": "अपना बिज़नेस संदर्भ और लक्ष्य साझा करें। हम आपकी टीम के लिए सबसे practical पहला कदम बताएँगे।",
+  "contact.direct.title": "सीधा संपर्क",
+  "contact.direct.desc": "जो चैनल आपकी टीम के लिए तेज़ हो, उसी का उपयोग करें।",
+  "contact.startWhatsApp": "WhatsApp चैट शुरू करें",
+  "contact.sendEmail": "ईमेल भेजें",
+
+  "contactForm.name": "नाम",
+  "contactForm.business": "बिज़नेस नाम",
+  "contactForm.email": "ईमेल",
+  "contactForm.phone": "फोन / WhatsApp",
+  "contactForm.projectType": "प्रोजेक्ट प्रकार",
+  "contactForm.message": "संदेश",
+  "contactForm.submit": "रिक्वेस्ट भेजें",
+  "contactForm.submitting": "भेजा जा रहा है...",
+
+  "qualifier.name": "नाम",
+  "qualifier.email": "ईमेल",
+  "qualifier.businessType": "बिज़नेस प्रकार",
+  "qualifier.context.basic": "बेसिक जानकारी",
+  "qualifier.context.project": "प्रोजेक्ट जानकारी",
+  "qualifier.intro.step1": "पहले अपनी बेसिक जानकारी दें। इसे हम छोटा और practical रखते हैं।",
+  "qualifier.intro.step2": "बस एक कदम और, फिर आपका कैलेंडर खुलेगा।",
+  "qualifier.whatsapp": "WhatsApp नंबर",
+  "qualifier.biggestProblem": "सबसे बड़ी समस्या",
+  "qualifier.teamSize": "टीम आकार",
+  "qualifier.back": "वापस",
+  "qualifier.next": "स्टेप 2 पर जाएँ",
+  "qualifier.submit": "कैलेंडर पर जारी रखें",
+
+  "chat.open": "खोलें",
+  "chat.send": "भेजें",
+  "chat.placeholder": "सेवाएँ, टाइमलाइन या बजट के बारे में पूछें...",
+
   "payment.title": "सीधा भुगतान",
-  "payment.subtitle": "अभी बैंक ट्रांसफर या UPI से भुगतान करें। बाद में Razorpay और Stripe जोड़े जा सकते हैं।",
+  "payment.subtitle": "अभी बैंक ट्रांसफर या UPI से भुगतान करें।",
   "payment.accountDetails": "बैंक और UPI विवरण",
-  "payment.verifyTitle": "भुगतान सत्यापन",
   "payment.amount": "राशि",
   "payment.paymentMethod": "भुगतान विधि",
   "payment.reference": "UTR / लेनदेन संदर्भ",
-  "payment.description": "विवरण",
   "payment.start": "भुगतान प्रमाण जमा करें",
-  "payment.future": "Razorpay और Stripe को बाद में वैकल्पिक checkout providers के रूप में जोड़ा जाएगा.",
-  "chat.open": "खोलें",
-  "chat.send": "भेजें",
-  "chat.placeholder": "अपना सवाल पूछें...",
 };
 
 const TE: Partial<Dictionary> = {
@@ -220,6 +523,16 @@ const DICTIONARIES: Record<LanguageCode, Partial<Dictionary>> = {
   es: ES,
 };
 
+export function isLanguageCode(value: string | null | undefined): value is LanguageCode {
+  return LANGUAGES.some((item) => item.code === value);
+}
+
 export function translate(language: LanguageCode, key: TranslationKey) {
-  return DICTIONARIES[language][key] ?? ENGLISH[key];
+  return DICTIONARIES[language][key] ?? ENGLISH[key] ?? key;
+}
+
+export function formatTranslation(template: string, values: Record<string, string>) {
+  return Object.entries(values).reduce((result, [key, value]) => {
+    return result.replace(new RegExp(`\\{${key}\\}`, "g"), value);
+  }, template);
 }

@@ -3,6 +3,8 @@ import Link from "next/link";
 import { LeadMagnetForm } from "@/components/LeadMagnetForm";
 import { NewsletterForm } from "@/components/NewsletterForm";
 import { COURSE_BODY, COURSE_HIGHLIGHTS, COURSE_MODULES, COURSE_OVERVIEW, PUBLIC_COURSES } from "@/lib/siteContent";
+import { translate } from "@/lib/i18n";
+import { getServerLanguage } from "@/lib/i18nServer";
 
 export const metadata: Metadata = {
   title: "Courses | IgniteCore Video Course for AI Automation and Web Systems",
@@ -10,11 +12,14 @@ export const metadata: Metadata = {
     "Watch IgniteCore video lessons on AI automation, WhatsApp workflows, conversion websites, and lead pipelines for growth-focused teams.",
 };
 
-export default function CoursesPage() {
+export default async function CoursesPage() {
+  const language = await getServerLanguage();
+  const t = (key: string) => translate(language, key);
+
   return (
     <section className="section-shell">
       <div className="mx-auto w-full max-w-[1100px] px-4 md:px-6">
-        <p className="kicker">Courses</p>
+        <p className="kicker">{t("courses.kicker")}</p>
         <h1 className="mt-3 font-display text-4xl md:text-5xl">{COURSE_OVERVIEW.title}</h1>
         <p className="mt-4 max-w-3xl text-[var(--color-slate)]">{COURSE_OVERVIEW.description}</p>
 
@@ -46,8 +51,8 @@ export default function CoursesPage() {
 
           <div className="space-y-4">
             <article className="surface-card p-6">
-              <h2 className="text-2xl">What you will learn</h2>
-              <p className="mt-2 text-sm text-[var(--color-slate)]">Use the course to build practical systems, not just watch theory.</p>
+              <h2 className="text-2xl">{t("courses.learn.title")}</h2>
+              <p className="mt-2 text-sm text-[var(--color-slate)]">{t("courses.learn.desc")}</p>
               <ul className="mt-4 space-y-2 text-sm text-[var(--color-deep-navy)]">
                 {COURSE_BODY.sections.map((section) => (
                   <li key={section.heading}>{section.heading}</li>
@@ -56,14 +61,14 @@ export default function CoursesPage() {
             </article>
 
             <article className="surface-card p-6">
-              <h2 className="text-2xl">Course resources</h2>
-              <p className="mt-2 text-sm text-[var(--color-slate)]">Download notes or request a live walkthrough.</p>
+              <h2 className="text-2xl">{t("courses.resources.title")}</h2>
+              <p className="mt-2 text-sm text-[var(--color-slate)]">{t("courses.resources.desc")}</p>
               <div className="mt-4 flex flex-col gap-3">
                 <Link href="/contact" className="rounded-md bg-[var(--color-orange)] px-4 py-3 text-center text-sm font-semibold text-white hover:bg-[var(--color-ember)]">
-                  Get a Free AI Audit
+                  {t("courses.resources.auditCta")}
                 </Link>
                 <Link href="/portfolio" className="rounded-md border border-[var(--color-border)] px-4 py-3 text-center text-sm font-semibold hover:bg-[var(--color-cream)]">
-                  View Projects
+                  {t("courses.resources.projectsCta")}
                 </Link>
               </div>
             </article>
@@ -71,8 +76,8 @@ export default function CoursesPage() {
         </div>
 
         <div className="mt-10">
-          <p className="kicker">Public courses from the web</p>
-          <h2 className="mt-3 font-display text-3xl md:text-4xl">Free learning resources we recommend alongside IgniteCore lessons</h2>
+          <p className="kicker">{t("courses.public.kicker")}</p>
+          <h2 className="mt-3 font-display text-3xl md:text-4xl">{t("courses.public.title")}</h2>
           <div className="mt-6 grid gap-4 md:grid-cols-2">
             {PUBLIC_COURSES.map((course) => (
               <a key={course.title} href={course.url} target="_blank" rel="noreferrer" className="surface-card p-5 transition hover:-translate-y-0.5 hover:shadow-lg">
@@ -89,9 +94,9 @@ export default function CoursesPage() {
         <div className="mt-8 grid gap-4 md:grid-cols-2">
           <NewsletterForm />
           <article className="surface-card p-6">
-            <h2 className="text-2xl">Course starter kit</h2>
+            <h2 className="text-2xl">{t("courses.starter.title")}</h2>
             <p className="mt-2 text-sm text-[var(--color-slate)]">
-              Use the IgniteCore starter PDF to understand implementation scope, typical pricing ranges, and rollout approach.
+              {t("courses.starter.desc")}
             </p>
             <LeadMagnetForm />
           </article>

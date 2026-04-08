@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, ReactNode, useContext, useEffect, useMemo, useState } from "react";
-import { LanguageCode, TranslationKey, translate } from "@/lib/i18n";
+import { I18N_COOKIE_KEY, isLanguageCode, LanguageCode, TranslationKey, translate } from "@/lib/i18n";
 
 type I18nContextValue = {
   language: LanguageCode;
@@ -36,8 +36,18 @@ function getInitialLanguage() {
     return "en" as LanguageCode;
   }
 
+  const cookieValue = document.cookie
+    .split(";")
+    .map((part) => part.trim())
+    .find((part) => part.startsWith(`${I18N_COOKIE_KEY}=`))
+    ?.split("=")[1];
+
+  if (isLanguageCode(cookieValue)) {
+    return cookieValue;
+  }
+
   const stored = window.localStorage.getItem(I18N_STORAGE_KEY) as LanguageCode | null;
-  if (stored) {
+  if (isLanguageCode(stored)) {
     return stored;
   }
 
@@ -45,10 +55,15 @@ function getInitialLanguage() {
 }
 
 export function I18nProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguage] = useState<LanguageCode>(getInitialLanguage);
+  const [language, setLanguageState] = useState<LanguageCode>(getInitialLanguage);
+
+  const setLanguage = (value: LanguageCode) => {
+    setLanguageState(value);
+  };
 
   useEffect(() => {
     window.localStorage.setItem(I18N_STORAGE_KEY, language);
+    document.cookie = `${I18N_COOKIE_KEY}=${language}; path=/; max-age=31536000; samesite=lax`;
     document.documentElement.lang = language;
   }, [language]);
 

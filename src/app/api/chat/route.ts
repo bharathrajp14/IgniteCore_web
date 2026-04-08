@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { getSupabaseServerClient } from "@/lib/supabaseServer";
+import { isAllowedRequestOrigin } from "@/lib/requestOrigin";
 
 const REQUEST_LIMIT_WINDOW_MS = 60_000;
 const REQUEST_LIMIT_MAX = 25;
@@ -69,19 +70,6 @@ function isImplementationRequest(input: string) {
   return blockedPatterns.some((pattern) => text.includes(pattern));
 }
 
-function isAllowedOrigin(req: NextRequest) {
-  const origin = req.headers.get("origin");
-  if (!origin) return true;
-
-  const allowedOrigins = [
-    process.env.NEXT_PUBLIC_SITE_URL,
-    `https://${process.env.NEXT_PUBLIC_SITE_DOMAIN || ""}`,
-    "http://localhost:3000",
-  ].filter(Boolean);
-
-  return allowedOrigins.some((item) => item === origin);
-}
-
 function fallbackReply(userMessage: string) {
   const text = userMessage.toLowerCase();
 
@@ -106,8 +94,8 @@ function fallbackReply(userMessage: string) {
 
 export async function POST(req: NextRequest) {
   try {
-    if (!isAllowedOrigin(req)) {
-      return NextResponse.json({ error: "Origin not allowed" }, { status: 403 });
+    if (!isAllowedRequestOrigin(req)) {
+      return NextResponse.json({ error: "Request blocked by security policy." }, { status: 403 });
     }
 
     const ipKey = getClientIp(req);
