@@ -27,7 +27,7 @@ const SYSTEM_PROMPT = [
   "When useful, ask one focused follow-up question.",
 ].join(" ");
 
-const OPENROUTER_DEFAULT_MODEL = "openrouter/auto";
+const OPENROUTER_DEFAULT_MODEL = "google/gemma-4-31b-it:free";
 
 function getClientIp(req: NextRequest) {
   const forwarded = req.headers.get("x-forwarded-for");
@@ -125,8 +125,19 @@ export async function POST(req: NextRequest) {
 
       if (!response.ok) {
         const errorText = await response.text();
+        let providerMessage = "Chatbot AI provider request failed.";
+
+        try {
+          const parsedError = JSON.parse(errorText) as { error?: { message?: string } };
+          if (parsedError.error?.message) {
+            providerMessage = parsedError.error.message;
+          }
+        } catch {
+          // Keep default providerMessage if response is not JSON.
+        }
+
         console.error("AI provider error:", response.status, errorText);
-        return NextResponse.json({ error: "Chatbot AI provider request failed." }, { status: 502 });
+        return NextResponse.json({ error: providerMessage }, { status: 502 });
       }
 
       const data = (await response.json()) as {
