@@ -24,8 +24,10 @@ const SYSTEM_PROMPT = [
   "Prefer short answers (2-5 lines) with one concrete recommendation.",
   "If user shares business type and challenge, suggest a best first step and an optional next step.",
   "Only mention services available on the site: AI automation, business websites, web apps, lead capture, WhatsApp automation, dashboards, and support.",
-  "When useful, invite them to continue with business type + main challenge + lead source.",
+  "When useful, ask one focused follow-up question.",
 ].join(" ");
+
+const OPENROUTER_DEFAULT_MODEL = "openrouter/auto";
 
 function getClientIp(req: NextRequest) {
   const forwarded = req.headers.get("x-forwarded-for");
@@ -50,204 +52,6 @@ function isRateLimited(ip: string) {
   next.push(now);
   requestLog.set(ip, next);
   return false;
-}
-
-const AFFIRMATIVE_INPUTS = new Set(["yes", "y", "ok", "okay", "sure", "yep", "yeah", "fine", "continue"]);
-
-function containsAny(text: string, patterns: string[]) {
-  return patterns.some((pattern) => text.includes(pattern));
-}
-
-const intentMatchers: Array<{ patterns: string[]; reply: string }> = [
-  {
-    patterns: ["what should i start", "where should i start", "start with for my business", "how to start my business", "first step"],
-    reply:
-      "Great question. For most businesses, the best first step is to fix lead capture and follow-up before anything else. Start with: 1) one clear offer page, 2) one lead form/WhatsApp entry point, and 3) a response workflow within 5 minutes. Share your business type and I can suggest the exact first implementation.",
-  },
-  {
-    patterns: ["price", "cost", "pricing", "budget"],
-    reply:
-      "Pricing depends on scope, timeline, and how much automation you need first. Share your current process and goal on the Contact page, and we will suggest a practical budget range.",
-  },
-  {
-    patterns: ["service", "what do you do", "offer", "help with"],
-    reply:
-      "IgniteCore can help with AI automation, business websites, web apps, lead capture systems, WhatsApp automation, dashboards, and ongoing support.",
-  },
-  {
-    patterns: ["course", "learn", "video", "training"],
-    reply:
-      "You can explore the Courses section for quick lessons and downloadable resources. If you prefer done-for-you implementation, use Contact and request a free audit.",
-  },
-  {
-    patterns: ["contact", "book", "audit", "call", "consult"],
-    reply:
-      "You can book a free AI audit from the main CTA or share your details on the Contact page. Include your goal and timeline, and we will suggest the fastest next step.",
-  },
-  {
-    patterns: ["timeline", "how long", "duration", "when"],
-    reply:
-      "Most first versions launch in about 7 to 14 business days depending on scope. If you share your use case, we can suggest a realistic timeline for your business.",
-  },
-];
-
-function normalizeMessage(input: string) {
-  return input.toLowerCase().trim().replace(/\s+/g, " ");
-}
-
-function extractBusinessHint(input: string) {
-  const text = normalizeMessage(input);
-
-  if (containsAny(text, ["clinic", "hospital", "doctor", "dental"])) return "clinic";
-  if (containsAny(text, ["coaching", "academy", "tuition", "education"])) return "coaching";
-  if (containsAny(text, ["real estate", "property", "builder", "broker"])) return "real-estate";
-  if (containsAny(text, ["ecommerce", "shop", "store", "retail"])) return "ecommerce";
-
-  return null;
-}
-
-function getStarterPlanByBusiness(input: string) {
-  const hint = extractBusinessHint(input);
-
-  if (hint === "clinic") {
-    return "Best start for your clinic: 1) one enquiry form + WhatsApp button, 2) auto-response within 2 minutes, 3) reminder follow-up for missed calls. This gives faster booking conversion in the first week.";
-  }
-
-  if (hint === "coaching") {
-    return "Best start for your institute: 1) one admissions landing page, 2) lead capture with source tracking, 3) counsellor follow-up reminders. This usually improves enrollment conversations quickly.";
-  }
-
-  if (hint === "real-estate") {
-    return "Best start for real estate: 1) property enquiry capture with project tag, 2) instant WhatsApp acknowledgement, 3) lead routing to the right salesperson. This reduces lead drop during handoffs.";
-  }
-
-  if (hint === "ecommerce") {
-    return "Best start for ecommerce: 1) high-intent landing pages, 2) cart/lead recovery automation, 3) daily dashboard for source vs conversion. This helps improve ROAS before scaling ads.";
-  }
-
-  return "Best first move: fix lead capture + fast follow-up first, then improve website pages. If leads are missed, no marketing campaign will perform well. Tell me your business type and current lead source, and I will suggest a concrete 7-day starter plan.";
-}
-
-function avoidRepeatReply(reply: string, previousAssistantMessage?: string) {
-  if (!previousAssistantMessage) {
-    return reply;
-  }
-
-  const previous = normalizeMessage(previousAssistantMessage);
-  const current = normalizeMessage(reply);
-  if (previous !== current) {
-    return reply;
-  }
-
-  return "Got it. Share this in one line: business type - biggest challenge - lead source. I will give you the exact first implementation step.";
-}
-
-function shouldAskForBusinessContext(previousAssistantMessage: string | undefined) {
-  if (!previousAssistantMessage) {
-    return false;
-  }
-
-  const text = normalizeMessage(previousAssistantMessage);
-  return text.includes("business type") && text.includes("main challenge");
-}
-
-function parseBusinessContext(input: string) {
-  const parts = input
-    .split(/\s+-\s+|\s*\|\s*|\n+/)
-    .map((part) => part.trim())
-    .filter(Boolean);
-
-  if (parts.length < 2) {
-    return null;
-  }
-
-  const [businessType, mainChallenge, leadSource] = parts;
-  return {
-    businessType,
-    mainChallenge,
-    leadSource,
-  };
-}
-
-function getRecommendedFocus(businessType: string, challenge: string) {
-  const business = normalizeMessage(businessType);
-  const issue = normalizeMessage(challenge);
-
-  if (issue.includes("follow") || issue.includes("response") || issue.includes("whatsapp")) {
-    return "Start with WhatsApp automation + lead capture tagging so every enquiry is tracked and responded to quickly.";
-  }
-
-  if (issue.includes("website") || issue.includes("landing") || issue.includes("conversion")) {
-    return "Start with a conversion-focused website or landing page refresh with clearer service positioning and stronger CTAs.";
-  }
-
-  if (issue.includes("report") || issue.includes("dashboard") || issue.includes("visibility")) {
-    return "Start with a simple dashboard that tracks lead source, response time, and conversion stage so you can fix bottlenecks fast.";
-  }
-
-  if (business.includes("clinic") || business.includes("hospital") || business.includes("doctor")) {
-    return "Start with enquiry triage and appointment follow-up automation to reduce missed patient opportunities.";
-  }
-
-  if (business.includes("coaching") || business.includes("academy") || business.includes("education")) {
-    return "Start with admission lead pipeline automation so counsellors can follow up consistently and improve enrollments.";
-  }
-
-  if (business.includes("real estate") || business.includes("property")) {
-    return "Start with lead routing and follow-up reminders so site visit interest does not drop between handoffs.";
-  }
-
-  return "Start with lead capture + response automation first, then improve conversion pages once follow-up consistency is stable.";
-}
-
-function fallbackReply(userMessage: string, previousAssistantMessage?: string) {
-  const text = normalizeMessage(userMessage);
-
-  if (containsAny(text, ["start", "first step"]) && containsAny(text, ["business", "company"])) {
-    return getStarterPlanByBusiness(text);
-  }
-
-  if (text.includes("not work") || text.includes("isn't working") || text.includes("error") || text.includes("issue")) {
-    return "Sorry you are facing this. Share what is failing (chat, form, payment, or booking), what you expected, and what happened instead. I will suggest the fastest fix path.";
-  }
-
-  const context = parseBusinessContext(userMessage);
-  if (context) {
-    const recommendedFocus = getRecommendedFocus(context.businessType, context.mainChallenge);
-    const leadSourceLine = context.leadSource
-      ? ` Noted lead source: ${context.leadSource}.`
-      : "";
-
-    return avoidRepeatReply(
-      `${recommendedFocus}${leadSourceLine} If you want, I can give a starter scope with timeline and budget direction next.`,
-      previousAssistantMessage
-    );
-  }
-
-  if (AFFIRMATIVE_INPUTS.has(text) && shouldAskForBusinessContext(previousAssistantMessage)) {
-    return avoidRepeatReply(
-      "Perfect. Start with this format: Business type - Main challenge - Current lead source. Example: 'Dental clinic - slow follow-up on WhatsApp - Instagram and referrals'.",
-      previousAssistantMessage
-    );
-  }
-
-  for (const matcher of intentMatchers) {
-    if (matcher.patterns.some((pattern) => text.includes(pattern))) {
-      return avoidRepeatReply(matcher.reply, previousAssistantMessage);
-    }
-  }
-
-  if (text.length <= 3) {
-    return avoidRepeatReply(
-      "I can guide you quickly. Tell me your business type and one main problem first, and I will suggest the best next step.",
-      previousAssistantMessage
-    );
-  }
-
-  return avoidRepeatReply(
-    "Thanks for sharing. I can help with services, pricing direction, timelines, and next steps. Tell me your business type and the main challenge you want to solve first.",
-    previousAssistantMessage
-  );
 }
 
 export async function POST(req: NextRequest) {
@@ -275,65 +79,71 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "User message required" }, { status: 400 });
     }
 
-    const lastAssistantMessage = [...parsed.data.messages]
-      .reverse()
-      .find((item) => item.role === "assistant")?.content;
-
     let reply = "";
-    let provider = "fallback";
-    let modelUsed = "rules";
+    let provider = "custom";
+    let modelUsed = "";
 
     const apiKey = process.env.AI_PROVIDER_API_KEY;
     const baseUrl = process.env.AI_PROVIDER_BASE_URL ?? "https://api.openai.com/v1";
-    const model = process.env.AI_MODEL ?? "gpt-4o-mini";
+    const configuredModel = process.env.AI_MODEL?.trim();
+    const model = !configuredModel || configuredModel === "openrouter/free"
+      ? OPENROUTER_DEFAULT_MODEL
+      : configuredModel;
 
-    if (apiKey) {
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 12_000);
-
-      try {
-        const response = await fetch(`${baseUrl.replace(/\/$/, "")}/chat/completions`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${apiKey}`,
-          },
-          signal: controller.signal,
-          body: JSON.stringify({
-            model,
-            temperature: 0.6,
-            messages: [
-              { role: "system", content: SYSTEM_PROMPT },
-              ...parsed.data.messages.map((item) => ({ role: item.role, content: item.content })),
-            ],
-          }),
-        });
-
-        if (response.ok) {
-          const data = (await response.json()) as {
-            choices?: Array<{ message?: { content?: string } }>;
-          };
-          const content = data.choices?.[0]?.message?.content?.trim();
-          if (content) {
-            reply = content;
-            provider = "custom";
-            modelUsed = model;
-          }
-        } else {
-          const errorText = await response.text();
-          console.error("AI provider error:", response.status, errorText);
-        }
-      } catch (error) {
-        console.error("AI provider request failed:", error);
-      } finally {
-        clearTimeout(timeoutId);
-      }
+    if (!apiKey) {
+      return NextResponse.json({ error: "Chatbot AI provider is not configured." }, { status: 503 });
     }
 
-    if (!reply) {
-      reply = fallbackReply(lastUserMessage.content, lastAssistantMessage);
-      provider = "fallback";
-      modelUsed = "rules";
+    const refererHeader =
+      process.env.NEXT_PUBLIC_SITE_URL ||
+      process.env.NEXT_PUBLIC_SITE_DOMAIN ||
+      `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL || "ignitecoreai.tech"}`;
+
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 15_000);
+
+    try {
+      const response = await fetch(`${baseUrl.replace(/\/$/, "")}/chat/completions`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${apiKey}`,
+          "HTTP-Referer": refererHeader,
+          "X-Title": "IgniteCore Chatbot",
+        },
+        signal: controller.signal,
+        body: JSON.stringify({
+          model,
+          temperature: 0.5,
+          max_tokens: 350,
+          messages: [
+            { role: "system", content: SYSTEM_PROMPT },
+            ...parsed.data.messages.map((item) => ({ role: item.role, content: item.content })),
+          ],
+        }),
+      });
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error("AI provider error:", response.status, errorText);
+        return NextResponse.json({ error: "Chatbot AI provider request failed." }, { status: 502 });
+      }
+
+      const data = (await response.json()) as {
+        choices?: Array<{ message?: { content?: string } }>;
+      };
+      const content = data.choices?.[0]?.message?.content?.trim();
+      if (!content) {
+        return NextResponse.json({ error: "Chatbot AI returned an empty response." }, { status: 502 });
+      }
+
+      reply = content;
+      modelUsed = model;
+    } catch (error) {
+      console.error("AI provider request failed:", error);
+      return NextResponse.json({ error: "Chatbot AI is temporarily unavailable." }, { status: 503 });
+    } finally {
+      clearTimeout(timeoutId);
     }
 
     const supabase = getSupabaseServerClient();
