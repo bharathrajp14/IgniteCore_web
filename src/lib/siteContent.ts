@@ -83,18 +83,23 @@ export const HOME_PROBLEMS = [
 export const HOW_IT_WORKS = [
   {
     step: "01",
-    title: "Free AI and workflow audit",
-    description: "We map your current process, identify friction points, and define high-impact automation opportunities.",
+    title: "Start at the top",
+    description: "Read the hero, see the main promise, and understand who IgniteCore helps before you scroll further.",
   },
   {
     step: "02",
-    title: "Build and launch",
-    description: "We design, build, and deploy your website, lead system, or automation flow with clear deliverables.",
+    title: "Explore the services",
+    description: "Check the services section to see what can be built for lead capture, websites, automation, and dashboards.",
   },
   {
     step: "03",
-    title: "Measure and improve",
-    description: "You get performance visibility and iterative improvements so the system keeps creating business value.",
+    title: "Review proof and outcomes",
+    description: "Look at the results and projects blocks to see practical examples, case studies, and delivery style.",
+  },
+  {
+    step: "04",
+    title: "Take the next step",
+    description: "Use the qualifier or contact section when you’re ready to get a specific plan for your business.",
   },
 ];
 
