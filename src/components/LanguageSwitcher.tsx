@@ -1,15 +1,12 @@
 "use client";
 
-import { useMemo, useState, useTransition } from "react";
-import { useRouter } from "next/navigation";
+import { useMemo, useState } from "react";
 import { LANGUAGES } from "@/lib/i18n";
 import { useI18n } from "@/components/I18nProvider";
 
 export function LanguageSwitcher() {
-  const router = useRouter();
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState("");
-  const [isPending, startTransition] = useTransition();
   const { language, setLanguage, t } = useI18n();
 
   const activeLanguage = LANGUAGES.find((item) => item.code === language) || LANGUAGES[0];
@@ -60,11 +57,8 @@ export function LanguageSwitcher() {
                   setLanguage(item.code);
                   setOpen(false);
                   setSearch("");
-                  startTransition(() => {
-                    router.refresh();
-                  });
+                  window.location.reload();
                 }}
-                disabled={isPending}
                 className={`w-full rounded-md px-3 py-2 text-left text-sm transition ${
                   item.code === language
                     ? "bg-[var(--color-cream)] font-semibold text-[var(--color-deep-navy)]"
@@ -75,10 +69,6 @@ export function LanguageSwitcher() {
                 <span className="ml-1 text-xs text-[var(--color-slate)]">({item.name})</span>
               </button>
             ))}
-
-            {isPending ? (
-              <p className="px-2 py-2 text-xs text-[var(--color-slate)]">{t("language.label")}...</p>
-            ) : null}
 
             {filteredLanguages.length === 0 ? (
               <p className="px-2 py-4 text-sm text-[var(--color-slate)]">{t("language.noResults")}</p>

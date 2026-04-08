@@ -58,12 +58,16 @@ export function I18nProvider({ children }: { children: ReactNode }) {
   const [language, setLanguageState] = useState<LanguageCode>(getInitialLanguage);
 
   const setLanguage = (value: LanguageCode) => {
+    if (typeof window !== "undefined") {
+      window.localStorage.setItem(I18N_STORAGE_KEY, value);
+      document.cookie = `${I18N_COOKIE_KEY}=${value}; path=/; max-age=31536000; samesite=lax`;
+      document.documentElement.lang = value;
+    }
+
     setLanguageState(value);
   };
 
   useEffect(() => {
-    window.localStorage.setItem(I18N_STORAGE_KEY, language);
-    document.cookie = `${I18N_COOKIE_KEY}=${language}; path=/; max-age=31536000; samesite=lax`;
     document.documentElement.lang = language;
   }, [language]);
 
