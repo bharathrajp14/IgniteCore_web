@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useEffect, useMemo, useState } from "react";
+import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
 import { trackEvent } from "@/lib/tracking";
 import { useI18n } from "@/components/I18nProvider";
 
@@ -25,6 +25,11 @@ export function ChatbotWidget() {
       content: t("chat.greeting"),
     },
   ]);
+  const messagesRef = useRef<ChatMessage[]>(messages);
+
+  useEffect(() => {
+    messagesRef.current = messages;
+  }, [messages]);
 
   useEffect(() => {
     setMessages((prev) => {
@@ -48,8 +53,9 @@ export function ChatbotWidget() {
     const trimmed = text.trim();
     if (!trimmed || isSending) return;
 
-    const nextMessages: ChatMessage[] = [...messages, { role: "user", content: trimmed }];
+    const nextMessages: ChatMessage[] = [...messagesRef.current, { role: "user", content: trimmed }];
     setMessages(nextMessages);
+    messagesRef.current = nextMessages;
     setInput("");
     setIsSending(true);
 
@@ -74,13 +80,9 @@ export function ChatbotWidget() {
             ? t("chat.error.generic")
             : errorData.error || t("chat.error.generic");
 
-        setMessages((prev) => [
-          ...prev,
-          {
-            role: "assistant",
-            content: userFriendlyError,
-          },
-        ]);
+        const erroredMessages = [...messagesRef.current, { role: "assistant" as const, content: userFriendlyError }];
+        setMessages(erroredMessages);
+        messagesRef.current = erroredMessages;
         return;
       }
 
@@ -89,26 +91,19 @@ export function ChatbotWidget() {
         setSessionId(data.sessionId);
       }
 
-      setMessages((prev) => [
-        ...prev,
-        {
-          role: "assistant",
-          content: data.reply || "Thanks for sharing. If you give me your business type and current challenge, I can guide the best next step.",
-        },
-      ]);
+      const assistantReply = data.reply || "Thanks for sharing. If you give me your business type and current challenge, I can guide the best next step.";
+      const updatedMessages = [...messagesRef.current, { role: "assistant" as const, content: assistantReply }];
+      setMessages(updatedMessages);
+      messagesRef.current = updatedMessages;
     } catch (error) {
       const content =
         error instanceof Error && error.name === "AbortError"
           ? "Chat is taking longer than expected. Please try again in a few seconds."
           : t("chat.error.network");
 
-      setMessages((prev) => [
-        ...prev,
-        {
-          role: "assistant",
-          content,
-        },
-      ]);
+      const failedMessages = [...messagesRef.current, { role: "assistant" as const, content }];
+      setMessages(failedMessages);
+      messagesRef.current = failedMessages;
     } finally {
       window.clearTimeout(timeoutId);
       setIsSending(false);

@@ -54,6 +54,10 @@ function isRateLimited(ip: string) {
 
 const AFFIRMATIVE_INPUTS = new Set(["yes", "y", "ok", "okay", "sure", "yep", "yeah", "fine", "continue"]);
 
+function containsAny(text: string, patterns: string[]) {
+  return patterns.some((pattern) => text.includes(pattern));
+}
+
 const intentMatchers: Array<{ patterns: string[]; reply: string }> = [
   {
     patterns: ["what should i start", "where should i start", "start with for my business", "how to start my business", "first step"],
@@ -89,6 +93,53 @@ const intentMatchers: Array<{ patterns: string[]; reply: string }> = [
 
 function normalizeMessage(input: string) {
   return input.toLowerCase().trim().replace(/\s+/g, " ");
+}
+
+function extractBusinessHint(input: string) {
+  const text = normalizeMessage(input);
+
+  if (containsAny(text, ["clinic", "hospital", "doctor", "dental"])) return "clinic";
+  if (containsAny(text, ["coaching", "academy", "tuition", "education"])) return "coaching";
+  if (containsAny(text, ["real estate", "property", "builder", "broker"])) return "real-estate";
+  if (containsAny(text, ["ecommerce", "shop", "store", "retail"])) return "ecommerce";
+
+  return null;
+}
+
+function getStarterPlanByBusiness(input: string) {
+  const hint = extractBusinessHint(input);
+
+  if (hint === "clinic") {
+    return "Best start for your clinic: 1) one enquiry form + WhatsApp button, 2) auto-response within 2 minutes, 3) reminder follow-up for missed calls. This gives faster booking conversion in the first week.";
+  }
+
+  if (hint === "coaching") {
+    return "Best start for your institute: 1) one admissions landing page, 2) lead capture with source tracking, 3) counsellor follow-up reminders. This usually improves enrollment conversations quickly.";
+  }
+
+  if (hint === "real-estate") {
+    return "Best start for real estate: 1) property enquiry capture with project tag, 2) instant WhatsApp acknowledgement, 3) lead routing to the right salesperson. This reduces lead drop during handoffs.";
+  }
+
+  if (hint === "ecommerce") {
+    return "Best start for ecommerce: 1) high-intent landing pages, 2) cart/lead recovery automation, 3) daily dashboard for source vs conversion. This helps improve ROAS before scaling ads.";
+  }
+
+  return "Best first move: fix lead capture + fast follow-up first, then improve website pages. If leads are missed, no marketing campaign will perform well. Tell me your business type and current lead source, and I will suggest a concrete 7-day starter plan.";
+}
+
+function avoidRepeatReply(reply: string, previousAssistantMessage?: string) {
+  if (!previousAssistantMessage) {
+    return reply;
+  }
+
+  const previous = normalizeMessage(previousAssistantMessage);
+  const current = normalizeMessage(reply);
+  if (previous !== current) {
+    return reply;
+  }
+
+  return "Got it. Share this in one line: business type - biggest challenge - lead source. I will give you the exact first implementation step.";
 }
 
 function shouldAskForBusinessContext(previousAssistantMessage: string | undefined) {
@@ -152,8 +203,8 @@ function getRecommendedFocus(businessType: string, challenge: string) {
 function fallbackReply(userMessage: string, previousAssistantMessage?: string) {
   const text = normalizeMessage(userMessage);
 
-  if (text.includes("start") && text.includes("business")) {
-    return "Best first move: fix lead capture + fast follow-up first, then improve website pages. If leads are missed, no marketing campaign will perform well. Tell me your business type and current lead source, and I will suggest a concrete 7-day starter plan.";
+  if (containsAny(text, ["start", "first step"]) && containsAny(text, ["business", "company"])) {
+    return getStarterPlanByBusiness(text);
   }
 
   if (text.includes("not work") || text.includes("isn't working") || text.includes("error") || text.includes("issue")) {
@@ -167,24 +218,36 @@ function fallbackReply(userMessage: string, previousAssistantMessage?: string) {
       ? ` Noted lead source: ${context.leadSource}.`
       : "";
 
-    return `${recommendedFocus}${leadSourceLine} If you want, I can give a starter scope with timeline and budget direction next.`;
+    return avoidRepeatReply(
+      `${recommendedFocus}${leadSourceLine} If you want, I can give a starter scope with timeline and budget direction next.`,
+      previousAssistantMessage
+    );
   }
 
   if (AFFIRMATIVE_INPUTS.has(text) && shouldAskForBusinessContext(previousAssistantMessage)) {
-    return "Perfect. Start with this format: Business type - Main challenge - Current lead source. Example: 'Dental clinic - slow follow-up on WhatsApp - Instagram and referrals'.";
+    return avoidRepeatReply(
+      "Perfect. Start with this format: Business type - Main challenge - Current lead source. Example: 'Dental clinic - slow follow-up on WhatsApp - Instagram and referrals'.",
+      previousAssistantMessage
+    );
   }
 
   for (const matcher of intentMatchers) {
     if (matcher.patterns.some((pattern) => text.includes(pattern))) {
-      return matcher.reply;
+      return avoidRepeatReply(matcher.reply, previousAssistantMessage);
     }
   }
 
   if (text.length <= 3) {
-    return "I can guide you quickly. Tell me your business type and one main problem first, and I will suggest the best next step.";
+    return avoidRepeatReply(
+      "I can guide you quickly. Tell me your business type and one main problem first, and I will suggest the best next step.",
+      previousAssistantMessage
+    );
   }
 
-  return "Thanks for sharing. I can help with services, pricing direction, timelines, and next steps. Tell me your business type and the main challenge you want to solve first.";
+  return avoidRepeatReply(
+    "Thanks for sharing. I can help with services, pricing direction, timelines, and next steps. Tell me your business type and the main challenge you want to solve first.",
+    previousAssistantMessage
+  );
 }
 
 export async function POST(req: NextRequest) {
