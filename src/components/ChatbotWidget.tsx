@@ -53,10 +53,14 @@ export function ChatbotWidget() {
     setInput("");
     setIsSending(true);
 
+    const controller = new AbortController();
+    const timeoutId = window.setTimeout(() => controller.abort(), 15_000);
+
     try {
       const response = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
+        signal: controller.signal,
         body: JSON.stringify({
           ...(sessionId ? { sessionId } : {}),
           messages: nextMessages.slice(-12),
@@ -92,15 +96,21 @@ export function ChatbotWidget() {
           content: data.reply || "Thanks for sharing. If you give me your business type and current challenge, I can guide the best next step.",
         },
       ]);
-    } catch {
+    } catch (error) {
+      const content =
+        error instanceof Error && error.name === "AbortError"
+          ? "Chat is taking longer than expected. Please try again in a few seconds."
+          : t("chat.error.network");
+
       setMessages((prev) => [
         ...prev,
         {
           role: "assistant",
-          content: t("chat.error.network"),
+          content,
         },
       ]);
     } finally {
+      window.clearTimeout(timeoutId);
       setIsSending(false);
     }
   };
