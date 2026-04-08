@@ -103,7 +103,7 @@ export function ChatbotWidget() {
   };
 
   return (
-    <div className="fixed bottom-4 right-4 z-50">
+    <div className="fixed bottom-[calc(env(safe-area-inset-bottom)+1rem)] right-[max(1rem,calc((100vw-1100px)/2+1rem))] z-50">
       {open ? (
         <section className="mb-3 flex h-[70vh] w-[min(360px,92vw)] flex-col overflow-hidden rounded-2xl border border-[var(--color-border)] bg-white shadow-2xl">
           <header className="flex items-center justify-between border-b border-[var(--color-border)] bg-[var(--color-dark)] px-4 py-3 text-white">
