@@ -56,6 +56,11 @@ const AFFIRMATIVE_INPUTS = new Set(["yes", "y", "ok", "okay", "sure", "yep", "ye
 
 const intentMatchers: Array<{ patterns: string[]; reply: string }> = [
   {
+    patterns: ["what should i start", "where should i start", "start with for my business", "how to start my business", "first step"],
+    reply:
+      "Great question. For most businesses, the best first step is to fix lead capture and follow-up before anything else. Start with: 1) one clear offer page, 2) one lead form/WhatsApp entry point, and 3) a response workflow within 5 minutes. Share your business type and I can suggest the exact first implementation.",
+  },
+  {
     patterns: ["price", "cost", "pricing", "budget"],
     reply:
       "Pricing depends on scope, timeline, and how much automation you need first. Share your current process and goal on the Contact page, and we will suggest a practical budget range.",
@@ -146,6 +151,10 @@ function getRecommendedFocus(businessType: string, challenge: string) {
 
 function fallbackReply(userMessage: string, previousAssistantMessage?: string) {
   const text = normalizeMessage(userMessage);
+
+  if (text.includes("start") && text.includes("business")) {
+    return "Best first move: fix lead capture + fast follow-up first, then improve website pages. If leads are missed, no marketing campaign will perform well. Tell me your business type and current lead source, and I will suggest a concrete 7-day starter plan.";
+  }
 
   if (text.includes("not work") || text.includes("isn't working") || text.includes("error") || text.includes("issue")) {
     return "Sorry you are facing this. Share what is failing (chat, form, payment, or booking), what you expected, and what happened instead. I will suggest the fastest fix path.";
