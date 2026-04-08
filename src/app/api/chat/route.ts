@@ -19,12 +19,12 @@ const schema = z.object({
 
 const SYSTEM_PROMPT = [
   "You are IgniteCore Assistant.",
-  "Goal: help visitors with short client-facing Q&A about services, pricing direction, timeline, and next steps.",
-  "Tone: concise, practical, professional, and helpful.",
-  "Only claim what is available on the website: AI automation, business websites, web apps, lead capture, WhatsApp automation, dashboards, and support.",
-  "Do NOT generate full website code, architecture, exploit details, scripts, or implementation plans for developers.",
-  "If a user asks for full website building or code, refuse politely and guide them to book a consultation.",
-  "When users ask for next step, suggest booking an audit or using contact page.",
+  "Goal: help visitors with practical Q&A about services, pricing direction, timeline, and next steps.",
+  "Tone: friendly, clear, practical, and non-robotic.",
+  "Prefer short answers (2-5 lines) with one concrete recommendation.",
+  "If user shares business type and challenge, suggest a best first step and an optional next step.",
+  "Only mention services available on the site: AI automation, business websites, web apps, lead capture, WhatsApp automation, dashboards, and support.",
+  "When useful, invite them to continue with business type + main challenge + lead source.",
 ].join(" ");
 
 function getClientIp(req: NextRequest) {
@@ -50,24 +50,6 @@ function isRateLimited(ip: string) {
   next.push(now);
   requestLog.set(ip, next);
   return false;
-}
-
-function isImplementationRequest(input: string) {
-  const text = input.toLowerCase();
-  const blockedPatterns = [
-    "build full website",
-    "make full website",
-    "write code",
-    "generate code",
-    "source code",
-    "create nextjs app",
-    "deploy script",
-    "sql injection",
-    "exploit",
-    "xss",
-  ];
-
-  return blockedPatterns.some((pattern) => text.includes(pattern));
 }
 
 const AFFIRMATIVE_INPUTS = new Set(["yes", "y", "ok", "okay", "sure", "yep", "yeah", "fine", "continue"]);
@@ -221,22 +203,11 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "User message required" }, { status: 400 });
     }
 
-    if (isImplementationRequest(lastUserMessage.content)) {
-      return NextResponse.json({
-        success: true,
-        sessionId,
-        provider: "guardrail",
-        model: "guardrail",
-        reply:
-          "I can help with quick client Q&A only. For full website builds, technical implementation, or custom coding, please use the Contact page to request a project consultation.",
-      });
-    }
-
     const lastAssistantMessage = [...parsed.data.messages]
       .reverse()
       .find((item) => item.role === "assistant")?.content;
 
-    let reply = fallbackReply(lastUserMessage.content, lastAssistantMessage);
+    let reply = "";
     let provider = "fallback";
     let modelUsed = "rules";
 
@@ -245,6 +216,9 @@ export async function POST(req: NextRequest) {
     const model = process.env.AI_MODEL ?? "gpt-4o-mini";
 
     if (apiKey) {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 12_000);
+
       try {
         const response = await fetch(`${baseUrl.replace(/\/$/, "")}/chat/completions`, {
           method: "POST",
@@ -252,9 +226,10 @@ export async function POST(req: NextRequest) {
             "Content-Type": "application/json",
             Authorization: `Bearer ${apiKey}`,
           },
+          signal: controller.signal,
           body: JSON.stringify({
             model,
-            temperature: 0.4,
+            temperature: 0.6,
             messages: [
               { role: "system", content: SYSTEM_PROMPT },
               ...parsed.data.messages.map((item) => ({ role: item.role, content: item.content })),
@@ -278,7 +253,15 @@ export async function POST(req: NextRequest) {
         }
       } catch (error) {
         console.error("AI provider request failed:", error);
+      } finally {
+        clearTimeout(timeoutId);
       }
+    }
+
+    if (!reply) {
+      reply = fallbackReply(lastUserMessage.content, lastAssistantMessage);
+      provider = "fallback";
+      modelUsed = "rules";
     }
 
     const supabase = getSupabaseServerClient();
