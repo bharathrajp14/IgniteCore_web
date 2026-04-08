@@ -1,30 +1,40 @@
 "use client";
 
-import { FormEvent, useMemo, useState } from "react";
+import { FormEvent, useEffect, useMemo, useState } from "react";
 import { trackEvent } from "@/lib/tracking";
+import { useI18n } from "@/components/I18nProvider";
 
 type ChatMessage = {
   role: "user" | "assistant";
   content: string;
 };
 
-const STARTER_QUESTIONS = [
-  "What services do you provide?",
-  "How do I start a project?",
-  "Can you help with automation and website together?",
-];
-
 export function ChatbotWidget() {
+  const { t } = useI18n();
   const [open, setOpen] = useState(false);
   const [sessionId, setSessionId] = useState<string | null>(null);
   const [input, setInput] = useState("");
   const [isSending, setIsSending] = useState(false);
+  const starterQuestions = useMemo(
+    () => [t("chat.quick.services"), t("chat.quick.start"), t("chat.quick.bundle")],
+    [t]
+  );
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       role: "assistant",
-      content: "Hi, I am IgniteCore Assistant. I can help with services, project scope, pricing direction, and next steps.",
+      content: t("chat.greeting"),
     },
   ]);
+
+  useEffect(() => {
+    setMessages((prev) => {
+      if (prev.length <= 1 && prev[0]?.role === "assistant") {
+        return [{ role: "assistant", content: t("chat.greeting") }];
+      }
+
+      return prev;
+    });
+  }, [t]);
 
   const canSend = useMemo(() => input.trim().length > 0 && !isSending, [input, isSending]);
 
@@ -53,7 +63,7 @@ export function ChatbotWidget() {
           ...prev,
           {
             role: "assistant",
-            content: errorData.error || "I could not process that right now. Please try again or use the Contact page.",
+            content: errorData.error || t("chat.error.generic"),
           },
         ]);
         return;
@@ -68,7 +78,7 @@ export function ChatbotWidget() {
         ...prev,
         {
           role: "assistant",
-          content: data.reply || "Thanks. Please share more details and I will help.",
+          content: data.reply || "Thanks for sharing. If you give me your business type and current challenge, I can guide the best next step.",
         },
       ]);
     } catch {
@@ -76,7 +86,7 @@ export function ChatbotWidget() {
         ...prev,
         {
           role: "assistant",
-          content: "Network issue. Please retry in a moment or use the Contact page.",
+          content: t("chat.error.network"),
         },
       ]);
     } finally {
@@ -98,15 +108,15 @@ export function ChatbotWidget() {
         <section className="mb-3 flex h-[70vh] w-[min(360px,92vw)] flex-col overflow-hidden rounded-2xl border border-[var(--color-border)] bg-white shadow-2xl">
           <header className="flex items-center justify-between border-b border-[var(--color-border)] bg-[var(--color-dark)] px-4 py-3 text-white">
             <div>
-              <p className="text-sm font-semibold">IgniteCore Assistant</p>
-              <p className="text-xs text-slate-300">Instant answers for services and next steps</p>
+              <p className="text-sm font-semibold">{t("chat.title")}</p>
+              <p className="text-xs text-slate-300">{t("chat.subtitle")}</p>
             </div>
             <button
               type="button"
               onClick={() => setOpen(false)}
               className="rounded-md border border-white/20 px-2 py-1 text-xs hover:bg-white/10"
             >
-              Close
+              {t("chat.close")}
             </button>
           </header>
 
@@ -126,14 +136,15 @@ export function ChatbotWidget() {
 
             {isSending ? (
               <div className="max-w-[88%] rounded-xl bg-white px-3 py-2 text-sm text-[var(--color-slate)]">
-                Thinking...
+                {t("chat.thinking")}
               </div>
             ) : null}
           </div>
 
           <div className="border-t border-[var(--color-border)] bg-white p-3">
+            <p className="mb-2 text-xs text-[var(--color-slate)]">{t("chat.limitNotice")}</p>
             <div className="mb-2 flex flex-wrap gap-2">
-              {STARTER_QUESTIONS.map((question) => (
+              {starterQuestions.map((question) => (
                 <button
                   key={question}
                   type="button"
@@ -152,7 +163,7 @@ export function ChatbotWidget() {
               <input
                 value={input}
                 onChange={(event) => setInput(event.target.value)}
-                placeholder="Type your question..."
+                placeholder={t("chat.placeholder")}
                 className="h-10 flex-1 rounded-md border border-[var(--color-border)] px-3 text-sm outline-none focus:border-[var(--color-orange)]"
               />
               <button
@@ -160,7 +171,7 @@ export function ChatbotWidget() {
                 disabled={!canSend}
                 className="h-10 rounded-md bg-[var(--color-orange)] px-4 text-sm font-semibold text-white disabled:opacity-60"
               >
-                Send
+                {t("chat.send")}
               </button>
             </form>
           </div>
@@ -175,9 +186,9 @@ export function ChatbotWidget() {
           trackEvent("chat_toggle", { open: nextOpen });
         }}
         className="grid h-12 w-12 place-content-center rounded-full bg-[var(--color-deep-navy)] text-sm font-semibold text-white shadow-xl ring-2 ring-white"
-        aria-label="Open chat assistant"
+        aria-label={`${t("chat.open")} ${t("chat.title")}`}
       >
-        AI
+        Q&A
       </button>
     </div>
   );

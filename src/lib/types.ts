@@ -1,9 +1,11 @@
 export interface ContactFormData {
   name: string;
+  businessName: string;
   email: string;
-  company: string;
+  whatsapp: string;
+  projectType: string;
   message: string;
-  interestType: 'investor' | 'partner' | 'client' | 'mentor';
+  consent: boolean;
 }
 
 export interface PitchSection {

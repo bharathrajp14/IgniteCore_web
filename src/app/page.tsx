@@ -1,19 +1,23 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { QualifierBookingForm } from "@/components/QualifierBookingForm";
 import {
   BRAND,
   CASE_STUDIES,
+  COURSE_MODULES,
+  HOME_HERO,
   HOME_PROBLEMS,
   HOW_IT_WORKS,
   PROJECTS,
   SERVICES,
   TRUST_STRIP,
+  WHAT_HAPPENS_NEXT,
 } from "@/lib/siteContent";
 
 export const metadata: Metadata = {
   title: "IgniteCore Solutions | AI Automation and Conversion-Focused Websites",
   description:
-    "We build AI automation systems, modern websites, and digital tools that help businesses save time and grow faster.",
+    "Dindigul and Coimbatore focused AI automation partner for clinics, coaching institutes, and real estate teams that need reliable lead follow-up.",
 };
 
 export default function HomePage() {
@@ -21,27 +25,43 @@ export default function HomePage() {
     <>
       <section className="hex-bg bg-[var(--color-dark)] text-white">
         <div className="section-shell mx-auto w-full max-w-[1100px] px-4 md:px-6">
-          <p className="kicker text-slate-300">IgniteCore Solutions</p>
+          <p className="kicker text-slate-300">{HOME_HERO.kicker}</p>
           <h1 className="mt-4 max-w-4xl font-display text-4xl leading-tight md:text-6xl">
-            We build AI automation systems, modern websites, and digital tools that help businesses save time and grow faster.
+            {HOME_HERO.headline}
           </h1>
           <p className="mt-5 max-w-2xl text-base text-slate-200 md:text-lg">
-            Built for teams that need clear systems, reliable execution, and better conversion outcomes.
+            {HOME_HERO.subheadline}
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <Link
-              href="/contact"
+            <a
+              href="#qualifier"
               className="min-h-11 rounded-md bg-[var(--color-orange)] px-6 py-3 text-center font-semibold text-white hover:bg-[var(--color-ember)]"
             >
-              Get a Free AI Audit
-            </Link>
-            <Link
-              href="/portfolio"
+              {HOME_HERO.primaryCtaLabel}
+            </a>
+            <a
+              href={`https://wa.me/${BRAND.whatsapp}`}
+              target="_blank"
+              rel="noreferrer"
               className="min-h-11 rounded-md border border-white/30 px-6 py-3 text-center font-medium text-white hover:bg-white/10"
             >
-              View Projects
-            </Link>
+              {HOME_HERO.secondaryCtaLabel}
+            </a>
           </div>
+          <p className="mt-4 text-sm text-slate-300">
+            What happens next: quick intake, clear recommendations, then a focused call.
+          </p>
+        </div>
+      </section>
+
+      <section id="qualifier" className="section-shell bg-white">
+        <div className="mx-auto w-full max-w-[1100px] px-4 md:px-6">
+          <p className="kicker">Free Audit Intake</p>
+          <h2 className="mt-3 font-display text-3xl md:text-5xl">Start with 2 quick steps before you book</h2>
+          <p className="mt-4 max-w-2xl text-sm text-[var(--color-slate)] md:text-base">
+            This helps us prepare a useful first call instead of a generic sales chat.
+          </p>
+          <QualifierBookingForm />
         </div>
       </section>
 
@@ -114,6 +134,31 @@ export default function HomePage() {
 
       <section className="section-shell bg-white">
         <div className="mx-auto w-full max-w-[1100px] px-4 md:px-6">
+          <p className="kicker">Learning Hub</p>
+          <h2 className="mt-3 font-display text-3xl md:text-5xl">Learn the exact systems before you buy</h2>
+          <p className="mt-4 max-w-2xl text-sm text-[var(--color-slate)] md:text-base">
+            Short practical lessons on lead follow-up, WhatsApp automation, and conversion-focused websites.
+          </p>
+          <div className="mt-8 grid gap-4 md:grid-cols-3">
+            {COURSE_MODULES.slice(0, 3).map((course) => (
+              <article key={course.slug} className="surface-card p-6">
+                <p className="font-mono text-xs uppercase tracking-[0.16em] text-[var(--color-teal)]">{course.category}</p>
+                <h3 className="mt-2 text-xl">{course.title}</h3>
+                <p className="mt-2 text-sm text-[var(--color-slate)]">{course.summary}</p>
+                <p className="mt-3 text-xs text-[var(--color-deep-navy)]">{course.duration} | {course.lessons} lessons</p>
+              </article>
+            ))}
+          </div>
+          <div className="mt-6">
+            <Link href="/courses" className="rounded-md border border-[var(--color-border)] px-5 py-3 text-sm font-semibold hover:bg-[var(--color-cream)]">
+              Explore learning hub
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="section-shell bg-white">
+        <div className="mx-auto w-full max-w-[1100px] px-4 md:px-6">
           <p className="kicker">Featured Projects</p>
           <h2 className="mt-3 font-display text-3xl md:text-5xl">Execution you can evaluate quickly</h2>
           <div className="mt-8 grid gap-4 md:grid-cols-2">
@@ -137,12 +182,15 @@ export default function HomePage() {
       <section className="section-shell">
         <div className="mx-auto w-full max-w-[1100px] px-4 md:px-6">
           <p className="kicker">Results</p>
-          <h2 className="mt-3 font-display text-3xl md:text-5xl">Business impact over vanity metrics</h2>
+          <h2 className="mt-3 font-display text-3xl md:text-5xl">Proof from real operating environments</h2>
           <div className="mt-8 grid gap-4 md:grid-cols-3">
             {CASE_STUDIES.map((study) => (
               <article key={study.title} className="surface-card p-6">
-                <p className="text-xs uppercase tracking-[0.16em] text-[var(--color-slate)]">{study.industry}</p>
+                <p className="text-xs uppercase tracking-[0.16em] text-[var(--color-slate)]">{study.industry} | {study.city}</p>
                 <h3 className="mt-2 text-2xl">{study.title}</h3>
+                <p className="mt-3 text-sm font-semibold text-[var(--color-deep-navy)]">{study.clientLabel}</p>
+                <p className="text-xs uppercase tracking-[0.16em] text-[var(--color-slate)]">{study.roleLabel}</p>
+                <p className="mt-3 text-sm italic text-[var(--color-slate)]">&quot;{study.quote}&quot;</p>
                 <p className="mt-3 text-sm text-[var(--color-slate)]">{study.beforeAfter}</p>
                 <p className="mt-3 text-sm font-medium text-[var(--color-deep-navy)]">{study.impact}</p>
               </article>
@@ -151,16 +199,32 @@ export default function HomePage() {
         </div>
       </section>
 
+      <section className="section-shell bg-white">
+        <div className="mx-auto w-full max-w-[1100px] px-4 md:px-6">
+          <p className="kicker">What Happens Next</p>
+          <h2 className="mt-3 font-display text-3xl md:text-5xl">Here is what happens after you reach out</h2>
+          <div className="mt-8 grid gap-4 md:grid-cols-3">
+            {WHAT_HAPPENS_NEXT.map((item) => (
+              <article key={item.step} className="surface-card p-6">
+                <p className="font-mono text-xs tracking-[0.18em] text-[var(--color-teal)]">STEP {item.step}</p>
+                <h3 className="mt-2 text-2xl">{item.title}</h3>
+                <p className="mt-2 text-sm text-[var(--color-slate)]">{item.description}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="section-shell bg-[var(--color-dark)] text-white">
         <div className="mx-auto w-full max-w-[1100px] px-4 md:px-6">
-          <h2 className="font-display text-3xl md:text-5xl">Tell us your current workflow. We will show what to fix first.</h2>
+          <h2 className="font-display text-3xl md:text-5xl">Tell us what is blocking growth. We will help you prioritize the first fix.</h2>
           <p className="mt-4 max-w-2xl text-sm text-slate-300 md:text-base">
             Start with one practical system that moves your business forward. Reach out at {BRAND.email} or WhatsApp +91 {BRAND.phone}.
           </p>
           <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-            <Link href="/contact" className="rounded-md bg-[var(--color-orange)] px-6 py-3 text-center font-semibold text-white hover:bg-[var(--color-ember)]">
-              Get a Free AI Audit
-            </Link>
+            <a href="#qualifier" className="rounded-md bg-[var(--color-orange)] px-6 py-3 text-center font-semibold text-white hover:bg-[var(--color-ember)]">
+              Start with 3 quick questions
+            </a>
             <a
               href={`https://wa.me/${BRAND.whatsapp}`}
               target="_blank"

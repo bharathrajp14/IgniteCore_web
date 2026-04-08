@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { ContactLeadForm } from "@/components/ContactLeadForm";
+import { PaymentMethodForm } from "@/components/PaymentMethodForm";
 import { BRAND } from "@/lib/siteContent";
 
 export const metadata: Metadata = {
@@ -14,9 +15,9 @@ export default function ContactPage() {
       <div className="mx-auto grid w-full max-w-[1100px] gap-6 px-4 md:grid-cols-[1.2fr_1fr] md:px-6">
         <div>
           <p className="kicker">Contact</p>
-          <h1 className="mt-3 font-display text-4xl md:text-5xl">Tell us what you need. We reply within 24 hours on working days.</h1>
+          <h1 className="mt-3 font-display text-4xl md:text-5xl">Tell us what you are trying to fix. We reply within 24 working hours.</h1>
           <p className="mt-4 text-[var(--color-slate)]">
-            Share your business context and project goals. We will suggest the fastest practical path to implementation.
+            Share your business context and goals. We will suggest the most practical first step for your team.
           </p>
 
           <div className="mt-6 grid gap-3 sm:grid-cols-2">
@@ -30,6 +31,20 @@ export default function ContactPage() {
 
           <div className="mt-6">
             <ContactLeadForm />
+          </div>
+
+          <div className="mt-6">
+            <details className="rounded-xl border border-[var(--color-border)] bg-white p-4">
+              <summary className="cursor-pointer list-none text-sm font-semibold text-[var(--color-deep-navy)]">
+                Already completed a bank transfer or UPI payment? Verify it here.
+              </summary>
+              <p className="mt-2 text-xs text-[var(--color-slate)]">
+                Optional section: use this only if you were already asked to make a payment.
+              </p>
+              <div className="mt-4">
+                <PaymentMethodForm />
+              </div>
+            </details>
           </div>
         </div>
 

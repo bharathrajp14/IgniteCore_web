@@ -203,7 +203,7 @@ export function FinancialChart({ data }: { data: Array<{ month: string; arr: num
             <YAxis stroke="#6b7280" />
             <Tooltip
               contentStyle={{ backgroundColor: '#f3f4f6', border: '2px solid #3b82f6' }}
-              formatter={(value: any) => `₹${(value / 100000).toFixed(1)}L`}
+              formatter={(value: number | string) => `₹${(Number(value) / 100000).toFixed(1)}L`}
             />
             <Legend />
             <Line

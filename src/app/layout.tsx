@@ -7,6 +7,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { WhatsAppFloat } from "@/components/WhatsAppFloat";
 import { ChatbotWidget } from "@/components/ChatbotWidget";
+import { I18nProvider } from "@/components/I18nProvider";
 import { BRAND } from "@/lib/siteContent";
 
 const dmSans = DM_Sans({
@@ -116,11 +117,13 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
         />
-        <SiteHeader />
-        <main>{children}</main>
-        <SiteFooter />
-        <ChatbotWidget />
-        <WhatsAppFloat />
+        <I18nProvider>
+          <SiteHeader />
+          <main>{children}</main>
+          <SiteFooter />
+          <ChatbotWidget />
+          <WhatsAppFloat />
+        </I18nProvider>
         <Analytics />
       </body>
     </html>

@@ -11,9 +11,10 @@ export function WhatsAppFloat() {
       rel="noreferrer"
       aria-label="Chat on WhatsApp"
       onClick={() => trackEvent("cta_click", { location: "floating_whatsapp", cta: "whatsapp_chat" })}
-      className="fixed bottom-20 right-4 z-50 grid h-12 w-12 place-content-center rounded-full bg-[var(--color-teal)] text-white shadow-lg ring-2 ring-white md:hidden"
+      className="fixed bottom-6 right-4 z-50 inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[var(--color-teal)] px-4 text-sm font-semibold text-white shadow-lg ring-2 ring-white"
     >
-      WA
+      <span>WA</span>
+      <span className="hidden md:inline">Chat now</span>
     </a>
   );
 }

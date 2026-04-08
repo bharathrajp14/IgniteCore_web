@@ -2,6 +2,10 @@ import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { getSupabaseServerClient } from "@/lib/supabaseServer";
 
+const REQUEST_LIMIT_WINDOW_MS = 60_000;
+const REQUEST_LIMIT_MAX = 25;
+const requestLog = new Map<string, number[]>();
+
 const messageSchema = z.object({
   role: z.enum(["user", "assistant"]),
   content: z.string().min(1).max(2000),
@@ -14,36 +18,103 @@ const schema = z.object({
 
 const SYSTEM_PROMPT = [
   "You are IgniteCore Assistant.",
-  "Goal: help visitors understand IgniteCore services, courses, and how to start.",
+  "Goal: help visitors with short client-facing Q&A about services, pricing direction, timeline, and next steps.",
   "Tone: concise, practical, professional, and helpful.",
   "Only claim what is available on the website: AI automation, business websites, web apps, lead capture, WhatsApp automation, dashboards, and support.",
+  "Do NOT generate full website code, architecture, exploit details, scripts, or implementation plans for developers.",
+  "If a user asks for full website building or code, refuse politely and guide them to book a consultation.",
   "When users ask for next step, suggest booking an audit or using contact page.",
 ].join(" ");
+
+function getClientIp(req: NextRequest) {
+  const forwarded = req.headers.get("x-forwarded-for");
+  if (forwarded) {
+    return forwarded.split(",")[0]?.trim() || "unknown";
+  }
+
+  return req.headers.get("x-real-ip") || "unknown";
+}
+
+function isRateLimited(ip: string) {
+  const now = Date.now();
+  const windowStart = now - REQUEST_LIMIT_WINDOW_MS;
+  const current = requestLog.get(ip) ?? [];
+  const next = current.filter((item) => item >= windowStart);
+
+  if (next.length >= REQUEST_LIMIT_MAX) {
+    requestLog.set(ip, next);
+    return true;
+  }
+
+  next.push(now);
+  requestLog.set(ip, next);
+  return false;
+}
+
+function isImplementationRequest(input: string) {
+  const text = input.toLowerCase();
+  const blockedPatterns = [
+    "build full website",
+    "make full website",
+    "write code",
+    "generate code",
+    "source code",
+    "create nextjs app",
+    "deploy script",
+    "sql injection",
+    "exploit",
+    "xss",
+  ];
+
+  return blockedPatterns.some((pattern) => text.includes(pattern));
+}
+
+function isAllowedOrigin(req: NextRequest) {
+  const origin = req.headers.get("origin");
+  if (!origin) return true;
+
+  const allowedOrigins = [
+    process.env.NEXT_PUBLIC_SITE_URL,
+    `https://${process.env.NEXT_PUBLIC_SITE_DOMAIN || ""}`,
+    "http://localhost:3000",
+  ].filter(Boolean);
+
+  return allowedOrigins.some((item) => item === origin);
+}
 
 function fallbackReply(userMessage: string) {
   const text = userMessage.toLowerCase();
 
   if (text.includes("price") || text.includes("cost") || text.includes("pricing")) {
-    return "Pricing depends on scope and timeline. Typical projects start from targeted implementation packages and scale based on complexity. Share your requirement in Contact and you will get a clear scope and quote.";
+    return "Pricing depends on scope, timeline, and how much automation you need first. If you share your current setup on the Contact page, IgniteCore can provide a clear scope and practical budget direction.";
   }
 
   if (text.includes("service") || text.includes("what do you do") || text.includes("offer")) {
-    return "IgniteCore provides AI automation systems, business websites, web app development, lead capture systems, WhatsApp automation, dashboards, and maintenance support.";
+    return "IgniteCore helps with AI automation, business websites, web app development, lead capture systems, WhatsApp automation, dashboards, and ongoing support.";
   }
 
   if (text.includes("course") || text.includes("learn") || text.includes("video")) {
-    return "You can visit the Courses section for video lessons, downloadable notes, and curated public resources. If you want implementation help, book a free audit from the Contact page.";
+    return "You can explore the Courses section for quick lessons, downloadable notes, and curated public resources. If you want done-for-you implementation, use Contact and request a free audit.";
   }
 
   if (text.includes("contact") || text.includes("book") || text.includes("audit")) {
-    return "You can book a free AI audit from the main CTA or submit details on the Contact page. If you share your goal and timeline, IgniteCore can suggest the fastest execution plan.";
+    return "You can book a free AI audit from the main CTA or share details on the Contact page. Include your goal and timeline, and IgniteCore will suggest the fastest practical plan.";
   }
 
-  return "Thanks for your message. I can help with services, project scope, pricing direction, courses, and next steps. Tell me what you want to build or improve.";
+  return "Thanks for sharing. I can help with services, pricing direction, timelines, and next steps. Tell me your business type and the main challenge you want to solve first.";
 }
 
 export async function POST(req: NextRequest) {
   try {
+    if (!isAllowedOrigin(req)) {
+      return NextResponse.json({ error: "Origin not allowed" }, { status: 403 });
+    }
+
+    const ipKey = getClientIp(req);
+    if (isRateLimited(ipKey)) {
+      return NextResponse.json({ error: "Too many requests. Please retry in a minute." }, { status: 429 });
+    }
+
     const body = await req.json();
     const parsed = schema.safeParse(body);
 
@@ -56,6 +127,17 @@ export async function POST(req: NextRequest) {
 
     if (!lastUserMessage) {
       return NextResponse.json({ error: "User message required" }, { status: 400 });
+    }
+
+    if (isImplementationRequest(lastUserMessage.content)) {
+      return NextResponse.json({
+        success: true,
+        sessionId,
+        provider: "guardrail",
+        model: "guardrail",
+        reply:
+          "I can help with quick client Q&A only. For full website builds, technical implementation, or custom coding, please use the Contact page to request a project consultation.",
+      });
     }
 
     let reply = fallbackReply(lastUserMessage.content);

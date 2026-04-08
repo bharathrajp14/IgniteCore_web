@@ -17,11 +17,48 @@ export const BRAND = {
   bookingUrl: "https://cal.com/ignitecore-solutions-jfsze7",
 };
 
+export const PAYMENT_DETAILS = {
+  accountName: "Barathraj Padmanathan",
+  accountNumber: "77770141142626",
+  ifscCode: "FDRL0007778",
+  alternateIfsc: "FDRL0000001",
+  branch: "Neo Banking - Jupiter",
+  upiHandles: ["9344518573@jupiteraxis", "bharathraj1412p@okhdfcbank"],
+  note: "Use the exact reference shown after submitting the form so the payment can be matched quickly.",
+};
+
 export const TRUST_STRIP = [
   "Fast turnaround for execution-ready delivery",
   "Clear scopes and practical implementation",
   "WhatsApp-first process automation expertise",
   "Web + automation under one execution partner",
+];
+
+export const HOME_HERO = {
+  kicker: "IgniteCore Solutions | Dindigul and Coimbatore focused",
+  headline: "Stop losing leads to broken follow-up. We build practical systems that help your team respond faster and convert better.",
+  subheadline:
+    "Tell us what is slowing your growth right now. We map a simple implementation path for clinics, coaching institutes, and real estate teams.",
+  primaryCtaLabel: "Start with 3 quick questions",
+  secondaryCtaLabel: "Or chat on WhatsApp",
+};
+
+export const WHAT_HAPPENS_NEXT = [
+  {
+    step: "01",
+    title: "You get a response within one working day",
+    description: "We review your details and send a clear next step instead of a generic sales pitch.",
+  },
+  {
+    step: "02",
+    title: "First call is focused and practical",
+    description: "We understand your current process, identify the biggest bottleneck, and suggest what to fix first.",
+  },
+  {
+    step: "03",
+    title: "You receive a clear action plan",
+    description: "You get scope, timeline, and pricing direction so you can decide confidently without pressure.",
+  },
 ];
 
 export const HOME_PROBLEMS = [
@@ -190,6 +227,11 @@ export const CASE_STUDIES = [
   {
     title: "Clinic Enquiry Response Overhaul",
     industry: "Healthcare",
+    city: "Coimbatore",
+    clientLabel: "Dental Clinic (Identity private)",
+    roleLabel: "Practice Owner",
+    quote:
+      "We stopped losing hot enquiries between calls and WhatsApp. The team now sees every lead and follows up on time.",
     problem: "Patient enquiries were delayed due to manual call-backs and untracked WhatsApp chats.",
     solution: "Introduced lead tagging, reminder automation, and response templates with escalation rules.",
     outcome: "Average first-response time reduced from 3 hours to 35 minutes.",
@@ -199,6 +241,11 @@ export const CASE_STUDIES = [
   {
     title: "Coaching Admissions Follow-up Engine",
     industry: "Education",
+    city: "Tamil Nadu",
+    clientLabel: "Test-prep Academy (Identity private)",
+    roleLabel: "Admissions Coordinator",
+    quote:
+      "Counsellors finally had one pipeline to work from. No more lost leads or duplicate follow-up.",
     problem: "Admission leads dropped because counsellors had no unified follow-up system.",
     solution: "Built a lead capture dashboard with stage tracking and automated WhatsApp nudges.",
     outcome: "Follow-up completion improved from 46% to 89%.",
@@ -208,6 +255,11 @@ export const CASE_STUDIES = [
   {
     title: "Real Estate Lead Routing Automation",
     industry: "Real Estate",
+    city: "Coimbatore",
+    clientLabel: "Residential Sales Team (Identity private)",
+    roleLabel: "Sales Manager",
+    quote:
+      "Lead assignment became instant, so agents spoke to intent-rich buyers before competitors did.",
     problem: "Hot leads waited too long before being assigned to agents.",
     solution: "Implemented instant lead scoring and location-based auto assignment.",
     outcome: "82% of fresh leads assigned in under 5 minutes.",

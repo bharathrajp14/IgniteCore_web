@@ -55,6 +55,21 @@ A modern, high-conversion pitch deck website built with Next.js, TypeScript, Tai
    NEXT_PUBLIC_SUPABASE_ANON_KEY=sb_publishable_your_key_here
    SUPABASE_SECRET_KEY=sb_secret_your_key_here
    SUPABASE_DB_URL=postgresql://postgres.<project_ref>:<password>@aws-1-ap-south-1.pooler.supabase.com:5432/postgres
+
+   # Site security/origin checks
+   NEXT_PUBLIC_SITE_URL=https://ignitecoreai.tech
+   NEXT_PUBLIC_SITE_DOMAIN=ignitecoreai.tech
+
+   # AI chatbot provider (optional)
+   AI_PROVIDER_API_KEY=your_ai_provider_key_here
+   AI_PROVIDER_BASE_URL=https://api.openai.com/v1
+   AI_MODEL=gpt-4o-mini
+
+   # Payments
+   STRIPE_SECRET_KEY=sk_live_or_test_key
+   NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_live_or_test_key
+   RAZORPAY_KEY_ID=rzp_live_or_test_key
+   RAZORPAY_KEY_SECRET=razorpay_secret
    ```
 
 3. **Run development server**
@@ -87,6 +102,22 @@ To learn more about Next.js, take a look at the following resources:
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+
+## Platform Upgrades Added
+
+- Multilingual support with searchable language switcher (English, Tamil, Hindi, Telugu, Malayalam, Kannada, Arabic, French, German, Spanish).
+- Chatbot guardrails for client Q&A only. Requests for full website building/code generation are blocked and redirected to consultation flow.
+- Direct bank transfer / UPI payment verification flow at `/api/payments/direct` and a payment proof form on the contact page.
+- Razorpay and Stripe are kept as future-ready provider routes, but are not required for the current payment flow.
+- Security hardening: CSP + security headers, origin checks on critical APIs, request rate limiting on contact/chat/payment endpoints.
+
+## Manual Supabase SQL Upgrade
+
+Run this file in Supabase SQL editor when ready:
+
+- `docs/sql/security_payments_upgrade.sql`
+
+This adds qualifier fields for lead capture, `payment_requests` for future provider logs, and `payment_submissions` for direct payment verification.
 
 ## Deploy on Vercel
 

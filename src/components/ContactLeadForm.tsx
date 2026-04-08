@@ -10,9 +10,15 @@ const contactSchema = z.object({
   name: z.string().min(2, "Name is required"),
   businessName: z.string().min(2, "Business name is required"),
   email: z.string().email("Enter a valid email"),
-  whatsapp: z.string().min(10, "Valid phone / WhatsApp is required"),
+  whatsapp: z
+    .string()
+    .min(10, "Valid phone / WhatsApp is required")
+    .regex(/^[+]?\d[\d\s-]{8,16}$/, "Enter a valid phone / WhatsApp number"),
   projectType: z.string().min(2, "Select a project type"),
   message: z.string().min(10, "Please share more details"),
+  consent: z.boolean().refine((value) => value, {
+    message: "Please confirm consent before submitting",
+  }),
 });
 
 type ContactLeadInput = z.infer<typeof contactSchema>;
@@ -46,6 +52,7 @@ export function ContactLeadForm() {
       whatsapp: "",
       projectType: "",
       message: "",
+      consent: false,
     },
   });
 
@@ -56,7 +63,7 @@ export function ContactLeadForm() {
     const response = await fetch("/api/contact", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(values),
+      body: JSON.stringify({ ...values, source: "contact_page" }),
     });
 
     if (!response.ok) {
@@ -68,7 +75,7 @@ export function ContactLeadForm() {
 
     const data = await response.json();
     setStatus("success");
-    setServerMessage(data.message || "Thanks. We will reply soon.");
+    setServerMessage(data.message || "Thank you. We received your request and will get back within 24 working hours.");
     trackEvent("form_submit", { form: "contact", project_type: values.projectType });
     reset();
   };
@@ -140,11 +147,19 @@ export function ContactLeadForm() {
         <textarea
           rows={4}
           className="w-full rounded-md border border-[var(--color-border)] px-3 py-2 outline-none focus:border-[var(--color-orange)]"
-          placeholder="Share your goals, timeline, and what success looks like."
+          placeholder="Share your current challenge, timeline, and the outcome you want."
           {...register("message")}
         />
         {errors.message ? <span className="mt-1 block text-xs text-red-600">{errors.message.message}</span> : null}
       </label>
+
+      <label className="flex items-start gap-2 text-sm text-[var(--color-slate)]">
+        <input type="checkbox" className="mt-1" {...register("consent")} />
+        <span>
+          I consent to IgniteCore using these details to contact me about recommendations and project follow-up.
+        </span>
+      </label>
+      {errors.consent ? <p className="text-xs text-red-600">{errors.consent.message}</p> : null}
 
       <button
         type="submit"

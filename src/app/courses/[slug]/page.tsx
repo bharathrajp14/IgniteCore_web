@@ -16,9 +16,9 @@ type CoursePageProps = {
 export async function generateMetadata({ params }: CoursePageProps): Promise<Metadata> {
   const { slug } = await params;
   const resolvedSlug = LEGACY_COURSE_SLUGS[slug] ?? slug;
-  const module = COURSE_MODULES.find((item) => item.slug === resolvedSlug);
+  const courseModule = COURSE_MODULES.find((item) => item.slug === resolvedSlug);
 
-  if (!module) {
+  if (!courseModule) {
     return {
       title: "Course not found | IgniteCore Courses",
       description: "The requested course lesson could not be found.",
@@ -26,8 +26,8 @@ export async function generateMetadata({ params }: CoursePageProps): Promise<Met
   }
 
   return {
-    title: `${module.title} | IgniteCore Courses`,
-    description: module.summary,
+    title: `${courseModule.title} | IgniteCore Courses`,
+    description: courseModule.summary,
   };
 }
 
@@ -43,43 +43,43 @@ export default async function CourseDetailPage({ params }: CoursePageProps) {
     redirect(`/courses/${resolvedSlug}`);
   }
 
-  const module = COURSE_MODULES.find((item) => item.slug === resolvedSlug);
+  const courseModule = COURSE_MODULES.find((item) => item.slug === resolvedSlug);
 
-  if (!module) {
+  if (!courseModule) {
     notFound();
   }
 
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "LearningResource",
-    name: module.title,
-    description: module.summary,
-    dateModified: module.updatedAt,
+    name: courseModule.title,
+    description: courseModule.summary,
+    dateModified: courseModule.updatedAt,
     educationalLevel: "Beginner to intermediate SMB operator",
-    teaches: module.keyword,
+    teaches: courseModule.keyword,
   };
 
   return (
     <section className="section-shell">
-      <Script id={`course-schema-${module.slug}`} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
+      <Script id={`course-schema-${courseModule.slug}`} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
       <article className="mx-auto w-full max-w-[900px] px-4 md:px-6">
         <p className="font-mono text-xs uppercase tracking-[0.16em] text-[var(--color-teal)]">
-          Course lesson · {module.category} · {module.duration}
+          Course lesson · {courseModule.category} · {courseModule.duration}
         </p>
-        <h1 className="mt-3 font-display text-4xl md:text-5xl">{module.title}</h1>
-        <p className="mt-3 text-sm text-[var(--color-slate)]">{module.summary}</p>
+        <h1 className="mt-3 font-display text-4xl md:text-5xl">{courseModule.title}</h1>
+        <p className="mt-3 text-sm text-[var(--color-slate)]">{courseModule.summary}</p>
 
         <div className="mt-6 overflow-hidden rounded-xl border border-[var(--color-border)] bg-white p-2">
-          <iframe src={module.videoEmbed} title={`${module.title} video`} className="h-[420px] w-full rounded-lg" loading="lazy" />
+          <iframe src={courseModule.videoEmbed} title={`${courseModule.title} video`} className="h-[420px] w-full rounded-lg" loading="lazy" />
         </div>
 
         <div className="mt-8 grid gap-4 md:grid-cols-2">
           <article className="surface-card p-6">
             <h2 className="text-2xl">Lesson outcomes</h2>
             <ul className="mt-4 space-y-2 text-sm text-[var(--color-deep-navy)]">
-              <li>Duration: {module.duration}</li>
-              <li>Modules: {module.lessons} key points</li>
-              {module.takeaways.map((takeaway) => (
+              <li>Duration: {courseModule.duration}</li>
+              <li>Modules: {courseModule.lessons} key points</li>
+              {courseModule.takeaways.map((takeaway) => (
                 <li key={takeaway}>• {takeaway}</li>
               ))}
             </ul>
@@ -91,10 +91,10 @@ export default async function CourseDetailPage({ params }: CoursePageProps) {
               Use the course with the implementation notes below, then book a free AI audit if you want help mapping it to your business.
             </p>
             <div className="mt-4 flex flex-col gap-3">
-              <a href={module.downloadPath} download className="rounded-md border border-[var(--color-border)] px-4 py-3 text-center text-sm font-semibold hover:bg-[var(--color-cream)]">
+              <a href={courseModule.downloadPath} download className="rounded-md border border-[var(--color-border)] px-4 py-3 text-center text-sm font-semibold hover:bg-[var(--color-cream)]">
                 Download lesson notes
               </a>
-              <a href={module.publicResource} target="_blank" rel="noreferrer" className="rounded-md border border-[var(--color-border)] px-4 py-3 text-center text-sm font-semibold hover:bg-[var(--color-cream)]">
+              <a href={courseModule.publicResource} target="_blank" rel="noreferrer" className="rounded-md border border-[var(--color-border)] px-4 py-3 text-center text-sm font-semibold hover:bg-[var(--color-cream)]">
                 Open related public course
               </a>
               <Link href="/courses" className="rounded-md border border-[var(--color-border)] px-4 py-3 text-center text-sm font-semibold hover:bg-[var(--color-cream)]">
