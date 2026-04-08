@@ -70,23 +70,64 @@ function isImplementationRequest(input: string) {
   return blockedPatterns.some((pattern) => text.includes(pattern));
 }
 
-function fallbackReply(userMessage: string) {
-  const text = userMessage.toLowerCase();
+const AFFIRMATIVE_INPUTS = new Set(["yes", "y", "ok", "okay", "sure", "yep", "yeah", "fine", "continue"]);
 
-  if (text.includes("price") || text.includes("cost") || text.includes("pricing")) {
-    return "Pricing depends on scope, timeline, and how much automation you need first. If you share your current setup on the Contact page, IgniteCore can provide a clear scope and practical budget direction.";
+const intentMatchers: Array<{ patterns: string[]; reply: string }> = [
+  {
+    patterns: ["price", "cost", "pricing", "budget"],
+    reply:
+      "Pricing depends on scope, timeline, and how much automation you need first. Share your current process and goal on the Contact page, and we will suggest a practical budget range.",
+  },
+  {
+    patterns: ["service", "what do you do", "offer", "help with"],
+    reply:
+      "IgniteCore can help with AI automation, business websites, web apps, lead capture systems, WhatsApp automation, dashboards, and ongoing support.",
+  },
+  {
+    patterns: ["course", "learn", "video", "training"],
+    reply:
+      "You can explore the Courses section for quick lessons and downloadable resources. If you prefer done-for-you implementation, use Contact and request a free audit.",
+  },
+  {
+    patterns: ["contact", "book", "audit", "call", "consult"],
+    reply:
+      "You can book a free AI audit from the main CTA or share your details on the Contact page. Include your goal and timeline, and we will suggest the fastest next step.",
+  },
+  {
+    patterns: ["timeline", "how long", "duration", "when"],
+    reply:
+      "Most first versions launch in about 7 to 14 business days depending on scope. If you share your use case, we can suggest a realistic timeline for your business.",
+  },
+];
+
+function normalizeMessage(input: string) {
+  return input.toLowerCase().trim().replace(/\s+/g, " ");
+}
+
+function shouldAskForBusinessContext(previousAssistantMessage: string | undefined) {
+  if (!previousAssistantMessage) {
+    return false;
   }
 
-  if (text.includes("service") || text.includes("what do you do") || text.includes("offer")) {
-    return "IgniteCore helps with AI automation, business websites, web app development, lead capture systems, WhatsApp automation, dashboards, and ongoing support.";
+  const text = normalizeMessage(previousAssistantMessage);
+  return text.includes("business type") && text.includes("main challenge");
+}
+
+function fallbackReply(userMessage: string, previousAssistantMessage?: string) {
+  const text = normalizeMessage(userMessage);
+
+  if (AFFIRMATIVE_INPUTS.has(text) && shouldAskForBusinessContext(previousAssistantMessage)) {
+    return "Perfect. Start with this format: Business type - Main challenge - Current lead source. Example: 'Dental clinic - slow follow-up on WhatsApp - Instagram and referrals'.";
   }
 
-  if (text.includes("course") || text.includes("learn") || text.includes("video")) {
-    return "You can explore the Courses section for quick lessons, downloadable notes, and curated public resources. If you want done-for-you implementation, use Contact and request a free audit.";
+  for (const matcher of intentMatchers) {
+    if (matcher.patterns.some((pattern) => text.includes(pattern))) {
+      return matcher.reply;
+    }
   }
 
-  if (text.includes("contact") || text.includes("book") || text.includes("audit")) {
-    return "You can book a free AI audit from the main CTA or share details on the Contact page. Include your goal and timeline, and IgniteCore will suggest the fastest practical plan.";
+  if (text.length <= 3) {
+    return "I can guide you quickly. Tell me your business type and one main problem first, and I will suggest the best next step.";
   }
 
   return "Thanks for sharing. I can help with services, pricing direction, timelines, and next steps. Tell me your business type and the main challenge you want to solve first.";
@@ -128,7 +169,11 @@ export async function POST(req: NextRequest) {
       });
     }
 
-    let reply = fallbackReply(lastUserMessage.content);
+    const lastAssistantMessage = [...parsed.data.messages]
+      .reverse()
+      .find((item) => item.role === "assistant")?.content;
+
+    let reply = fallbackReply(lastUserMessage.content, lastAssistantMessage);
     let provider = "fallback";
     let modelUsed = "rules";
 
