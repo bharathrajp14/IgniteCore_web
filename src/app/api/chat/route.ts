@@ -113,8 +113,71 @@ function shouldAskForBusinessContext(previousAssistantMessage: string | undefine
   return text.includes("business type") && text.includes("main challenge");
 }
 
+function parseBusinessContext(input: string) {
+  const parts = input
+    .split(/\s+-\s+|\s*\|\s*|\n+/)
+    .map((part) => part.trim())
+    .filter(Boolean);
+
+  if (parts.length < 2) {
+    return null;
+  }
+
+  const [businessType, mainChallenge, leadSource] = parts;
+  return {
+    businessType,
+    mainChallenge,
+    leadSource,
+  };
+}
+
+function getRecommendedFocus(businessType: string, challenge: string) {
+  const business = normalizeMessage(businessType);
+  const issue = normalizeMessage(challenge);
+
+  if (issue.includes("follow") || issue.includes("response") || issue.includes("whatsapp")) {
+    return "Start with WhatsApp automation + lead capture tagging so every enquiry is tracked and responded to quickly.";
+  }
+
+  if (issue.includes("website") || issue.includes("landing") || issue.includes("conversion")) {
+    return "Start with a conversion-focused website or landing page refresh with clearer service positioning and stronger CTAs.";
+  }
+
+  if (issue.includes("report") || issue.includes("dashboard") || issue.includes("visibility")) {
+    return "Start with a simple dashboard that tracks lead source, response time, and conversion stage so you can fix bottlenecks fast.";
+  }
+
+  if (business.includes("clinic") || business.includes("hospital") || business.includes("doctor")) {
+    return "Start with enquiry triage and appointment follow-up automation to reduce missed patient opportunities.";
+  }
+
+  if (business.includes("coaching") || business.includes("academy") || business.includes("education")) {
+    return "Start with admission lead pipeline automation so counsellors can follow up consistently and improve enrollments.";
+  }
+
+  if (business.includes("real estate") || business.includes("property")) {
+    return "Start with lead routing and follow-up reminders so site visit interest does not drop between handoffs.";
+  }
+
+  return "Start with lead capture + response automation first, then improve conversion pages once follow-up consistency is stable.";
+}
+
 function fallbackReply(userMessage: string, previousAssistantMessage?: string) {
   const text = normalizeMessage(userMessage);
+
+  if (text.includes("not work") || text.includes("isn't working") || text.includes("error") || text.includes("issue")) {
+    return "Sorry you are facing this. Share what is failing (chat, form, payment, or booking), what you expected, and what happened instead. I will suggest the fastest fix path.";
+  }
+
+  const context = parseBusinessContext(userMessage);
+  if (context) {
+    const recommendedFocus = getRecommendedFocus(context.businessType, context.mainChallenge);
+    const leadSourceLine = context.leadSource
+      ? ` Noted lead source: ${context.leadSource}.`
+      : "";
+
+    return `${recommendedFocus}${leadSourceLine} If you want, I can give a starter scope with timeline and budget direction next.`;
+  }
 
   if (AFFIRMATIVE_INPUTS.has(text) && shouldAskForBusinessContext(previousAssistantMessage)) {
     return "Perfect. Start with this format: Business type - Main challenge - Current lead source. Example: 'Dental clinic - slow follow-up on WhatsApp - Instagram and referrals'.";
