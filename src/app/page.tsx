@@ -12,7 +12,6 @@ import {
   PROJECTS,
   SERVICES,
   TRUST_STRIP,
-  WHAT_HAPPENS_NEXT,
 } from "@/lib/siteContent";
 
 export const metadata: Metadata = {
@@ -188,36 +187,21 @@ export default async function HomePage() {
           <p className="kicker">{t("home.results.kicker")}</p>
           <h2 className="mt-3 font-display text-3xl md:text-5xl">{t("home.results.title")}</h2>
           <div className="mt-8 grid gap-4 md:grid-cols-3">
-            {CASE_STUDIES.map((study) => (
+            {CASE_STUDIES.map((study: Record<string, string>) => (
               <article key={study.title} className="surface-card p-6">
-                <p className="text-xs uppercase tracking-[0.16em] text-[var(--color-slate)]">{study.industry} | {study.city}</p>
+                <p className="text-xs uppercase tracking-[0.16em] text-[var(--color-slate)]">{study.industry}</p>
                 <h3 className="mt-2 text-2xl">{study.title}</h3>
-                <p className="mt-3 text-sm font-semibold text-[var(--color-deep-navy)]">{study.clientLabel}</p>
-                <p className="text-xs uppercase tracking-[0.16em] text-[var(--color-slate)]">{study.roleLabel}</p>
-                <p className="mt-3 text-sm italic text-[var(--color-slate)]">&quot;{study.quote}&quot;</p>
-                <p className="mt-3 text-sm text-[var(--color-slate)]">{study.beforeAfter}</p>
+                <p className="mt-3 text-sm text-[var(--color-slate)]">{study.problem}</p>
+                <p className="mt-3 text-sm italic text-[var(--color-slate)]">&quot;{study.solution}&quot;</p>
                 <p className="mt-3 text-sm font-medium text-[var(--color-deep-navy)]">{study.impact}</p>
+                <p className="mt-3 text-sm font-bold text-[var(--color-slate)]">{study.beforeAfter}</p>
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="section-shell bg-white">
-        <div className="mx-auto w-full max-w-[1100px] px-4 md:px-6">
-          <p className="kicker">{t("home.next.kicker")}</p>
-          <h2 className="mt-3 font-display text-3xl md:text-5xl">{t("home.next.title")}</h2>
-          <div className="mt-8 grid gap-4 md:grid-cols-3">
-            {WHAT_HAPPENS_NEXT.map((item) => (
-              <article key={item.step} className="surface-card p-6">
-                <p className="font-mono text-xs tracking-[0.18em] text-[var(--color-teal)]">STEP {item.step}</p>
-                <h3 className="mt-2 text-2xl">{item.title}</h3>
-                <p className="mt-2 text-sm text-[var(--color-slate)]">{item.description}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
+
 
       <section className="section-shell bg-[var(--color-dark)] text-white">
         <div className="mx-auto w-full max-w-[1100px] px-4 md:px-6">

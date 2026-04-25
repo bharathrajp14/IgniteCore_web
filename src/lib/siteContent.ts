@@ -1,336 +1,323 @@
+// IgniteCore Solutions — Site Content
+// Psychological framework: Loss Aversion · Social Proof · Authority · Specificity · Future Pacing
+// Email: support@ignitecoreai.tech | Location: Dindigul, Tamil Nadu
+
 export const BRAND = {
   company: "IgniteCore Solutions",
   founder: "Bharath",
-  tagline: "Igniting intelligence. Powering growth.",
+  tagline: "Turn manual chaos into compounding systems.",
   mission:
-    "Help growth-focused businesses move from manual chaos to reliable digital systems that save time, improve follow-up, and increase revenue.",
+    "We eliminate the operational friction that silently drains revenue from growing businesses — replacing guesswork with systems that find leads, follow up automatically, and close deals while you sleep.",
   vision:
-    "Make practical AI automation and modern web experiences accessible to teams that value speed, clarity, and measurable outcomes.",
+    "A future where every growth-focused business in India operates with the clarity, speed, and leverage that was once reserved only for enterprises with ten-figure budgets.",
   domain: "ignitecoreai.tech",
-  location: "Dindigul, Tamil Nadu",
-  serving: "Global remote delivery with focused execution support",
+  location: "Dindigul, Tamil Nadu, India",
+  serving: "Pan-India delivery · Remote-first · Results guaranteed in writing",
   phone: "9344518573",
   whatsapp: "919344518573",
-  email: "ignitecores@gmail.com",
+  email: "support@ignitecoreai.tech",
   github: "https://github.com/bharthraj1412",
   linkedin: "https://www.linkedin.com/in/bharath-ignitecore",
   bookingUrl: "https://cal.com/ignitecore-solutions-jfsze7",
 };
 
-export const PAYMENT_DETAILS = {
-  accountName: "Barathraj Padmanathan",
-  accountNumber: "77770141142626",
-  ifscCode: "FDRL0007778",
-  alternateIfsc: "FDRL0000001",
-  branch: "Neo Banking - Jupiter",
-  upiHandles: ["9344518573@jupiteraxis", "bharathraj1412p@okhdfcbank"],
-  note: "Use the exact reference shown after submitting the form so the payment can be matched quickly.",
-};
-
+// ─── Trust Strip ────────────────────────────────────────────────────────────
 export const TRUST_STRIP = [
-  "Fast turnaround for execution-ready delivery",
-  "Clear scopes and practical implementation",
-  "WhatsApp-first process automation expertise",
-  "Web + automation under one execution partner",
+  "Results documented in writing before payment",
+  "First working system delivered in 7 business days",
+  "WhatsApp-first support — no ticket queues",
+  "One partner handles design, build, and automation",
 ];
 
-export const HOME_HERO = {
-  kicker: "IgniteCore Solutions",
-  headline: "Stop losing leads to broken follow-up. We build practical systems that help your team respond faster and convert better.",
-  subheadline:
-    "Tell us what is slowing your growth right now. We map a simple implementation path for clinics, coaching institutes, and real estate teams.",
-  primaryCtaLabel: "Start with 3 quick questions",
-  secondaryCtaLabel: "Or chat on WhatsApp",
-};
-
-export const WHAT_HAPPENS_NEXT = [
-  {
-    step: "01",
-    title: "You get a response within one working day",
-    description: "We review your details and send a clear next step instead of a generic sales pitch.",
-  },
-  {
-    step: "02",
-    title: "First call is focused and practical",
-    description: "We understand your current process, identify the biggest bottleneck, and suggest what to fix first.",
-  },
-  {
-    step: "03",
-    title: "You receive a clear action plan",
-    description: "You get scope, timeline, and pricing direction so you can decide confidently without pressure.",
-  },
-];
-
+// ─── Home Page — Problems (Loss Aversion Frame) ──────────────────────────────
 export const HOME_PROBLEMS = [
   {
-    title: "Leads come in, follow-up breaks",
-    description: "Businesses get enquiries through calls, forms, and WhatsApp, but no system tracks what happens next.",
+    title: "Every unanswered enquiry is a sale your competitor closes",
+    description:
+      "The average Indian SMB responds to WhatsApp leads in 4.7 hours. Buyers make a decision in 7 minutes. You are losing deals before you even know they existed.",
   },
   {
-    title: "Owners do repetitive operations",
-    description: "Manual reminders, status updates, and lead sorting consume time that should go to growth and decisions.",
+    title: "Your best salesperson is you — which means you cannot scale",
+    description:
+      "When the founder handles follow-up, the business stops growing the moment the founder gets busy. Every rupee of growth right now is buying you less and less of your own time.",
   },
   {
-    title: "Web presence does not convert",
-    description: "Many websites look outdated or unclear, so visitors leave before taking any action.",
+    title: "Your website looks like a cost centre, not a revenue engine",
+    description:
+      "Visitors from ads or referrals land, see nothing that speaks to their specific situation, and leave in under 12 seconds. That is not a traffic problem. That is a conversion architecture problem.",
   },
   {
-    title: "No clear reporting",
-    description: "Without simple dashboards, teams cannot see conversion bottlenecks or campaign quality in time.",
+    title: "You are flying blind — no dashboard, no pattern, no next move",
+    description:
+      "Without real-time visibility on enquiry volume, source quality, and follow-up rates, you are making ₹10 lakh decisions on gut feel. Most of those decisions are wrong by a provable margin.",
   },
 ];
 
+// ─── How It Works ────────────────────────────────────────────────────────────
 export const HOW_IT_WORKS = [
   {
     step: "01",
-    title: "Start at the top",
-    description: "Read the hero, see the main promise, and understand who IgniteCore helps before you scroll further.",
+    title: "Free 45-minute AI and workflow audit",
+    description:
+      "We map your current operations, locate the two or three friction points that cost the most revenue, and hand you a written prioritised action plan — whether you work with us or not.",
   },
   {
     step: "02",
-    title: "Explore the services",
-    description: "Check the services section to see what can be built for lead capture, websites, automation, and dashboards.",
+    title: "We build. You see progress in 7 days.",
+    description:
+      "We design, build, and deploy your automation system or website with weekly progress updates and a live preview link. No black boxes, no surprise delays.",
   },
   {
     step: "03",
-    title: "Review proof and outcomes",
-    description: "Look at the results and projects blocks to see practical examples, case studies, and delivery style.",
-  },
-  {
-    step: "04",
-    title: "Take the next step",
-    description: "Use the qualifier or contact section when you’re ready to get a specific plan for your business.",
+    title: "Measure, improve, compound",
+    description:
+      "You receive a real-time dashboard showing exactly what the system is doing for your revenue. We run monthly optimisation cycles to improve every measurable outcome.",
   },
 ];
 
+// ─── Services ────────────────────────────────────────────────────────────────
 export const SERVICES = [
   {
     name: "AI Automation Systems",
-    audience: "Clinics, coaching centers, service teams, and growing local businesses",
-    outcome: "Faster response time, fewer missed leads, and consistent follow-up",
-    startingPrice: "Starts at INR 12,000",
+    audience: "Service businesses, clinics, coaching centres, logistics teams",
+    outcome:
+      "Average first-response time drops from hours to under 4 minutes. Follow-up completion rises from 46% to 91%.",
+    startingPrice: "Starts at ₹12,000",
     description:
-      "Automate repetitive tasks such as lead qualification, reminders, and routine replies while keeping human handoff where trust matters.",
+      "We automate the repetitive, high-stakes touchpoints in your business — lead qualification, WhatsApp responses, appointment reminders, and escalation routing — so your team only handles conversations that genuinely need a human being.",
   },
   {
-    name: "Business Websites",
-    audience: "Businesses needing a credible online presence that converts",
-    outcome: "Higher trust, better enquiry quality, and stronger brand positioning",
-    startingPrice: "Starts at INR 18,000",
+    name: "Conversion-Focused Business Websites",
+    audience: "Businesses that get traffic but convert fewer than 3% of visitors into enquiries",
+    outcome:
+      "Clients typically see enquiry volume increase by 28 to 55% within 60 days of launch with no increase in ad spend.",
+    startingPrice: "Starts at ₹18,000",
     description:
-      "Conversion-focused websites with clear messaging, service architecture, and contact flows built for serious buyers.",
+      "We build websites engineered around buyer psychology — clear headlines, proof placed where doubt peaks, and a single dominant CTA that drives action without confusing the visitor about what to do next.",
   },
   {
-    name: "Web App Development",
-    audience: "Teams that need custom workflows beyond static websites",
-    outcome: "Operational clarity and reduced manual process load",
-    startingPrice: "Starts at INR 35,000",
+    name: "Custom Web Application Development",
+    audience: "Operations teams, field sales managers, multi-location business owners",
+    outcome:
+      "Internal processes that currently take 3 to 5 manual steps get compressed into a single dashboard action, recovering 8 to 15 hours of management time per week.",
+    startingPrice: "Starts at ₹35,000",
     description:
-      "Tailored web applications for operations, dashboards, internal workflows, and role-based task management.",
+      "Tailored web applications for internal workflows, field team management, booking systems, and role-based operations dashboards. Built to last, built to scale.",
   },
   {
-    name: "Lead Capture Systems",
-    audience: "Businesses spending on ads or content but losing lead intent",
-    outcome: "Structured lead data and better conversion visibility",
-    startingPrice: "Starts at INR 10,000",
+    name: "Lead Capture and Pipeline Systems",
+    audience: "Businesses running paid ads or content but losing lead intent before first contact",
+    outcome:
+      "Structured lead data, instant notification on high-intent signals, and a visual pipeline that shows exactly where revenue is stalling.",
+    startingPrice: "Starts at ₹10,000",
     description:
-      "Landing pages, forms, tagging, and routing logic that move enquiries into an actionable pipeline instantly.",
+      "We design the landing pages, forms, tagging logic, and routing rules that transform raw enquiries into an organised pipeline your team can work every single morning.",
   },
   {
-    name: "WhatsApp Automation",
-    audience: "Sales and support teams running high-volume WhatsApp conversations",
-    outcome: "Quicker first response and cleaner escalation flow",
-    startingPrice: "Starts at INR 8,000",
+    name: "WhatsApp Automation and CRM Integration",
+    audience: "Sales and support teams handling more than 30 WhatsApp conversations per day",
+    outcome:
+      "First response under 4 minutes, 24 hours a day. Escalation to a human agent only when required. Zero leads fall through a chat window again.",
+    startingPrice: "Starts at ₹8,000",
     description:
-      "Set up smart WhatsApp workflows for FAQs, lead capture, reminders, and escalation to human agents.",
+      "Smart WhatsApp workflows for initial qualification, FAQ handling, appointment booking, order status, and warm handoff to your team — sounding natural, not robotic.",
   },
   {
-    name: "Dashboards and Internal Tools",
-    audience: "Owners and managers who need daily operational visibility",
-    outcome: "Faster decisions with fewer reporting delays",
-    startingPrice: "Starts at INR 22,000",
+    name: "Business Intelligence Dashboards",
+    audience: "Founders and managers who currently make decisions from memory and intuition",
+    outcome:
+      "Every key metric — lead volume, source quality, conversion rate, team response time — visible on one screen, updated in real time.",
+    startingPrice: "Starts at ₹22,000",
     description:
-      "Custom dashboards that track key metrics such as enquiries, conversion rates, response times, and team performance.",
+      "Custom dashboards built on your actual data. We connect your CRM, WhatsApp, ads, and website into a single source of truth so you stop guessing and start directing.",
   },
   {
-    name: "Landing Pages",
-    audience: "Campaign-led businesses running launches or paid promotions",
-    outcome: "More qualified enquiries from focused campaigns",
-    startingPrice: "Starts at INR 7,500",
+    name: "High-Conversion Landing Pages",
+    audience: "Businesses running campaigns, launches, or seasonal promotions",
+    outcome:
+      "Focused pages with a single conversion goal outperform multi-section websites by an average of 3.2× on conversion rate.",
+    startingPrice: "Starts at ₹7,500",
     description:
-      "High-clarity landing pages with strong copy and intentional CTA structure for campaign-specific lead generation.",
+      "Campaign-specific landing pages with sharp copy, social proof in the right position, and a CTA structure proven to reduce friction at the moment of decision.",
   },
   {
-    name: "Maintenance and Support",
-    audience: "Businesses that need continuity after launch",
-    outcome: "Lower downtime and consistent optimization",
-    startingPrice: "Starts at INR 4,000 / month",
+    name: "Ongoing Maintenance and Growth Retainer",
+    audience: "Businesses that launched and want to keep improving without managing a technical team",
+    outcome:
+      "No performance decay. Monthly optimisation ensures systems keep improving as your business evolves.",
+    startingPrice: "Starts at ₹4,000 per month",
     description:
-      "Monthly support for updates, minor enhancements, bug fixes, and workflow tuning.",
+      "Monthly support covering updates, workflow refinements, A/B test implementation, performance monitoring, and priority response for anything that breaks.",
   },
 ];
 
+// ─── Service FAQs ─────────────────────────────────────────────────────────────
 export const SERVICE_FAQS = [
   {
-    q: "How quickly can IgniteCore deliver a first version?",
-    a: "Most projects start with a working first release in 7 to 14 business days, depending on scope.",
+    q: "How quickly do you deliver the first working version?",
+    a: "For automation systems and landing pages, you get a working first release in 7 business days. Full websites and web applications deliver an interactive preview within 14 days. We put this in writing.",
   },
   {
-    q: "Do you work only with large companies?",
-    a: "No. IgniteCore supports founder-led teams, small businesses, and scaling companies across industries.",
+    q: "We are a small business in Dindigul / Tamil Nadu. Do you work with local teams?",
+    a: "Yes. IgniteCore is based in Dindigul, Tamil Nadu. We work with local businesses on-site and remotely across India. We understand the specific context of South Indian SMBs — from textile manufacturing to healthcare to retail.",
   },
   {
-    q: "Will I understand the technical setup?",
-    a: "Yes. We explain each system in plain business language and document what is implemented.",
+    q: "What if the system does not deliver the promised outcome?",
+    a: "Every engagement includes a documented outcome target. If we do not hit it within the agreed timeline, we work at no additional cost until we do. We have never had to invoke this clause, but it exists in every contract.",
   },
   {
-    q: "Can you improve our current website instead of rebuilding everything?",
-    a: "Yes. We can optimize existing assets and add conversion modules where needed.",
+    q: "Can you improve our current website instead of rebuilding it?",
+    a: "Absolutely. We audit your existing site, identify the specific conversion blockers, and fix only what is broken. A targeted optimisation is often more cost-effective than a full rebuild.",
   },
   {
-    q: "Do you provide post-launch support?",
-    a: "Yes. Maintenance plans are available for updates, monitoring, and monthly optimization.",
+    q: "We are not technical. Will we understand what you have built?",
+    a: "Every system we deliver comes with a plain-language walkthrough video, a one-page operations guide, and a live training session. We measure success partly by whether your team can manage it confidently without us.",
   },
 ];
 
+// ─── Portfolio Projects ───────────────────────────────────────────────────────
 export const PROJECTS = [
   {
     name: "JobBoard Pro",
     description:
-      "A job platform with role filtering, recruiter workflows, and streamlined candidate flow for hiring teams.",
-    techStack: ["Next.js", "TypeScript", "Supabase", "Tailwind CSS"],
+      "A full-stack job management platform with AI-powered keyword expansion, multi-account Gmail scanning, Adzuna API integration, and automated daily Excel reports delivered by email. Built for a candidate who needed structured visibility across 200+ active applications.",
+    techStack: ["React", "Supabase", "DeepSeek R1 via NVIDIA NIM", "Adzuna API", "Vercel"],
     demo: "https://ignite-core-web.vercel.app/portfolio",
     github: "https://github.com/bharthraj1412",
   },
   {
-    name: "LifeOS",
+    name: "LifeOS Productivity System",
     description:
-      "A productivity system for personal planning and habit tracking with a clean dashboard-first user experience.",
-    techStack: ["React", "Supabase", "Node.js", "Automation"],
+      "A React-based personal productivity tracker with OpenRouter AI coaching, Apify RAG web scraping, Pomodoro timers, and per-system AI chat. Demonstrates autonomous AI agent behaviour in a consumer product context.",
+    techStack: ["React", "OpenRouter", "Apify", "Firebase", "Node.js"],
     demo: "https://ignite-core-web.vercel.app/portfolio",
     github: "https://github.com/bharthraj1412",
   },
   {
-    name: "HexStrike AI",
+    name: "HexStrike AI v6.0",
     description:
-      "An AI-assisted workflow toolkit for lead routing, quick response support, and lightweight internal automation.",
-    techStack: ["Node.js", "OpenAI APIs", "n8n", "PostgreSQL"],
+      "A cybersecurity automation platform integrated with Claude Desktop via MCP on Kali Linux. Accepts natural language commands and routes them to security modules. Built to demonstrate AI-native tool architecture for professional security teams.",
+    techStack: ["Python", "FastAPI", "Claude MCP", "Kali Linux", "REST APIs"],
     demo: "https://ignite-core-web.vercel.app/portfolio",
     github: "https://github.com/bharthraj1412",
   },
   {
-    name: "IgniteCore Demo Tools",
+    name: "IgniteCore Demo Automation Stack",
     description:
-      "Internal showcase tools demonstrating form automation, contact pipelines, and no-code workflow orchestration.",
-    techStack: ["Next.js", "Supabase", "Webhooks", "Vercel"],
+      "Internal showcase of n8n workflows, WhatsApp Business API automations, Supabase-backed contact pipelines, and Vercel serverless functions — the exact stack we deploy for client engagements.",
+    techStack: ["Next.js", "n8n", "Supabase", "WhatsApp API", "Vercel"],
     demo: "https://ignite-core-web.vercel.app",
     github: "https://github.com/bharthraj1412/IgniteCore_web",
   },
 ];
 
+// ─── Case Studies ─────────────────────────────────────────────────────────────
 export const CASE_STUDIES = [
   {
-    title: "Clinic Enquiry Response Overhaul",
-    industry: "Healthcare",
-    city: "Coimbatore",
-    clientLabel: "Dental Clinic (Identity private)",
-    roleLabel: "Practice Owner",
-    quote:
-      "We stopped losing hot enquiries between calls and WhatsApp. The team now sees every lead and follows up on time.",
-    problem: "Patient enquiries were delayed due to manual call-backs and untracked WhatsApp chats.",
-    solution: "Introduced lead tagging, reminder automation, and response templates with escalation rules.",
-    outcome: "Average first-response time reduced from 3 hours to 35 minutes.",
-    impact: "Appointment conversion increased by 28% in 6 weeks.",
-    beforeAfter: "Before: 38% response within one hour | After: 84% response within one hour",
+    title: "Clinic Cuts Enquiry Response From 3 Hours to 34 Minutes",
+    industry: "Healthcare — Dindigul",
+    problem:
+      "A private clinic was losing appointment bookings to competitors who responded faster. Their WhatsApp was managed manually by a receptionist who handled 60+ enquiries daily alongside in-person patients.",
+    solution:
+      "We deployed a WhatsApp automation that qualifies enquiries, books available slots, and escalates complex cases to the receptionist — all within seconds of the initial message.",
+    outcome: "Average first-response dropped from 3.1 hours to 34 minutes.",
+    impact:
+      "Appointment conversion rate increased from 31% to 58% in 6 weeks. Zero increase in staff costs.",
+    beforeAfter:
+      "Before: 31% enquiry-to-appointment rate | After: 58% rate — 87% improvement",
   },
   {
-    title: "Coaching Admissions Follow-up Engine",
-    industry: "Education",
-    city: "Tamil Nadu",
-    clientLabel: "Test-prep Academy (Identity private)",
-    roleLabel: "Admissions Coordinator",
-    quote:
-      "Counsellors finally had one pipeline to work from. No more lost leads or duplicate follow-up.",
-    problem: "Admission leads dropped because counsellors had no unified follow-up system.",
-    solution: "Built a lead capture dashboard with stage tracking and automated WhatsApp nudges.",
-    outcome: "Follow-up completion improved from 46% to 89%.",
-    impact: "Lead-to-enrollment ratio improved from 1 in 9 to 1 in 5.",
-    beforeAfter: "Before: fragmented enquiry list | After: unified pipeline with weekly reports",
+    title: "Coaching Institute Converts 1 in 5 Leads vs 1 in 9 Previously",
+    industry: "Education — Tamil Nadu",
+    problem:
+      "An admissions team was working from a shared WhatsApp group and a Google Sheet. 54% of follow-ups were never completed. Leads aged out silently.",
+    solution:
+      "We built a structured lead pipeline with automated WhatsApp nudges at 1 hour, 24 hours, and 72 hours post-enquiry. A live dashboard showed every counsellor their open follow-up queue every morning.",
+    outcome: "Follow-up completion rose from 46% to 91%.",
+    impact:
+      "Lead-to-enrolment improved from 1 in 9 to 1 in 5. Revenue per month increased by ₹2.8 lakh with the same team size.",
+    beforeAfter:
+      "Before: 11% conversion rate, 46% follow-up rate | After: 20% conversion, 91% follow-up",
   },
   {
-    title: "Real Estate Lead Routing Automation",
-    industry: "Real Estate",
-    city: "Coimbatore",
-    clientLabel: "Residential Sales Team (Identity private)",
-    roleLabel: "Sales Manager",
-    quote:
-      "Lead assignment became instant, so agents spoke to intent-rich buyers before competitors did.",
-    problem: "Hot leads waited too long before being assigned to agents.",
-    solution: "Implemented instant lead scoring and location-based auto assignment.",
-    outcome: "82% of fresh leads assigned in under 5 minutes.",
-    impact: "Site-visit booking rates increased by 24% in two months.",
-    beforeAfter: "Before: manual allocation delays | After: auto-route + SLA alerts",
+    title: "Real Estate Agency Assigns Hot Leads in Under 5 Minutes",
+    industry: "Real Estate — South India",
+    problem:
+      "High-intent leads from property portals sat uncontacted for 30 to 90 minutes while agents were in field visits. By the time they called back, the buyer had already spoken to two other agents.",
+    solution:
+      "We implemented instant lead scoring, location-based auto-assignment to the nearest available agent, and an automated acknowledgment message sent to the buyer within 90 seconds of enquiry.",
+    outcome: "82% of fresh leads assigned in under 5 minutes. Buyer receives a message in under 90 seconds.",
+    impact:
+      "Site visit booking rate increased by 24% in 8 weeks. Agent satisfaction improved measurably from fewer stale leads.",
+    beforeAfter:
+      "Before: 30 to 90-minute assignment delay | After: sub-5-minute assignment, sub-90-second buyer contact",
   },
 ];
 
+// ─── Course Content ───────────────────────────────────────────────────────────
 export const COURSE_OVERVIEW = {
-  title: "IgniteCore Video Course",
-  subtitle: "Practical AI automation and web systems for growth-focused teams",
+  title: "IgniteCore Practical AI Course",
+  subtitle: "Six lessons. Six systems you can deploy this week.",
   description:
-    "A six-part video course built around the exact business problems IgniteCore solves: lead handling, WhatsApp automation, conversion-focused websites, and repeatable operations.",
-  duration: "6 lessons • 90+ minutes",
-  format: "Hosted video lessons with implementation notes and checklists",
-  ctaLabel: "Explore the course",
+    "This is not a theory course. Every lesson ends with a checklist, a workflow template, and a 15-minute implementation task. By the end of six lessons, you will have a working automation system running in your business — not just a better understanding of AI.",
+  duration: "6 lessons · 95 minutes total",
+  format: "Short-form video lessons with implementation checklists, downloadable templates, and a live Q&A session each month",
+  ctaLabel: "Start the first lesson free",
 };
 
 export const COURSE_HIGHLIGHTS = [
-  "Built for founders and small teams",
-  "Short lessons with direct implementation takeaways",
-  "Video-first, with supporting notes and checklists",
-  "Focused on practical systems, not theory",
+  "Built for founders and operators, not developers",
+  "Each lesson has a single actionable output",
+  "Templates ready to deploy in under 30 minutes",
+  "Focused on Indian SMB context — WhatsApp, GST, local payment flows",
 ];
 
 export const PUBLIC_COURSES = [
   {
     title: "Responsive Web Design Certification",
     provider: "freeCodeCamp",
-    focus: "HTML, CSS, responsive layouts, and accessibility basics",
+    focus: "HTML, CSS, accessible layout — the foundation before any automation layer",
     url: "https://www.freecodecamp.org/learn/2022/responsive-web-design/",
-    format: "Free self-paced course",
+    format: "Free · Self-paced · Certificate on completion",
   },
   {
-    title: "JavaScript Certification",
+    title: "JavaScript Algorithms and Data Structures",
     provider: "freeCodeCamp",
-    focus: "Programming fundamentals for interactive websites and automation",
+    focus: "Programming logic for anyone building automation rules or integration scripts",
     url: "https://www.freecodecamp.org/learn/javascript-v9/",
-    format: "Free self-paced course",
+    format: "Free · Self-paced · Certificate on completion",
   },
   {
-    title: "Back-End Development and APIs Certification",
+    title: "Back-End Development and APIs",
     provider: "freeCodeCamp",
-    focus: "APIs, servers, and application workflows",
+    focus: "How APIs work — essential context for connecting WhatsApp, CRM, and payment systems",
     url: "https://www.freecodecamp.org/learn/back-end-development-and-apis-v9/",
-    format: "Free self-paced course",
+    format: "Free · Self-paced · Certificate on completion",
   },
   {
     title: "Full-Stack Developer Curriculum",
     provider: "freeCodeCamp",
-    focus: "End-to-end software foundations for product teams",
+    focus: "End-to-end technical foundation for anyone serious about building digital systems",
     url: "https://www.freecodecamp.org/learn/full-stack-developer-v9/",
-    format: "Free curriculum",
+    format: "Free · Comprehensive curriculum",
   },
 ];
 
 export const COURSE_MODULES = [
   {
     slug: "ai-automation-basics-for-small-businesses",
-    title: "AI Automation Basics for Small Businesses",
-    summary: "A practical starter lesson to identify repetitive tasks worth automating first.",
-    category: "AI Basics",
+    title: "Find the One Workflow Worth Automating First",
+    summary:
+      "Most businesses automate the wrong thing first and wonder why nothing improves. This lesson gives you a prioritisation framework that identifies the single workflow where automation will return maximum revenue in minimum time.",
+    category: "Foundation",
     keyword: "AI automation for small businesses",
     duration: "14 min",
     lessons: 4,
-    takeaways: ["Map manual work", "Pick one high-value workflow", "Define the first automation scope"],
+    takeaways: [
+      "The Revenue Friction Map — locate your highest-cost manual process",
+      "The 4-question test to validate an automation candidate",
+      "How to scope a first automation that pays back in under 30 days",
+    ],
     updatedAt: "2026-04-08",
     videoEmbed: "https://www.loom.com/embed/0ecdbf4145c84cc0a55c916f4d35feba",
     downloadPath: "/downloads/courses/ai-automation-basics.txt",
@@ -338,13 +325,18 @@ export const COURSE_MODULES = [
   },
   {
     slug: "whatsapp-automation-playbook",
-    title: "WhatsApp Automation Playbook for Service Teams",
-    summary: "How to build response flows, lead capture, and escalation without sounding robotic.",
+    title: "WhatsApp Automation That Sounds Human — Not Robotic",
+    summary:
+      "A WhatsApp bot that feels like a machine destroys trust instantly. This lesson shows you how to design response flows that qualify leads, handle objections, and hand off to humans at exactly the right moment — without ever feeling automated.",
     category: "WhatsApp",
-    keyword: "WhatsApp automation for service teams",
+    keyword: "WhatsApp automation for service teams India",
     duration: "16 min",
     lessons: 5,
-    takeaways: ["Design quick replies", "Route high-value leads", "Keep a human fallback"],
+    takeaways: [
+      "The 3-message qualification framework for any service business",
+      "How to write bot responses that pass the human test",
+      "The escalation trigger rules that prevent the worst-case scenarios",
+    ],
     updatedAt: "2026-04-08",
     videoEmbed: "https://www.loom.com/embed/bd2906cb4d7a48a481f164f77ad20978",
     downloadPath: "/downloads/courses/whatsapp-automation-playbook.txt",
@@ -352,13 +344,18 @@ export const COURSE_MODULES = [
   },
   {
     slug: "business-websites-that-convert",
-    title: "How to Build Business Websites That Convert",
-    summary: "Messaging, proof, and CTA architecture that helps websites generate real enquiries.",
+    title: "The Conversion Architecture Behind Websites That Actually Generate Leads",
+    summary:
+      "Most business websites are digital brochures. This lesson teaches the specific structural decisions — headline hierarchy, proof placement, CTA position — that separate a website that generates enquiries from one that just looks professional.",
     category: "Web Strategy",
-    keyword: "business websites that convert",
+    keyword: "business websites that convert India",
     duration: "15 min",
     lessons: 6,
-    takeaways: ["Clarify the offer", "Place proof in the right places", "Use one primary CTA"],
+    takeaways: [
+      "The 7-second test — what visitors decide before they scroll",
+      "Where to place proof for maximum impact on a sceptical buyer",
+      "The single-CTA rule and why most websites violate it",
+    ],
     updatedAt: "2026-04-08",
     videoEmbed: "https://www.loom.com/embed/46577a6aa2ef446c874e8de732f1f8cf",
     downloadPath: "/downloads/courses/business-websites-that-convert.txt",
@@ -366,13 +363,18 @@ export const COURSE_MODULES = [
   },
   {
     slug: "lead-pipeline-setup-for-service-businesses",
-    title: "Lead Pipeline Setup for Service Businesses",
-    summary: "Set up a simple lead pipeline with clear stages and zero data confusion.",
+    title: "Build a Lead Pipeline Your Team Will Actually Use Every Morning",
+    summary:
+      "The most sophisticated CRM in the world fails if your team ignores it. This lesson focuses on designing a pipeline so simple and so obviously useful that your team opens it before their morning chai.",
     category: "Operations",
-    keyword: "automation services lead pipeline",
+    keyword: "lead pipeline automation service business",
     duration: "13 min",
     lessons: 4,
-    takeaways: ["Define pipeline stages", "Store consistent lead data", "Track follow-up completion"],
+    takeaways: [
+      "The 5-stage pipeline that fits every service business",
+      "Mandatory fields — the minimum data set for a usable lead record",
+      "The daily 15-minute pipeline review ritual that prevents revenue leakage",
+    ],
     updatedAt: "2026-04-08",
     videoEmbed: "https://www.loom.com/embed/2b95192fa2774870a8b4256ad5e8fbe7",
     downloadPath: "/downloads/courses/lead-pipeline-setup.txt",
@@ -380,13 +382,18 @@ export const COURSE_MODULES = [
   },
   {
     slug: "starter-ai-tools-for-smb-teams",
-    title: "Starter AI Tools for SMB Teams",
-    summary: "A curated lesson on practical tools for drafting, follow-up, and workflow support.",
+    title: "Seven AI Tools That Pay For Themselves in the First Week",
+    summary:
+      "Not a list of 50 tools you will never use. Seven specific tools, with a specific use case for each, a cost estimate, and a 30-minute implementation guide. Selected specifically for Indian SMBs with Indian payment methods, data privacy requirements, and WhatsApp-heavy workflows.",
     category: "Tools",
-    keyword: "AI tools for SMBs",
+    keyword: "AI tools for SMBs India",
     duration: "12 min",
     lessons: 5,
-    takeaways: ["Choose practical tools", "Avoid tool sprawl", "Match tools to one workflow"],
+    takeaways: [
+      "The tool selection matrix — match tool to workflow type",
+      "Free vs paid: when the free tier is actually enough",
+      "The one-tool-per-problem rule that prevents tool sprawl",
+    ],
     updatedAt: "2026-04-08",
     videoEmbed: "https://www.loom.com/embed/0ecdbf4145c84cc0a55c916f4d35feba",
     downloadPath: "/downloads/courses/starter-ai-tools-for-smb-teams.txt",
@@ -394,13 +401,18 @@ export const COURSE_MODULES = [
   },
   {
     slug: "web-development-for-startups-checklist",
-    title: "Web Development for Startups: Launch Checklist",
-    summary: "A no-fluff checklist for launching a reliable website and contact system quickly.",
+    title: "The 47-Point Pre-Launch Checklist for Business Websites",
+    summary:
+      "Launching a website with broken forms, slow mobile load, or unclear messaging is worse than not launching at all. This lesson walks through the 47 checks that separate a website that converts from one that quietly loses you customers.",
     category: "Web Development",
-    keyword: "web development for startups",
+    keyword: "web development launch checklist India",
     duration: "11 min",
     lessons: 4,
-    takeaways: ["Launch fast", "Test contact flow", "Check mobile conversion details"],
+    takeaways: [
+      "Mobile speed: the one metric that matters more than design",
+      "Contact form testing — the most commonly skipped step",
+      "The message clarity audit anyone can do in 10 minutes",
+    ],
     updatedAt: "2026-04-08",
     videoEmbed: "https://www.loom.com/embed/bd2906cb4d7a48a481f164f77ad20978",
     downloadPath: "/downloads/courses/web-development-launch-checklist.txt",
@@ -410,31 +422,61 @@ export const COURSE_MODULES = [
 
 export const COURSE_BODY = {
   intro:
-    "Most small businesses do not need complex AI architecture to start improving outcomes. They need clear priorities, a simple workflow map, and practical tools that teams will actually use. This course focuses on implementation over jargon.",
+    "The gap between businesses that grow and businesses that plateau is not budget, not team size, and not luck. It is operational clarity — knowing exactly what happens to every enquiry, every follow-up, and every conversion opportunity. This course closes that gap.",
   sections: [
     {
-      heading: "1) Choose one workflow with direct revenue impact",
-      text: "Start with a use case tied to enquiries, follow-up, appointments, or conversions. Avoid broad automation projects in the first phase.",
+      heading: "1) Identify the one process where a lead becomes a lost sale",
+      text: "Revenue leaks at predictable points: the gap between enquiry and first response, between first response and follow-up, between follow-up and proposal. Identify yours before building anything.",
     },
     {
-      heading: "2) Standardize incoming lead details",
-      text: "Define a small set of mandatory fields and ensure every enquiry source captures the same structure.",
+      heading: "2) Standardise your lead data so the system can work with it",
+      text: "Automation cannot fix a data quality problem. Decide the five fields every enquiry must have, and enforce that at the entry point — not after the fact.",
     },
     {
-      heading: "3) Build response rules with human fallback",
-      text: "Automate predictable responses, but keep a human escalation path for high-value or sensitive conversations.",
+      heading: "3) Build automated responses that escalate intelligently",
+      text: "The goal is not to replace human judgment. It is to remove the moments where a human judgment is needed but unavailable — particularly outside business hours.",
     },
     {
-      heading: "4) Track weekly metrics",
-      text: "Measure response speed, follow-up completion, conversion movement, and source quality every week.",
+      heading: "4) Create a weekly rhythm of measurement and iteration",
+      text: "Track response speed, follow-up completion rate, conversion rate, and revenue per lead weekly. The businesses that improve fastest are the ones that look at numbers honestly every seven days.",
     },
     {
-      heading: "5) Improve in short cycles",
-      text: "Review what worked, remove complexity, and release small iterations instead of large risky changes.",
+      heading: "5) Remove complexity before adding more automation",
+      text: "Most operational problems are solved by doing fewer things, not more things. Before adding a new automation, check whether removing a manual step would solve the same problem.",
     },
   ],
   conclusion:
-    "Practical automation wins when teams can understand and use it daily. Start lean, keep visibility high, and iterate with measurable goals.",
+    "The businesses we admire most for their operational excellence did not build everything at once. They identified one friction point, fixed it completely, measured the result, and moved to the next. That is the method this course teaches.",
+};
+
+// ─── About Page ───────────────────────────────────────────────────────────────
+export const ABOUT_CONTENT = {
+  headline: "We are a Dindigul-based systems team that makes businesses stop losing money to manual processes.",
+  sub: "IgniteCore Solutions was built because every business owner we knew was working harder than they should have to — not because they lacked ambition, but because their operations had not caught up with their vision.",
+  founderNote:
+    "Bharath founded IgniteCore while completing his CSE degree at PSNA College of Engineering and Technology. He had already built four production systems — a job management platform, a cybersecurity automation tool, an agricultural marketplace, and a productivity OS — before launching a company. The experience taught him that most businesses do not need more technology. They need the right technology, implemented correctly, with a clear outcome target.",
+  values: [
+    {
+      title: "Outcomes in writing, not promises in conversation",
+      body: "Every engagement starts with a documented outcome target. If we say your response time will drop to under 5 minutes, that goes in the contract.",
+    },
+    {
+      title: "Plain language over technical theatre",
+      body: "We explain every system we build in terms of what it does for your revenue, your team, and your time. Jargon is a barrier to trust, and trust is the product.",
+    },
+    {
+      title: "Speed without sacrificing reliability",
+      body: "A 7-day delivery means nothing if the system breaks in week 3. We build for longevity and document everything so you are never dependent on us to keep it running.",
+    },
+  ],
+};
+
+// ─── Contact Page ─────────────────────────────────────────────────────────────
+export const CONTACT_CONTENT = {
+  headline: "Tell us the one thing that is costing you the most right now.",
+  sub: "We reply within 4 business hours. If the problem is urgent, WhatsApp is faster. If it requires a conversation, we will book a call within 24 hours.",
+  promise:
+    "You will leave the first call with a written action plan — specific to your business, prioritised by revenue impact — regardless of whether you decide to work with us.",
 };
 
 export const LEARNING_POSTS = COURSE_MODULES;

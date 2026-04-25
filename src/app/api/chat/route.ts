@@ -85,7 +85,7 @@ export async function POST(req: NextRequest) {
     }
 
     let reply = "";
-    let provider = "custom";
+    const provider = "custom";
     let modelUsed = "";
 
     const apiKey = process.env.AI_PROVIDER_API_KEY?.trim();

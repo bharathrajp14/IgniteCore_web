@@ -5,8 +5,18 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useI18n } from "@/components/I18nProvider";
-import { BRAND, PAYMENT_DETAILS } from "@/lib/siteContent";
+import { BRAND } from "@/lib/siteContent";
 import { trackEvent } from "@/lib/tracking";
+
+const PAYMENT_DETAILS = {
+  accountName: "Barathraj Padmanathan",
+  accountNumber: "77770141142626",
+  ifscCode: "FDRL0007778",
+  alternateIfsc: "FDRL0000001",
+  branch: "Neo Banking - Jupiter",
+  upiHandles: ["9344518573@jupiteraxis", "bharathraj1412p@okhdfcbank"],
+  note: "Use the exact reference shown after submitting the form so the payment can be matched quickly.",
+};
 
 const schema = z.object({
   fullName: z.string().min(2).max(80),
@@ -131,7 +141,7 @@ export function PaymentMethodForm() {
           <div>
             <p><strong>UPI:</strong></p>
             <div className="mt-2 flex flex-wrap gap-2">
-              {paymentHandles.map((handle) => (
+              {paymentHandles.map((handle: string) => (
                 <div key={handle} className="flex items-center gap-2">
                   <a
                     href={getUpiLink(handle)}
