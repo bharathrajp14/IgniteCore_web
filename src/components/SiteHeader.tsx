@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { BRAND } from "@/lib/siteContent";
 import { trackEvent } from "@/lib/tracking";
@@ -32,7 +33,7 @@ export function SiteHeader() {
 
       <div className="mx-auto flex h-16 w-full max-w-[1100px] items-center justify-between px-4 md:px-6">
         <Link href="/" className="flex items-center gap-2 text-[var(--color-deep-navy)]" aria-label={BRAND.company}>
-          <img src="/brand/mark.svg" alt="IgniteCore mark" className="h-10 w-10 sm:h-11 sm:w-11" />
+          <Image src="/brand/mark.svg" alt="IgniteCore mark" width={44} height={44} className="h-10 w-10 sm:h-11 sm:w-11" />
           <span className="leading-none">
             <span className="block font-display text-3xl italic sm:text-[34px]">
               <span className="text-[var(--color-orange)]">Ignite</span>

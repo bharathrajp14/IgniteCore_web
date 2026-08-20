@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { BRAND } from "@/lib/siteContent";
 
@@ -9,7 +10,7 @@ export function SiteFooter() {
       <div className="mx-auto grid w-full max-w-[1100px] gap-10 px-4 py-12 md:grid-cols-3 md:px-6">
         <div>
           <div className="flex items-center gap-3">
-            <img src="/brand/mark.svg" alt="IgniteCore mark" className="h-10 w-10" />
+            <Image src="/brand/mark.svg" alt="IgniteCore mark" width={40} height={40} className="h-10 w-10" />
             <span className="leading-none">
               <span className="block font-display text-3xl italic sm:text-[34px]">
                 <span className="text-[var(--color-orange)]">Ignite</span>
@@ -39,7 +40,7 @@ export function SiteFooter() {
 
         <div>
           <h3 className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-300">NAP</h3>
-          <img src="/brand/mark.svg" alt="IgniteCore mark" className="mt-3 h-9 w-9" />
+          <Image src="/brand/mark.svg" alt="IgniteCore mark" width={36} height={36} className="mt-3 h-9 w-9" />
           <p className="mt-4 text-sm text-slate-300">Name: {BRAND.company}</p>
           <p className="text-sm text-slate-300">Domain: {BRAND.domain}</p>
           <p className="text-sm text-slate-300">Address: {BRAND.location}</p>
